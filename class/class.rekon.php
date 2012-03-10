@@ -100,7 +100,7 @@ class Rekon {
         }
         $rekon = array(
             'UP' => $UP,
-            'SALDO' => $Saldo,
+            //'SALDO' => $Saldo,
             'RBelanja' => $RBelanja,
             'BPjk' => $BPjk,
             'Pjk' => $Pjk,
@@ -108,13 +108,14 @@ class Rekon {
             'KBiaya' => $KBiaya,
             'PBelanja' => $PBelanja,
         );
+        $rek=new LogRekon();
+        if($Saldo==false){
+            $rek->updateLog($kddept, $kdunit, $kdsatker, $kddekon, '00', 3);
+        }else{
+            $rek->updateLog($kddept, $kdunit, $kdsatker, $kddekon, '00', 2);
+        }
         if(in_array(false, $rekon)){
-            $rek=new LogRekon();
-            if($rekon['SALDO']==false){
-                $rek->updateLog($kddept, $kdunit, $kdsatker, $kddekon, '00', 3);
-            }else {
-                $rek->updateLog($kddept, $kdunit, $kdsatker, $kddekon, $periode, 3);
-            }    
+            $rek->updateLog($kddept, $kdunit, $kdsatker, $kddekon, $periode, 3);   
         }
         return $rekon;
     }

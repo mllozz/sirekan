@@ -33,7 +33,7 @@ if (isset($_GET['detail'])) {
     echo json_encode($data);
 }
 if (isset($_REQUEST['cetak'])) {
-    
+
     session_start();
 
     $username = $_SESSION['username'];
@@ -51,34 +51,50 @@ if (isset($_REQUEST['cetak'])) {
 
     $satker = new Satker($arr);
     $kewe = $satker->getKewenangan();
-    
+
     $kddekon = $_POST['kddekon'];
     $periode = $_POST['periode'];
     $error = true;
-    $msg='';
+    $msg = '';
     $bulan = (int) date('m');
     if ($kddekon != $kewe['kddekon']) {
-        //$msg = 'Kode Kewenangan Salah';
-        echo json_encode($error);
+        $msg = 'Kode Kewenangan Salah';
+        $data = array(
+            'error' => $error,
+            'msg' => $msg
+        );
+        echo json_encode($data);
     } elseif (((int) $periode) > $bulan) {
-        //$msg = 'Periode Rekonsiliasi Salah';
-        echo json_encode($error);
+        $msg = 'Periode Rekonsiliasi Salah';
+        $data = array(
+            'error' => $error,
+            'msg' => $msg
+        );
+        echo json_encode($data);
     } else {
-        $log=new LogRekon();
-        $cek=$log->getLog($kddept, $kdunit, $kdsatker, $kddekon, $periode);
-        if(!$cek){       
-            //$msg='Rekonsiliasi Belum Dilakukan';
-            echo json_encode($error);
-        }else {
-            if($cek['id_status_rekon']=='2'){
+        $log = new LogRekon();
+        $cek = $log->getLog($kddept, $kdunit, $kdsatker, $kddekon, $periode);
+        if (!$cek) {
+            $msg = 'Rekonsiliasi Belum Dilakukan';
+            $data = array(
+                'error' => $error,
+                'msg' => $msg
+            );
+            echo json_encode($data);
+        } else {
+            if ($cek['id_status_rekon'] == '2') {
                 //rekon benar cetak pdf
-                $bar=new Pdf_Print();
+                $bar = new Pdf_Print();
                 //$error = false;
                 //$msg='Rekonsiliasi Benar';
                 $bar->createBar($kddept, $kdunit, $kdsatker, $kddekon, $periode);
-            }else{
-                //$msg='Rekonsiliasi Masih Salah';
-                echo json_encode($error);
+            } else {
+                $msg = 'Rekonsiliasi Masih Salah';
+                $data = array(
+                    'error' => $error,
+                    'msg' => $msg
+                );
+                echo json_encode($data);
             }
         }
     }

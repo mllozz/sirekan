@@ -20,8 +20,8 @@ $(document).ready(function() {
         var periode = $('#periode').val();
         var kddekon = $('#dekon:checked').val();
         $.post($('#frm_bar').attr('action'), {cetak: true, periode: periode, kddekon: kddekon}, function(data) {
-            if (data === true) {
-                $('#output').html('Gagal Cetak PDF');
+            if (data.error === true) {
+                $('#output').html('Gagal Cetak PDF, '+data.msg).fadeIn(500).delay(2500).fadeOut(500);
             } else {
                 //window.open('BAR.pdf', '_blank', 'fullscreen=yes');
                 $('#grid').fadeOut(250);

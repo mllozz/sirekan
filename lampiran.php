@@ -53,6 +53,20 @@
         background-color: #fbec88;
         border-width: 1px;
     }
+    
+    .error {
+        border: 1px solid;
+        margin: 1% 8%;
+        width: 45%;
+        padding:15px 10px 15px 50px;
+        border-radius: 3px;
+        background-repeat: no-repeat;
+        background-position: 10px center;
+        color: #D8000C;
+        background-color: #FFBABA;
+        background-image: url('img/error.png');
+        display: none;
+    }
 </style>
 
 <table id="grid" >
@@ -105,7 +119,7 @@
 </form>
 </table>
 <div id="loader"></div>
-<div id="output"></div>
+<div class="error" id="output"></div>
 
 <script type="text/javascript" src="js/lampiran.js"></script>
 <div id="pdf">

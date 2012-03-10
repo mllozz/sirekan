@@ -57,6 +57,19 @@
         font-size:62.5%;
     }
 
+    .error {
+        border: 1px solid;
+        margin: 1% 5%;
+        width: 25%;
+        padding:15px 10px 15px 50px;
+        border-radius: 3px;
+        background-repeat: no-repeat;
+        background-position: 10px center;
+        color: #D8000C;
+        background-color: #FFBABA;
+        background-image: url('img/error.png');
+        display: none;
+    }
 
 </style>
 <form method="post" action="controller/cont.reset.php" id="frm_reset">
@@ -96,7 +109,7 @@
     </tr>
 </form>
 </table>
-<span id="error"></span>
+<span class="error" id="error"></span>
 <span id="error"></span>
 <div id="data_reset"></div>
 

@@ -114,7 +114,19 @@
         height: 60%;
     }
     
-
+    .error {
+        border: 1px solid;
+        margin: 1% 5%;
+        width: 45%;
+        padding:15px 10px 15px 50px;
+        border-radius: 3px;
+        background-repeat: no-repeat;
+        background-position: 10px center;
+        color: #D8000C;
+        background-color: #FFBABA;
+        background-image: url('img/error.png');
+        display: none;
+    }
 </style>
 <form id="ceksakpa" method="post" action="">
     <table id="grid">
@@ -163,7 +175,7 @@
         </tr>
     </table>
 </form>
-<div id="error"></div>
+<div class="error" id="error"></div>
 <script type="text/javascript" src="js/cek_rekon.js"></script>
 <div id="loader" style="display:none;">
     <br />

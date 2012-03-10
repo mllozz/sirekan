@@ -110,6 +110,20 @@
     tr#red {
         background-color: red;
     }
+    
+    .error {
+        border: 1px solid;
+        margin: 1% 2%;
+        width: 45%;
+        padding:15px 10px 15px 50px;
+        border-radius: 3px;
+        background-repeat: no-repeat;
+        background-position: 10px center;
+        color: #D8000C;
+        background-color: #FFBABA;
+        background-image: url('img/error.png');
+        display: none;
+    }
 </style>
 <form id="ceksakpa" method="post" action="">
     <table id="grid">
@@ -166,7 +180,7 @@
     <img src="img/loader.gif" alt="loader" />
     <div class="message"></div>   
 </div>
-<div id="loader2"></div>
+<div class="error" id="loader2"></div>
 <div id="rekon_sakpa">
     <pre>Hasil Rekonsiliasi Saldo</pre>
     <table id="hasil_rekon">

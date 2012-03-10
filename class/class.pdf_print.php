@@ -49,7 +49,7 @@ class Pdf_Print {
 </head>
 
 <body>
-<table width="540" border="0">
+<table width="500" border="0">
   <tr>
     <td style="text-align:center;"><img src="../img/garuda2.png" /></td>
   </tr>
@@ -67,12 +67,12 @@ class Pdf_Print {
   </tr>
 </table>
 <br />
-<table width="540" border="0">
+<table width="500" border="0">
   <tr>
     <td><p style="text-indent:25px; text-align:justify; padding-top:-0.3em; line-height:1.5em;">Pada hari  ini '.$this->hari(date('l')).' tanggal ' . $this->Terbilang(date('d')) . ' bulan ' . $bulan_ini['nmbulan'] . ' tahun ' . $this->Terbilang(date('Y')) . ' telah diselenggarakan rekonsiliasi Laporan Realisasi  Anggaran antara satuan kerja / satuan kerja perangkat daerah ' . $data_satker['nmsatker'] . '  (' . $kddept . '.' . $kdunit . '.' . $kdsatker . '.' . $kddekon . '), yang  selanjutnya disebut Kuasa Pengguna Anggaran (KPA), dengan Kantor Pelayanan  Perbendaharaan Negara ' . $kppn->nmkppn . '  kode (' . $kppn->kdkppn . '), yang selanjutnya disebut Kuasa  Bendahara Umum Negara.</p></td>
   </tr>
 </table>
-<table width="540" border="0">
+<table width="500" border="0">
   <tr>
     <td><p style="text-indent:25px; text-align:justify; line-height:1.5em;">Kuasa Pengguna Anggaran menyampaikan Laporan Realisasi  Anggaran sebagai bahan rekonsiliasi, berupa:</p></td>
   </tr>
@@ -90,7 +90,7 @@ class Pdf_Print {
   </tr>
 </table>
 <br />
-<table width="540" border="0">
+<table width="500" border="0">
   <tr>
     <td><p style="text-indent:25px; text-align:justify; line-height:1.5em;">Pada tanggal ' . date('d') . ' Bulan ' . $bulan_ini['nmbulan'] . ' ' . date('Y') . '</p></td>
   </tr>
@@ -102,7 +102,7 @@ class Pdf_Print {
   </tr>
 </table>
 <br />
-<table width="540" border="0">
+<table width="500" border="0">
   <tr>
     <td style="text-indent:25px; line-height:1.5em;"><strong>1.&nbsp;&nbsp;DIPA</strong></td>
   </tr>
@@ -124,7 +124,7 @@ class Pdf_Print {
 
 </table>
 <br />
-<table width="540" border="0">
+<table width="500" border="0">
   <tr>
     <td><p style="text-align:justify; line-height:1.5em;">yang secara rinci tertuang dalam <em>Laporan Hasil  Rekonsiliasi</em> yang merupakan bagian   yang tidak terpisahkan dari Berita Acara Rekonsiliasi (BAR) ini.</p></td>
   </tr>
@@ -136,7 +136,7 @@ class Pdf_Print {
   </tr>
 </table>
 <br />
-<table width="600" border="0">
+<table width="560" border="0">
   <tr>
     <td style="text-align:center; line-height:1em; text-indent: 2px;">A.n. Kuasa Bendahara Umum Negara</td>
     <td style="text-align:center; line-height:1em;">a.n. Kuasa Pengguna Anggaran</td>
@@ -551,10 +551,6 @@ class Pdf_Print {
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
     <td>Tanggal : </td>
     <td>' . date('d-M-y') . '</td>
   </tr>
@@ -564,10 +560,6 @@ class Pdf_Print {
     <td>Kode Es1 ' . $kdunit . '</td>
     <td>Kode Satker </td>
     <td>' . $kdsatker . '</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>Halaman :</td>
     <td>' . ($i + 1) . '</td>
@@ -581,9 +573,9 @@ class Pdf_Print {
     <td style="border: 1px solid black; width: 70px; text-align:center;">KD AKUN</td>
     <td style="border: 1px solid black; width: 70px; text-align:center;">JNS DOK</td>
     <td style="border: 1px solid black; width: 70px; text-align:center;">TGL DOK</td>
-    <td id="panjang" style="border: 1px solid black; width: 160px; text-align:center;">NO DOK</td>
-    <td id="panjang" style="border: 1px solid black; width: 160px; text-align:center;">RUPIAH GL SAU</td>
-    <td id="panjang"style="border: 1px solid black; width: 160px; text-align:center;">RUPIAH GL SAI</td>
+    <td id="panjang" style="border: 1px solid black; width: 140px; text-align:center;">NO DOK</td>
+    <td id="panjang" style="border: 1px solid black; width: 140px; text-align:center;">RUPIAH GL SAU</td>
+    <td id="panjang"style="border: 1px solid black; width: 140px; text-align:center;">RUPIAH GL SAI</td>
     <td style="border: 1px solid black; width: 70px; text-align:center;">STATUS</td>
   </tr>
   <tr>
@@ -592,9 +584,9 @@ class Pdf_Print {
     <td style="border: 1px solid black; width: 70px; text-align:center;">3</td>
     <td style="border: 1px solid black; width: 70px; text-align:center;">4</td>
     <td style="border: 1px solid black; width: 70px; text-align:center;">5</td>
-    <td style="border: 1px solid black; width: 160px; text-align:center;">6</td>
-    <td style="border: 1px solid black; width: 160px; text-align:center;">7</td>
-    <td style="border: 1px solid black; width: 160px; text-align:center;">8</td>
+    <td style="border: 1px solid black; width: 140px; text-align:center;">6</td>
+    <td style="border: 1px solid black; width: 140px; text-align:center;">7</td>
+    <td style="border: 1px solid black; width: 140px; text-align:center;">8</td>
     <td style="border: 1px solid black; width: 70px; text-align:center;">9</td>
   </tr>
 </table>
@@ -615,9 +607,9 @@ class Pdf_Print {
                 <td style="width: 70px; text-align:center;">' . $rows['KDPERK'] . '</td>
                 <td style="width: 70px; text-align:center;">' . $rows['JNSDOK1'] . '</td>
                 <td style="width: 70px; text-align:center;">' . $rows['TGLDOK1'] . '</td>
-                <td id="panjang" style="width: 160px; text-align:center;">' . $rows['NODOK1'] . '</td>
-                <td id="rp" style="width: 160px; text-align:right;">' . $this->formatMoney($rows['RPSAU'], true) . '</td>
-                <td id="rp" style="width: 160px;  text-align:right;">' . $this->formatMoney($rows['RPSAI'], true) . '</td>
+                <td id="panjang" style="width: 140px; text-align:center;">' . $rows['NODOK1'] . '</td>
+                <td id="rp" style="width: 140px; text-align:right;">' . $this->formatMoney($rows['RPSAU'], true) . '</td>
+                <td id="rp" style="width: 140px;  text-align:right;">' . $this->formatMoney($rows['RPSAI'], true) . '</td>
                 <td style="width: 70px; text-align:center;">' . $rows['HASIL'] . '</td>
                 </tr>';
                     $jmlsai+=(int) $rows['RPSAI'];
@@ -640,9 +632,9 @@ class Pdf_Print {
     <td style="width: 70px;  text-align:center;">&nbsp;</td>
     <td style="width: 70px;  text-align:center;">&nbsp;</td>
     <td style="width: 70px;  text-align:center;">&nbsp;</td>
-    <td id="panjang" style="width: 160px;  text-align:right; color: blue; font-weight:bold;">JUMLAH</td>
-    <td id="panjang" style="width: 160px;  text-align:right; color: blue; font-weight:bold;">' . $this->formatMoney($jmlsau, true) . '</td>
-    <td id="panjang" style="width: 160px;  text-align:right; color: blue; font-weight:bold;">' . $this->formatMoney($jmlsai, true) . '</td>
+    <td id="panjang" style="width: 140px;  text-align:right; color: blue; font-weight:bold;">JUMLAH</td>
+    <td id="panjang" style="width: 140px;  text-align:right; color: blue; font-weight:bold;">' . $this->formatMoney($jmlsau, true) . '</td>
+    <td id="panjang" style="width: 140px;  text-align:right; color: blue; font-weight:bold;">' . $this->formatMoney($jmlsai, true) . '</td>
     <td style="width: 70px;  text-align:center;">&nbsp;</td>
   </tr>
 </table>

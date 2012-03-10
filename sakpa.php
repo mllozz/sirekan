@@ -9,10 +9,10 @@
     }
     
     #hasil {
-        margin: 1px 1px;
+        margin: 3% 9%;
         border: 1px solid black;
         font-family: Calibri, sans-serif;
-        font-size: 12px;
+        font-size: 16px;
         width: 50%;
         text-align: left;
     }
@@ -120,6 +120,20 @@
 	background: -moz-linear-gradient(top,  #f88e11,  #f06015);
 	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#f88e11', endColorstr='#f06015');
     }
+    
+    .error {
+        border: 1px solid;
+        margin: 1% 9%;
+        width: 25%;
+        padding:15px 10px 15px 50px;
+        border-radius: 3px;
+        background-repeat: no-repeat;
+        background-position: 10px center;
+        color: #D8000C;
+        background-color: #FFBABA;
+        background-image: url('img/error.png');
+        display: none;
+    }
 </style>
 <table id="grid" >
     <thead>
@@ -170,7 +184,7 @@
     <img src="img/loader.gif" alt="loader" />
     <div class="message"></div>   
 </div>
-<div id="output"></div>
+<div class="error" id="output"></div>
 <script type="text/javascript" src="js/ajaxfileupload.js"></script>
 <script type="text/javascript" src="js/sakpa.js"></script>
 

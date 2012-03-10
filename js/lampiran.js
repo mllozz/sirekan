@@ -33,8 +33,8 @@ $(document).ready(function() {
         var jns_rekon = e.options[e.selectedIndex].value;
         $.post($('#frm_lampiran').attr('action'), {cetak: true, periode: periode, kddekon: kddekon, jns_rekon: jns_rekon}, 
         function(data) {
-            if (data === true) {
-                $('#output').html('Gagal Cetak PDF');
+            if (data.error === true) {
+                $('#output').html('Gagal Cetak PDF, '+data.msg).show();
             } else {
                 //window.open('BAR.pdf', '_blank', 'fullscreen=yes');
                 $('#grid').fadeOut(250);

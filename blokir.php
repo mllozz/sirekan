@@ -91,6 +91,20 @@
         background:url(img/button_bg_hover.png) repeat-x;
         text-decoration:none;
     }
+    
+    .error {
+        border: 1px solid;
+        margin: 1% 9%;
+        width: 25%;
+        padding:15px 10px 15px 50px;
+        border-radius: 3px;
+        background-repeat: no-repeat;
+        background-position: 10px center;
+        color: #D8000C;
+        background-color: #FFBABA;
+        background-image: url('img/error.png');
+        display: none;
+    }
 </style>
 <div id="div_grid">
 <!--    <input type="text" id="cari" placeHolder="Cari Satker"/>-->
@@ -161,7 +175,7 @@
                 <td align="right"><input type="submit" value="Simpan"id="simpan_baru_blokir"/><input type="submit" value="Buka"id="buka_blokir"/><input type="submit" value="Ubah" id="edit_blokir"/><input type="submit" value="Simpan"id="simpan_blokir"/><input type="submit" id="batal_blokir" value="Batal"/></td>
             </tr>
             <tr>
-                <td colspan="3"><span id="error"></span></td>
+                <td colspan="3"><span class="error" id="error"></span></td>
             </tr>
         </form>
     </table>
