@@ -108,7 +108,7 @@ a img
 {
 	padding:10px;
     width: 160px;
-    height: 240px;
+    height: 270px;
    	margin-top: 15px;
     border: 1px solid #CCCCCC;
     -moz-border-radius: 3px;
@@ -156,7 +156,7 @@ a img
 	right:280px;
 	overflow:hidden;
 	border:0px solid #FF0000;
-	min-height:200px;
+	min-height:220px;
 
 	border-right:0px solid #dac1b1;
 	-moz-border-radius: 3px;
@@ -174,7 +174,7 @@ a img
     z-index: 5;
 	background:#f9f9f2 repeat-x;
 	overflow:hidden;
-	height:305px;
+	height:325px;
 	border:0px solid #FF0000;
 	border-left:0px solid #dac1b1;
 	/*border-left:0px solid #7e7e7e;*/
@@ -187,7 +187,7 @@ a img
 {
     width: 495px;
     z-index: 90;
-    height: 150px;
+    height: 170px;
     border: 1px solid #CCCCCC;
     -moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
@@ -287,16 +287,17 @@ a img
     text-transform: uppercase; 
 }
 
-#error_user{
+#error{
     z-index: 999;
     position: relative;
+	font-size: 14px;
 }
 
 #form_login
 {
 	width:450px;
 	z-index: 9;
-	height: 245px;
+	height: 275px;
 	margin-left: 25px;
     margin-top: 15px;
 
