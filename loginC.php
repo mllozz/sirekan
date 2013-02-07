@@ -5,6 +5,6 @@
 		echo "Tidak boleh kosong";
 	}
 	else{
-		echo "Berhasil";
+		echo true;
 	}
 ?>
