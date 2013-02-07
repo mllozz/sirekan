@@ -1,0 +1,120 @@
+body {
+	background: rgba(166,195,248,0.94);
+}
+
+div {
+	border: 1px solid rgba(109,105,105,0.93);
+	border-radius: 4px;
+}
+
+#wrapper {
+	width: 70%;
+	margin: auto;
+}
+
+#atas{
+	position: relative;
+	margin-bottom: 2px;
+	height: 17%;
+	margin-left: 2px;
+	margin-right: 2px;
+}
+
+#logo {
+	float: left;
+	margin: 1px 1px 1px 1px;
+	width: 15%;
+	height: 96%;
+}
+
+#logo img {
+	margin-left: 12%;
+	margin-right: 15%;
+	margin-top: 1%;
+}
+
+#header {
+	float: right;
+	height: 96%;
+	width: 84%;
+	margin: 1px 1px 1px 1px;
+	text-align: center;
+	font-family: sans-serif, Helvetica;
+	font-size: 16px;
+	font-style: bold;
+}
+
+#header_atas {
+	position: relative;
+	margin: 1px 1px 1px 1px;
+	height: auto;
+}
+
+#kppn {
+	font-family: sans-serif, Helvetica;
+	font-size: 16px;
+	font-style: bold;
+	margin-left: 10%;
+	margin-right: 10%;
+	letter-spacing: 1px;
+}
+
+#kop {
+	position: relative;
+	margin-left: 17%;
+	margin-right: 17%;
+	margin-top: 2px;
+}
+
+#header_bawah {
+	position: relative;
+	height: 24%;
+	margin-top: 5px;
+}
+
+#alamat {
+	float: left;
+	text-align: left;
+	font-family: sans-serif, Helvetica;
+	font-size: 10px;
+}
+
+#kontak {
+	float: right;
+	text-align: right;
+	font-family: sans-serif, Helvetica;
+	font-size: 10px;
+}
+
+#bawah {
+	position: relative;
+	height: 78%
+}
+
+#kiri {
+	float: left;
+	width: 20%;
+	margin-left: 2px;
+	position: relative;
+	height: auto;
+}
+
+#kanan {
+	float: right;
+	width: 78.5%;
+	margin-right: 2px;
+	position: relative;
+	height: auto;
+}
+
+#footer {
+	position: relative;
+	margin-top:10px;
+	margin-bottom:10px;
+	margin-left: 2px;
+	margin-right: 2px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:10px;
+	color:#666666;
+	text-align:center;
+}
