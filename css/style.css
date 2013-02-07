@@ -89,7 +89,7 @@ a img
 #main
 {
 	width:800px;
-	background:#f9f9f9;
+	background:#f9f9f2;
 	float:left;
 	margin-bottom:10px;
 	margin-top:50px;
@@ -172,7 +172,7 @@ a img
 	top:15px;
 	right:330px;
     z-index: 5;
-	background:#f9f9f9 repeat-x;
+	background:#f9f9f2 repeat-x;
 	overflow:hidden;
 	height:305px;
 	border:0px solid #FF0000;
@@ -220,15 +220,15 @@ a img
         inset 0 0 5px rgba(0,0,0,0.1),
         inset 0 3px 2px rgba(0,0,0,0.1);
     border-radius: 3px;
-    background: #f9f9f9;
-    color: #777;
+    background: #1171f1;
+    color: #311;
     transition: color 0.3s ease-out;
 }
 
 #col3 input[type=text]:focus, #col3  input[type=password]:focus
 {
-	background: #dfe9ec;
-	color: #414848;
+	background: #9fe9ec;
+	color: #211848;
 	
 	box-shadow: inset 0 1px 2px rgba(0,0,0,0.25);
 	-moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.25);
@@ -243,7 +243,7 @@ a img
 	color: #fff;
 	text-shadow: 0px 1px 0 rgba(0,0,0,0.25);
 	
-	background: #56c2e1;
+	background: #1171f1;
 	border: 1px solid #46b3d3;
 	border-radius: 5px;
 	cursor: pointer;
@@ -269,7 +269,7 @@ a img
     
 	bottom: -1px;
 	
-	background: #56c2e1;
+	background: #54c2e1;
 	
 	box-shadow: inset 0 1px 6px rgba(256,256,256,0.75);
 	-moz-box-shadow: inset 0 1px 6px rgba(256,256,256,0.75);
@@ -281,7 +281,7 @@ a img
     margin: 5px 20px 0 0; 
     width: 75px;
     text-align: right; 
-    font-size: 12px; 
+    font-size: 14px; 
     color: #000000;
     font-weight:bold;
     text-transform: uppercase; 
