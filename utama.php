@@ -14,8 +14,7 @@
 			</div>
 			<div id="header">
 				<div id="header_atas">
-					Sistem Informasi Rekonsiliasi Keuangan Negara<br />
-					(SIREKAN)<br />
+					<p><h2>Sistem Informasi Rekonsiliasi Keuangan Negara (SI-REKAN)</h2></p>
 				</div>
 				<div id="header_bawah">
 					<div id="kppn">
@@ -35,11 +34,30 @@
 			</div>
 		</div>
 		<div id="bawah">
-			<div id="kiri">
-				kiri
+			<div id="menu_atas">
+				<div class="menu">
+					<ul>
+						<li><a href="" title="">Software Development</a></li>
+						<li><a href="" title="">Technology</a>
+							<ul class="child">
+								<li><a href="">Spring</a></li>
+								<li><a href="">Groovy</a></li>
+								<li><a href="">Hibernate</a></li>
+							</ul>
+						</li>
+						<li><a href="" title="">Enterprise Solutions</a></li>
+						<li><a href="" title="">O&amp;B University</a></li>
+						<li><a href="" title="">Logout</a></li>
+					</ul>
+				</div>
 			</div>
-			<div id="kanan">
-				kanan
+			<div id="isi">
+				<div id="judul">
+					judul
+				</div>
+				<div id="isinya">
+					isinya
+				</div>
 			</div>
 		</div>	
 		<div id="footer">
