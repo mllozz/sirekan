@@ -37,17 +37,16 @@
 			<div id="menu_atas">
 				<div class="menu">
 					<ul>
-						<li><a href="" title="">Software Development</a></li>
-						<li><a href="" title="">Technology</a>
+						<li><a href="" title="">Monitoring Rekon</a></li>
+						<li><a href="" title="">Rekons SAI</a></li>
+						<li><a href="" title="">Laporan</a>
 							<ul class="child">
-								<li><a href="">Spring</a></li>
-								<li><a href="">Groovy</a></li>
-								<li><a href="">Hibernate</a></li>
+								<li><a href="">BAR</a></li>
+								<li><a href="">Lampiran</a></li>
 							</ul>
 						</li>
-						<li><a href="" title="">Enterprise Solutions</a></li>
-						<li><a href="" title="">O&amp;B University</a></li>
-						<li><a href="" title="">Logout</a></li>
+						<li><a href="" title="">Rekon Sebelumnya</a></li>
+						<li><a href="" title="">Keluar</a></li>
 					</ul>
 				</div>
 			</div>
