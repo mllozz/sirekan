@@ -97,7 +97,6 @@ p {
 }
 
 #bawah {
-	position: relative;
 	height: 80%
 }
 
@@ -110,25 +109,24 @@ p {
 }
 
 .menu {
-	margin-top: -9px;
+	margin-top: -10px;
 	margin-bottom: 1px;
 	width: auto;
 	margin-left: 1px;
+	margin-right: 1px;
 }
 
 .menu ul{ 
 	background:transparent url(../img/topnavbg.jpg) repeat-x top center;
 	list-style:none; 
 	overflow:hidden;
-	border-radius: 4px;
-	-webkit-border-radius: 4px;
-	-moz-border-radius: 4px;
-	}	
+}	
 
 .menu li{
 	display:inline; 
-	float:left;
-	width:20%; 
+	width: 24%; 
+	float: left;
+	margin-left: -35px;
 }
 
 .menu > ul > li:last-child{
@@ -136,13 +134,13 @@ p {
 }
 	
 .menu li a{
-	margin:0 auto; 
 	padding:0;
 	display:block;
+	margin-right: 35px;
 	border-left: 1px solid #1b6ea6;
 	color:#fff; 
 	letter-spacing: 0.1em;	
-	font:400 12px/37px Arial, Helvetica, Verdana, sans-serif;
+	font:12px/37px Arial, Helvetica, Verdana, sans-serif;
 	text-align:center; 
 	text-decoration:none; 
 	transition:background 0.5s ease;	
@@ -159,7 +157,6 @@ p {
 	width:0;
 	float:left; 
 	visibility:hidden;
-	
 	border-radius: 0px 0px 8px 8px;
 	-webkit-border-radius: 0px 0px 8px 8px;
 	-moz-border-radius: 0px 0px 8px 8px;		
@@ -173,6 +170,7 @@ p {
 .menu ul ul.child li{
 	float:left; 
 	clear:both;	
+	margin-left: 1px;
 }		
 .menu ul ul.child li a{
 	border:0; 
@@ -181,25 +179,31 @@ p {
 .menu ul li:hover ul.child{
 	background:#4681ad;
 	height:auto; 
-	width:75%;
+	margin: auto;
+	width:77%;
 	visibility:visible;
 	display:block; 
 }		
 .menu ul:hover ul.child li a{
-	border:0;  
+	border:0; 
 }		
 		
 .menu ul li:hover ul.child li a:hover{
 	background:#165d93;
-
+	width: 130px;	
+	margin-left: -22px;
 	-webkit-transition:background 0.5s ease;
 	-moz-transition:background 0.5s ease;
 	transition:background 0.5s ease;	
+	
+	border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;	
 				
 }	
 
 #isi {
-	height: 92%;
+	height: 91%;
 	border-bottom: 1px solid rgba(109,105,105,0.93);
 }
 

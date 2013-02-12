@@ -53,10 +53,10 @@
 			</div>
 			<div id="isi">
 				<div id="judul">
-					judul
+					
 				</div>
 				<div id="isinya">
-					isinya
+					
 				</div>
 			</div>
 		</div>	
