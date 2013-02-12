@@ -126,7 +126,7 @@ p {
 	display:inline; 
 	width: 24%; 
 	float: left;
-	margin-left: -35px;
+	margin-left: -34px;
 }
 
 
@@ -134,7 +134,7 @@ p {
 .menu li a{
 	padding:0;
 	display:block;
-	margin-right: 35px;
+	margin-right: 34px;
 	border-left: 1px solid #1b6ea6;
 	color:#fff; 
 	letter-spacing: 0.1em;	

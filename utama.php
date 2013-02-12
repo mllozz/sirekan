@@ -38,7 +38,7 @@
 				<div class="menu">
 					<ul>
 						<li><a href="" title="">Monitoring Rekon</a></li>
-						<li><a href="" title="">Rekons SAI</a></li>
+						<li><a href="" title="">Rekon SAI</a></li>
 						<li><a href="" title="">Laporan</a>
 							<ul class="child">
 								<li><a href="">BAR</a></li>
