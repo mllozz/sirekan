@@ -45,7 +45,12 @@
 								<li><a href="">Lampiran</a></li>
 							</ul>
 						</li>
-						<li><a href="" title="">Rekon Sebelumnya</a></li>
+						<li><a href="" title="">Manajemen Web</a>
+							<ul class="child">
+								<li><a href="">Rekam User</a></li>
+								<li><a href="">Blokir User</a></li>
+							</ul>
+						</li>
 						<li><a href="" title="">Keluar</a></li>
 					</ul>
 				</div>

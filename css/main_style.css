@@ -124,9 +124,9 @@ p {
 
 .menu li{
 	display:inline; 
-	width: 24%; 
+	width: 23%; 
 	float: left;
-	margin-left: -34px;
+	margin-left: -35px;
 }
 
 
@@ -134,7 +134,7 @@ p {
 .menu li a{
 	padding:0;
 	display:block;
-	margin-right: 34px;
+	margin-right: 35px;
 	border-left: 1px solid #1b6ea6;
 	color:#fff; 
 	letter-spacing: 0.1em;	
@@ -152,8 +152,8 @@ p {
 .menu ul ul.child{
 	background:#000;
 	height:0; 
-	width:0;
 	float:left; 
+	margin-left:0px;
 	visibility:hidden;
 	border-radius: 0px 0px 8px 8px;
 	-webkit-border-radius: 0px 0px 8px 8px;
@@ -168,7 +168,8 @@ p {
 .menu ul ul.child li{
 	float:left; 
 	clear:both;	
-	margin-left: 1px;
+	margin-left:0px;
+	width: auto;
 }		
 .menu ul ul.child li a{
 	border:0; 
@@ -177,20 +178,19 @@ p {
 .menu ul li:hover ul.child{
 	background:#4681ad;
 	height:auto; 
-	margin: auto;
-	width:60%;
+	width:65%;
 	visibility:visible;
 	display:block; 
 }		
 .menu ul:hover ul.child li a{
 	border:0;
-	margin-left: -22px; 
+	margin-left: -20px; 
 }		
 		
 .menu ul li:hover ul.child li a:hover{
 	background:#165d93;
-	width: 120px;	
-	margin-left: -22px;
+	width: 140%;	
+	margin-left: -20px;
 	-webkit-transition:background 0.5s ease;
 	-moz-transition:background 0.5s ease;
 	transition:background 0.5s ease;	
