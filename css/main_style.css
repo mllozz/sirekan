@@ -124,7 +124,7 @@ p {
 
 .menu li{
 	display:inline; 
-	width: 23%; 
+	width: 24%; 
 	float: left;
 	margin-left: -35px;
 }
@@ -178,7 +178,7 @@ p {
 .menu ul li:hover ul.child{
 	background:#4681ad;
 	height:auto; 
-	width:65%;
+	width:63%;
 	visibility:visible;
 	display:block; 
 }		
