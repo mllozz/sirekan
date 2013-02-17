@@ -26,7 +26,7 @@ p {
 	position: relative;
 	margin-bottom: 2px;
 	height: 17%;
-	background: transparent url(../img/bg.gif) repeat-x top center;
+	background: rgba(253,250,250,0.98)  url(../img/bg.gif) repeat-x top center;
 	border-bottom : 1px solid rgba(109,105,105,0.93);
 }
 
