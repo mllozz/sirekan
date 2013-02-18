@@ -38,17 +38,24 @@
 				<div class="menu">
 					<ul>
 						<li><a href="" title="">Monitoring Rekon</a></li>
-						<li><a href="" title="">Rekon SAI</a></li>
+						<li><a href="" title="">Rekon SAI</a>
+							<ul class="child">
+								<li><a href="">Rekonsiliasi Saldo Awal</a></li>
+								<li><a href="">Rekonsiliasi Non SKPA</a></li>
+								<li><a href="">Rekonsiliasi SKPA</a></li>
+							</ul>
+						</li>
 						<li><a href="" title="">Laporan</a>
 							<ul class="child">
-								<li><a href="">BAR</a></li>
-								<li><a href="">Lampiran</a></li>
+								<li><a href="">Berita Acara Rekonsiliasi</a></li>
+								<li><a href="">Lampiran BAR</a></li>
 							</ul>
 						</li>
 						<li><a href="" title="">Manajemen Web</a>
 							<ul class="child">
 								<li><a href="">Rekam User</a></li>
 								<li><a href="">Blokir User</a></li>
+								<li><a href="">Ubah Password</a></li>
 							</ul>
 						</li>
 						<li><a href="" title="">Keluar</a></li>
