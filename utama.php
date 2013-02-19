@@ -42,7 +42,6 @@
 							<ul class="child">
 								<li><a href="">Rekonsiliasi Saldo Awal</a></li>
 								<li><a href="">Rekonsiliasi Non SKPA</a></li>
-								<li><a href="">Rekonsiliasi SKPA</a></li>
 							</ul>
 						</li>
 						<li><a href="" title="">Laporan</a>
