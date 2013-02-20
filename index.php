@@ -33,7 +33,7 @@
                             <div id="pre_sirekan"><h2>Sistem Informasi Rekonsiliasi Keuangan Negara</h2></div>
                             &nbsp;
                             <div id="col3">
-                                <form method="post" id="frm_login">
+                                <form method="post" id="frm_login" action="">
                                     <table border="0" align="center">
                                         <tr>
                                             <td><label for="user">Username</label></td>
@@ -51,7 +51,7 @@
                                     <br/>
                                     <table border="0" align="center">
                                         <tr>
-                                            <td align="center"><input class="btn" type="submit" value="Login" id="btn_login" name="btn_login" onclick="tes()"/></td>
+                                            <td align="center"><input class="btn" type="submit" value="Login" id="btn_login" name="btn_login" /></td>
                                             <td align="center"><input class="btn" type="reset" value="Reset"/></td>
                                         </tr>
                                     </table>

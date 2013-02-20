@@ -5,7 +5,7 @@
     if(empty($user) || empty($pass)){
 		echo "Tidak boleh kosong";
 	}
-	else{
-		echo true;
+	else {
+		echo $user."   ".$pass;
 	}
 ?>
