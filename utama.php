@@ -41,7 +41,7 @@
 						<li><a href="" title="">Rekon SAI</a>
 							<ul class="child">
 								<li><a href="">Rekonsiliasi Saldo Awal</a></li>
-								<li><a href="">Rekonsiliasi Non SKPA</a></li>
+								<li><a href="">Rekonsiliasi SAKPA</a></li>
 							</ul>
 						</li>
 						<li><a href="" title="">Laporan</a>
@@ -50,9 +50,10 @@
 								<li><a href="">Lampiran BAR</a></li>
 							</ul>
 						</li>
-						<li><a href="" title="">Manajemen Web</a>
+						<li><a href="" title="">Pengaturan</a>
 							<ul class="child">
 								<li><a href="">Rekam User</a></li>
+								<li><a href="">Reset Password</a></li>
 								<li><a href="">Blokir User</a></li>
 								<li><a href="">Ubah Password</a></li>
 							</ul>
