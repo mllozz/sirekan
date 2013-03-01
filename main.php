@@ -12,23 +12,23 @@
 				<div id="isi_stat">stat</div>
 			</div>
 			<div id="header">
-				<div id="logo"><a href="#" >hh</a></div>
+				<div id="logo"><a href="#" ><img src="img/logo-small.png"/></a></div>
 				<div id="menu">
 					<ul id="menu_parent">
 						<li class="pressed topfirst topmenu">><a href="#" ><img src="img/home.png"/> Home</a></li>
-						<li class="topmenu"><a href="#" ><span><img src="img/home.png"/> Rekon SAI</span></a>
+						<li class="topmenu"><a href="#" ><span><img src="img/rekon.png"/> Rekon SAI</span></a>
 							<ul>
 								<li class="topfirst topmenu"><a href="#" ><img src="img/doc.png"/> Rekon SAKPA</a></li>
 								<li class="toplast topmenu"><a href="#" ><img src="img/doc.png"/> Rekon Saldo Awal</a></li>
 							</ul>
 						</li>
-						<li class="topmenu"><a href="#" ><span><img src="img/home.png"/> Laporan</span></a>
+						<li class="topmenu"><a href="#" ><span><img src="img/laporan.png"/> Laporan</span></a>
 							<ul>
 								<li class="topfirst topmenu"><a href="#" ><img src="img/doc.png"/> BAR</a></li>
 								<li class="toplast topmenu"><a href="#" ><img src="img/doc.png"/> Lampiran BAR</a></li>
 							</ul>
 						</li>
-						<li class="topmenu"><a href="#" ><span><img src="img/home.png"/> Pengaturan</span></a>
+						<li class="topmenu"><a href="#" ><span><img src="img/tools.png"/> Pengaturan</span></a>
 							<ul>
 								<li class="topfirst toplast topmenu"><a href="#" ><img src="img/doc.png"/> Rekam User</a></li>
 								<li class="topfirst toplast topmenu"><a href="#" ><img src="img/doc.png"/> Reset Password</a></li>
