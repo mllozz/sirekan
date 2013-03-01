@@ -1,0 +1,210 @@
+#menu_parent, #menu_parent ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	background-color: #eee;
+	border: 2px;
+	border-style: solid;
+	border-color: #5f5f5f;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+}
+
+#menu_parent ul {
+	background-color: #444;
+	display: none;
+	position: absolute;
+	left: 0;
+	top: 100%;
+	border-style: solid;
+	-moz-box-shadow:3.5px 3.5px 3.5px #000000;
+	-webkit-box-shadow:3.5px 3.5px 3.5px #000000;
+	box-shadow: 3.5px 3.5px 3.5px #000000;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	border-color: #aaa;
+	padding: 0 10px 10px;
+	border-radius: 3px;
+}
+
+#menu_parent li:hover>* {
+	display: block;
+}
+
+#menu_parent li {
+	position: relative;
+	display: block;
+	white-space: nowrap;
+	font-size: 0;
+	float: left;
+}
+
+#menu_parent li:hover {
+	z-index: 1;
+}
+
+#menu_parent ul ul {
+	position: absolute;
+	left: 100%;
+	top: 0;
+}
+
+#menu_parent {
+	font-size: 0;
+	z-index: 999;
+	position: relative;
+	display: inline-block;
+	zoom: 1;
+	*display: inline;
+}
+
+#menu_parent>li {
+	margin: 0;
+}
+
+* html #menu_parent li a {
+	display: inline-block;
+}
+
+#menu_parent a:active, #menu_parent a:focus {
+	outline-style: none;
+}
+
+#menu_parent a {
+	display: block;
+	vertical-align: middle;
+	text-align: left;
+	text-decoration: none;
+	font: bold 14px Trebuchet MS;
+	color: #000;
+	text-shadow: #FFF 0 0 1px;
+	cursor: pointer;
+	padding: 10px;
+	background-color: #eee; /* ganti bg menu */
+	background-image: url("mainbk.png");
+	background-repeat: repeat;
+	background-position: 0 0;
+	border-width: 0 0 0 1px;
+	border-style: solid;
+	border-color: #C0C0C0;
+}
+
+#menu_parent ul li {
+	float: none;
+	margin: 5px 0 0;
+}
+
+#menu_parent ul a {
+	text-align: left;
+	padding: 4px;
+	background-color: #424542;
+	background-image: none;
+	border-width: 0;
+	border-radius: 0;
+	-moz-border-radius: 0px;
+	-webkit-border-radius: 0px;
+	font: 14px Tahoma;
+	color:  #FFF;
+	text-decoration: none;
+	text-shadow: #FFF 0 0 0;
+}
+
+#menu_parent li:hover>a, #menu_parent a.pressed {
+	background-color:#444444;
+	border-color:#C0C0C0;
+	border-style:solid;
+	color:#FFF;
+	text-decoration:none;
+	text-shadow:#FFF 0 0 1px;
+	background-image:url(mainbk.png);
+	background-position:0 100px;
+}
+
+#menu_parent img {
+	border: none;
+	vertical-align: middle;
+	margin-right: 10px;
+}
+
+#menu_parent img:over {
+	display: none;
+}
+
+#menu_parent li:hover > a img.def {
+	display: none;
+}
+
+#menu_parent li:hover > a img.over {
+	display: inline;
+}
+
+#menu_parent li a.pressed im.over {
+	display: inline;
+}
+
+#menu_parent li a.pressed im.def {
+	display: none;
+}
+
+#menu_parent span {
+	display:block;
+	overflow:visible;
+	background-position:right center;
+	background-repeat:no-repeat;
+	padding-right:0px;
+}
+
+#menu_parent ul span {
+	background-image:url("arrowsub.png");
+	background-color: #eee;
+	padding-right:20px;
+}
+
+#menu_parent li:hover>a, #menu_parent li>a.pressed {
+	background-color:#444444;
+	background-image:url("mainbk.png");
+	background-position:0 100px;
+	border-style: solid;
+	border-color: #C0C0C0;
+	color:#FFF;
+	text-decoration:none;
+	text-shadow:#FFF 0 0 1px;
+}
+
+#menu_parent ul li:hover>a, #menu_parent ul li>a.pressed {
+	background-color:#eee; /* ubah jg */
+	background-image:none;
+	color: #222;
+	text-decoration:none;
+	text-shadow:#FFF 0 0 0;
+}
+
+#menu_parent li.topfirst>a {
+	border-width:0;
+	border-radius:2px 2px 2px 2px;
+	-moz-border-radius:2px 2px 2px 2px;
+	-webkit-border-radius:4px;
+	-webkit-border-top-right-radius:0;
+	-webkit-border-bottom-right-radius:0;
+	-moz-transition:all 0.5s;
+	-webkit-transition:all 0.5s;
+	-o-transition:all 0.5s;
+}
+
+#menu_parent li.topmenu>a {
+	-moz-transition:all 0.5s;
+	-webkit-transition:all 0.5s;
+	-o-transition:all 0.5s;
+}
+
+#menu_parent li.toplast>a {
+	border-radius:2px 2px 2px 2px;
+	-moz-border-radius:2px 2px 2px 2px;
+	-webkit-border-radius:0;
+	-webkit-border-top-right-radius:4px;
+	-webkit-border-bottom-right-radius:4px;
+	-moz-transition:all 0.5s;
+	-webkit-transition:all 0.5s;
+	-o-transition:all 0.5s;
+}

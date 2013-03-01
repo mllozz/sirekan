@@ -1,0 +1,49 @@
+<html>
+<head>
+	<title>Sistem Informasi Rekonsiliasi Keuangan Negara</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+    <link rel="stylesheet" type="text/css" href="css/menu.css" />
+</head>
+<body>
+	<div id="wrapper">
+		<div id="head">
+			<div id="stat">
+				<div id="isi_stat">stat</div>
+			</div>
+			<div id="header">
+				<div id="logo"><a href="#" >hh</a></div>
+				<div id="menu">
+					<ul id="menu_parent">
+						<li class="pressed topfirst topmenu">><a href="#" ><img src="img/home.png"/> Home</a></li>
+						<li class="topmenu"><a href="#" ><span><img src="img/home.png"/> Rekon SAI</span></a>
+							<ul>
+								<li class="topfirst topmenu"><a href="#" ><img src="img/doc.png"/> Rekon SAKPA</a></li>
+								<li class="toplast topmenu"><a href="#" ><img src="img/doc.png"/> Rekon Saldo Awal</a></li>
+							</ul>
+						</li>
+						<li class="topmenu"><a href="#" ><span><img src="img/home.png"/> Laporan</span></a>
+							<ul>
+								<li class="topfirst topmenu"><a href="#" ><img src="img/doc.png"/> BAR</a></li>
+								<li class="toplast topmenu"><a href="#" ><img src="img/doc.png"/> Lampiran BAR</a></li>
+							</ul>
+						</li>
+						<li class="topmenu"><a href="#" ><span><img src="img/home.png"/> Pengaturan</span></a>
+							<ul>
+								<li class="topfirst toplast topmenu"><a href="#" ><img src="img/doc.png"/> Rekam User</a></li>
+								<li class="topfirst toplast topmenu"><a href="#" ><img src="img/doc.png"/> Reset Password</a></li>
+								<li class="topfirst toplast topmenu"><a href="#" ><img src="img/doc.png"/> Ubah Password</a></li>
+								<li class="toplast toplast topmenu"><a href="#" ><img src="img/doc.png"/> Blokir User</a></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div id="content">
+			isiddfg
+		</div>
+		<div id="footer">Copyright 2013 by Eko Sigit Purnomo</div>
+	</div>
+</body>
+</html>
