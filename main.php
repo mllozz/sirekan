@@ -9,7 +9,8 @@
 	<div id="wrapper">
 		<div id="head">
 			<div id="stat">
-				<div id="isi_stat">stat</div>
+				<div id="tgl"></div>
+				<div id="isi_stat"><a href="#" ><img src="img/profil.png"/> Kantor Pelayanan Perbendaharaan Negara Kolaka (015.08.653172)</a> | Satker |<a href="#" ><img src="img/logout.png"/> Logout</a></div>
 			</div>
 			<div id="header">
 				<div id="logo"><a href="#" ><img src="img/logo-small.png"/></a></div>
@@ -41,9 +42,14 @@
 			</div>
 		</div>
 		<div id="content">
-			isiddfg
+			<div id="clear"></div>
+			<div id="isinya">
+				
+			</div>
 		</div>
-		<div id="footer">Copyright 2013 by Eko Sigit Purnomo</div>
+		<div id="footer">
+			<div id="copyright">Copyright 2013 by Eko Sigit Purnomo</div>
+		</div>
 	</div>
 </body>
 </html>
