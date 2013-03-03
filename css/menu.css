@@ -82,7 +82,6 @@
 	cursor: pointer;
 	padding: 10px;
 	background-color: #eee; /* ganti bg menu */
-	background-image: url("mainbk.png");
 	background-repeat: repeat;
 	background-position: 0 0;
 	border-width: 0 0 0 1px;
@@ -156,14 +155,14 @@
 }
 
 #menu_parent ul span {
-	background-image:url("arrowsub.png");
+	background-image:url(mainbk.png);
 	background-color: #eee;
 	padding-right:20px;
 }
 
 #menu_parent li:hover>a, #menu_parent li>a.pressed {
 	background-color:#444444;
-	background-image:url("mainbk.png");
+	background-image:url(mainbk.png);
 	background-position:0 100px;
 	border-style: solid;
 	border-color: #C0C0C0;
