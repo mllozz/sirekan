@@ -55,7 +55,7 @@
                                     <table border="0" align="center">
                                         <tr>
                                             <td align="center"><input class="btn" type="submit" value="Login" id="btn_login" name="btn_login" /></td>
-                                            <td align="center"><input class="btn" type="reset" value="Reset"/></td>
+                                            <td align="center"><input class="btn" type="reset" value="Reset" id="btn_reset"/></td>
                                         </tr>
                                     </table>
                                 </form>
