@@ -1,3 +1,6 @@
+<?php
+	include_once('controller/cont.index.php');
+?>
 <html>
 <head>
     <title>SI-REKAN</title>
@@ -14,9 +17,9 @@
                 <img src="img/depkeu_Logo.png" class="img-rounded" />
             </div>
             <div id="text_logo">
-                <h3>Kementerian Keuangan Republik Indonesia</h3> 
-                <h2>Direktorat Jenderal Perbendaharaan</h2>
-                <h1>Kantor Pelayanan Perbendaharaan Negara XXXXX</h1>
+                <h3>KEMENTERIAN KEUANGAN REPUBLIK INDONESIA</h3> 
+                <h2>DIREKTORAT JENDERAL PERBENDAHARAAN NEGARA</h2>
+                <h1>KANTOR PELAYANAN PERBENDAHARAAN NEGARA <?php echo $kppn->nmkppn;?></h1>
                 
             </div>
         </div><!-- end header -->

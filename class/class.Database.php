@@ -86,7 +86,7 @@ class Database {
 	
 	/**
 	* Membuat koneksi mysqli
-	* @return mysqli object
+	* @return PDO/mysqli object
 	*/	
 	protected function createConnection($config=array()){
 		
@@ -100,13 +100,23 @@ class Database {
 			}
 		}
 		
+		//create new PDO Conncetion
+		try {
+			$new_connection= new PDO('mysql:host='.$this->host.';dbname='.$this->db_name, $this->user, $this->password);
+		}catch(PDOException $e) {
+			error_log('DATABASE CONNECTION::warning, gagal terkoneksi ke database. '.print_r($e, true));
+			return false;
+		}
+		
+		/**
+		*jika menggunakan mysqli
 		$new_connection=new mysqli($this->host,$this->user,$this->password,$this->db_name);
 		
 		if(mysqli_connect_error()) {
 			error_log('DATABASE CONNECTION:warning, gagal terkoneksi dengan database');
 			return false;
 		}
-		
+		*/
 		return $new_connection;
 	}
 
@@ -119,7 +129,7 @@ class Database {
 	/**
 	* Get Mysqli connection
 	* @param int
-	* @return mysqli Connection
+	* @return PDO/mysqli Connection
 	*/
 	public function getConnection($sel=null)
 	{

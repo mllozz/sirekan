@@ -13,25 +13,40 @@
 	//$satker = new Satker($data);
 
 	//echo $satker;
-	$bag=$_GET['data'];
-	$db= Database::getInstance();
-	$mysql=$db->getConnection($bag);
+	//$bag=$_GET['data'];
+	//$db= Database::getInstance();
+	//$mysql=$db->getConnection($bag);
 	
-	if($bag==2) {
-		$query='select * from t_kppn';
-	} else {
-		$query='select * from users';
-	}
+	//if($bag==2) {
+	//	$query='select * from t_kppn';
+	//} else {
+	//	$query='select * from users';
+	//}
 
-	$result=$mysql->query($query) or trigger_error(mysqli_connect_error());
+	//$result=$mysql->query($query) or trigger_error(mysqli_connect_error());
+	//$result=$mysql->prepare($query);
+	//$result->execute();
 	
-	if($result==false) {
-		echo 'ra iso';
-	}
-	$data=$result->fetch_assoc();
+	//if($result==false) {
+	//	echo 'ra iso';
+	//}
+	//$data=$result->fetch_assoc();
+	//$data=$result->fetch();
 
-	print_r($data);
-
-
+//	print_r($data);
+	
+	echo '<br />';
+	echo '<br />';
+	echo '<br />';
+	
+	$kppn=new Kppn();
+	$data=$kppn->getNamaKppn();
+	
+	//print_r($data);
+	
+	echo '<br />';
+	echo '<br />';
+	
+	echo $data->nmkppn;
 	
 ?>
