@@ -36,7 +36,7 @@
                             <div id="pre_sirekan"><h2>Sistem Informasi Rekonsiliasi Keuangan Negara</h2></div>
                             &nbsp;
                             <div id="col3">
-                                <form method="post" id="frm_login" action="#">
+                                <form method="post" id="frm_login" action="controller/cont.login.php">
                                     <table border="0" align="center">
                                         <tr>
                                             <td><label for="user">Username</label></td>
