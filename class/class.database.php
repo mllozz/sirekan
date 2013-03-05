@@ -5,7 +5,7 @@ class Database {
 	//konstan variabel
 	const DB_HOST = 'localhost';
 	const DB_USER = 'root';
-	const DB_PASS = '';
+	const DB_PASS = 'root';
 	const DB_SIREKAN = 'sirekan';
 	const DB_VERA = 'sqldb12';
 	const DB_PORT_VERA = '3306';
