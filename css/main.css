@@ -22,9 +22,9 @@ body {
 }
 
 #isi_stat {
-	width: 50%;
-	height: 100%;
-	margin-left: 19%;
+	width: 55%;
+	height: 75%;
+        margin-left: 10%;
 	text-align: right;
 }
 
@@ -91,12 +91,13 @@ body {
 }
 
 #isi_stat {
-	font-size: .85em;
-	margin: 0 auto;
+	font-size: .83em;
+	margin: 0 20%;
 	padding: 3px 0;
+        text-transform: capitalize;
 }
 
-#isi_stat a: focus {
+#isi_stat a:focus {
 	outline: none;
 }
 

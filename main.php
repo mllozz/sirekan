@@ -1,3 +1,6 @@
+<?php
+	include_once('controller/cont.main.php');
+?>
 <html>
 <head>
 	<title>Sistem Informasi Rekonsiliasi Keuangan Negara</title>
@@ -10,7 +13,9 @@
 		<div id="head">
 			<div id="stat">
 				<div id="tgl"></div>
-				<div id="isi_stat"><a href="#" ><img src="img/profil.png"/> Kantor Pelayanan Perbendaharaan Negara Kolaka (015.08.653172)</a> | Satker |<a href="#" ><img src="img/logout.png"/> Logout</a></div>
+                                <div id="isi_stat"><a href="#" ><img src="img/profil.png"/> 
+                                    <?php echo $data_log['nmsatker']." ( ".$data_log['kddept'].".".$data_log['kdunit'].".".$data_log['kdsatker'].")"; ?>
+                                    </a> | <?php echo $akses; ?> |<a href="<?php logout(); ?>" ><img src="img/logout.png"/> Logout</a></div>
 			</div>
 			<div id="header">
 				<div id="logo"><a href="#" ><img src="img/logo-small.png"/></a></div>
@@ -44,7 +49,7 @@
 		<div id="content">
 			<div id="clear"></div>
 			<div id="isinya">
-				
+
 			</div>
 		</div>
 		<div id="footer">

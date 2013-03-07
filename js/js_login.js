@@ -12,7 +12,7 @@ $(document).ready(function() {
             $('#error').html("Username dan Password harus diisi").fadeIn(500).delay(2500).fadeOut(500);
         }
         else {
-            $.post('../controller/cont.login.php', $('#frm_login').serialize(), function(data) {
+            $.post($('#frm_login').attr("action"), $('#frm_login').serialize(), function(data) {
                 if (data === 'correct') {
                     window.location = 'main.php';
                 } else {
