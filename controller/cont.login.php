@@ -28,18 +28,21 @@ if (isset($_POST['user']) && isset($_POST['pass'])) {
     } else {
         $id_user=$cek['id_user'];
         $data_user=User::getUser($id_user);
-        echo $data_user;
-        
-        
-        $satker = new Satker();
+        $arr=  get_object_vars($data_user);
+
+        $akses=User::getAkses($arr[3]);
+
+        //inisiasi object satker
+        $satker = new Satker($arr);
         $data_satker = $satker->getSatker($satker);
         
-        //print_r($data_satker);
-        //$_SESSION['kdsatker']=$data_satker->kddept.".".$data_satker->kdunit.".".$data_satker->kdsatker;
-        $_SESSION['isLogged']=true;
+        
+        //buat session
+        $_SESSION['isLogged']=true;        
         $_SESSION['satker']=  $data_satker;
-        //$_SESSION['username']=  md5($data->username);
-        //echo 'correct';
+        $_SERVER['akses']=$akses;
+        
+        echo 'correct';
     }
 
     $error = count($message);

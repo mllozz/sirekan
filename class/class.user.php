@@ -9,9 +9,9 @@ abstract class User {
     protected $id_user;
     public $username;
     public $password;
-    protected $kddept;
-    protected $kdunit;
-    protected $kdsatker;
+    public $kddept;
+    public $kdunit;
+    public $kdsatker;
     static public $valid_kdakses = array(
         User::AKSES_ADMIN => 'Admin',
         User::AKSES_SATKER => 'Satker',
@@ -89,11 +89,29 @@ abstract class User {
         }
         return $data;
     }
+    /**
+     * Get jenis akses
+     * @return array
+     */
+    final public static function getAkses($kdakses){
+        $db=Database::getInstance();
+        $conn=$db->getConnection(1);
+        
+        $query="SELECT * FROM akses WHERE kdakses=".(int) $kdakses;
+   
+        $result=$conn->prepare($query);
+        $result->execute();
+        
+        if($result->rowCount()!=1) {
+            return false;
+        }
+        return $result->fetch();
+    }
     
     /**
      * Mengambil object user sesuai id
      * @param int $id_user
-     * @return array
+     * @return object class
      */
     final public static function getUser($id_user) {
         $db = Database::getInstance();
