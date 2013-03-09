@@ -4,7 +4,7 @@ $(document).ready(function() {
 
         var user = $('#user').val();
         var pass = $('#pass').val();
-        if ($('#user').val() === '' || $('#pass').val() === '') {
+        if (user === '' || pass === '') {
             //$('input[type="text"]').css({
             //    "background-color": "red",
             //    "border": "1px solid yellow"

@@ -114,3 +114,8 @@ body {
 #isi_stat a:hover {
 	color: #eee;
 }
+
+#loader {
+    margin-left: 40%;
+    margin-top: 5%;
+}

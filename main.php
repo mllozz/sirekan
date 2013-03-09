@@ -49,9 +49,9 @@ include_once('controller/cont.main.php');
                 </div>
             </div>
             <div id="content">
-                <div id="clear"></div>
+                <div id="clear"></div>   
                 <div id="isinya">
-
+                           
                 </div>
             </div>
             <div id="footer">
