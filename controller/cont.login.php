@@ -35,12 +35,11 @@ if (isset($_POST['user']) && isset($_POST['pass'])) {
         //inisiasi object satker
         $satker = new Satker($arr);
         $data_satker = $satker->getSatker($satker);
-        
-        
+
         //buat session
         $_SESSION['isLogged']=true;        
         $_SESSION['satker']=  $data_satker;
-        $_SERVER['akses']=$akses;
+        $_SESSION['akses']=$akses;
         
         echo 'correct';
     }
