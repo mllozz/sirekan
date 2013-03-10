@@ -15,6 +15,7 @@ $(document).ready(function() {
     $("input[type=text]").keyup(function() {
         var val = $(this).attr('value');
         var field = $(this).attr('name');
+        $('#loader').html('<img src="img/loader.gif" alt="loader" />').show();
         if (field === 'kddept' && val.length === 3) {
             $.getJSON('controller/cont.rekam.php', {kddept: val, cek: true}, function(data) {
                 $.each(data, function() {
@@ -23,28 +24,36 @@ $(document).ready(function() {
                     } else {
                         $('input#' + field).next('#kddept').fadeIn(1000).text(data.nama);
                     }
+                    $('#loader').html('<img src="img/loader.gif" alt="loader" />').hide();
                 });
             });
         }
         if (field === 'kdunit' && val.length === 2) {
-            $.getJSON('controller/cont.rekam.php', {kdunit: val, cek: true}, function(data) {
+            var kddept=$('#kddept').val();
+            $('#loader').html('<img src="img/loader.gif" alt="loader" />').show();
+            $.getJSON('controller/cont.rekam.php', {kdunit: val,kddept: kddept, cek: true}, function(data) {
                 $.each(data, function() {
                     if (data.msg === 'ok') {
                         $('input#' + field).next('#kdunit').fadeIn(1000).text(data.nama);
                     } else {
                         $('input#' + field).next('#kdunit').fadeIn(1000).text(data.nama);
                     }
+                    $('#loader').html('<img src="img/loader.gif" alt="loader" />').hide();
                 });
             });
         }
         if (field === 'kdsatker' && val.length === 6) {
-            $.getJSON('controller/cont.rekam.php', {kdsatker: val, cek: true}, function(data) {
+            var kddept=$('#kddept').val();
+            var kdunit=$('#kdunit').val();
+            $('#loader').html('<img src="img/loader.gif" alt="loader" />').show();
+            $.getJSON('controller/cont.rekam.php', {kdsatker: val, kdunit: kdunit, kddept: kddept, cek: true}, function(data) {
                 $.each(data, function() {
                     if (data.msg === 'ok') {
                         $('input#' + field).next('#kdsatker').fadeIn(1000).text(data.nama);
                     } else {
                         $('input#' + field).next('#kdsatker').fadeIn(1000).text(data.nama);
                     }
+                    $('#loader').html('<img src="img/loader.gif" alt="loader" />').hide();
                 });
             });
         }
@@ -52,18 +61,24 @@ $(document).ready(function() {
 
     //submit form
     $('#frm_rekam').submit(function() {
+        $('#loader').html('<img src="img/loader.gif" alt="loader" />').show();
         if ($('#kddept').val() === '' || $('#kdunit').val() === '' || $('#kdsatker').val() === '') {
             $('#error').html('Tidak boleh kosong').show();
             return false;
         } else {
-            $.getJSON($('#frm_rekam').attr('action'), $('#frm_rekam').serialize(), function(data) {
+            $.post($('#frm_rekam').attr('action'), $('#frm_rekam').serialize(), function(data) {
                 $.each(data, function() {
                     if (data.msg === 'ok') {
-                        alert('ok dab');
+                        
+                        
+                        $("input[type=text]").val('');
+                        $("span").html('');
+                        $('#user_baru').html(data.password+''+data.username).show();
                     }
                 });
-            });
+            },'json');
         }
+        $('#loader').html('<img src="img/loader.gif" alt="loader" />').hide();
         return false;
     });
 });

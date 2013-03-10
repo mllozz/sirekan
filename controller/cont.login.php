@@ -29,12 +29,12 @@ if (isset($_POST['user']) && isset($_POST['pass'])) {
         $id_user=$cek['id_user'];
         $data_user=User::getUser($id_user);
         $arr=  get_object_vars($data_user);
-
-        $akses=User::getAkses($arr[3]);
+        
+        $akses=User::getAkses($arr[4]);
 
         //inisiasi object satker
         $satker = new Satker($arr);
-        $data_satker = $satker->getSatker($satker);
+        $data_satker = $satker->getSatker();
 
         //buat session
         $_SESSION['isLogged']=true;        
@@ -53,4 +53,6 @@ if (isset($_POST['user']) && isset($_POST['pass'])) {
 } else {
     header('Location: ../index.php');
 }
+
+//@8gwi@uf
 ?>

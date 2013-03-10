@@ -48,5 +48,7 @@
 	echo '<br />';
 	
 	echo $data->nmkppn;
+        
+        echo date('Y-m-d H:i:s');
 	
 ?>

@@ -1,14 +1,10 @@
 <?php
 
-class Satker {
-
-    public $kdsatker;
+class Dept {
     public $kddept;
-    public $kdunit;
-    public $nmsatker;
-    public $kdjnssat;
+    public $nmdept;
     
-    public function __construct($data=array()) {
+    public function __construct($data=array()){
         if (!is_array($data)) {
             trigger_error('Class baru tidak dapat diinisialisai ' . get_class($name));
         }
@@ -21,29 +17,19 @@ class Satker {
         }
     }
     
-    /**
-     * Fungsi autoload class
-     */
-    function __autoload($class_name) {
+    protected function __autoload($class_name) {
         include 'class/class.' . strtolower($class_name) . '.php';
     }
     
-    /**
-     * Get satker berdasarkan satker
-     * @return boolean jika salah
-     * @return array
-     */
-    public function getSatker() {
-        $db=  Database::getInstance();
+    final public function getDept($kddept) {
+        $db=Database::getInstance();
         $conn=$db->getConnection(2);
-
-        $query="SELECT kdsatker,kddept,kdunit,nmsatker,kdjnssat ";
-        $query .="FROM t_satker WHERE kdsatker='".$this->kdsatker."' AND ";
-        $query .="kddept='".$this->kddept."' AND kdunit='".$this->kdunit."'";
+        
+        $query="SELECT kddept,nmdept FROM t_dept WHERE kddept='".$kddept."'";
         
         $result=$conn->prepare($query);
         $result->execute();
-
+        
         if($result->rowCount()!=1) {
             return false;
         }
@@ -51,9 +37,7 @@ class Satker {
         $result->setFetchMode(PDO::FETCH_CLASS, $class);
         $data=$result->fetch();
         
-        $data=get_object_vars($data);
         return $data;
     }
-    
-
 }
+
