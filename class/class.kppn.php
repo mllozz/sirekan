@@ -2,7 +2,7 @@
 	
 	class Kppn {
 		
-		protected $kdkppn;
+		public $kdkppn;
 		public $nmkppn;
 		public $almkppn;
 		public $telkppn;
@@ -32,7 +32,7 @@
 		* Mendapatkan kppn yang diset di server
 		* @return object
 		*/
-		public function getNamaKppn() {
+		public function getKppn() {
 			$db=Database::getInstance();
 			$conn=$db->getConnection(2);
 			

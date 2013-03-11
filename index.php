@@ -19,7 +19,7 @@
             <div id="text_logo">
                 <h3>KEMENTERIAN KEUANGAN REPUBLIK INDONESIA</h3> 
                 <h2>DIREKTORAT JENDERAL PERBENDAHARAAN NEGARA</h2>
-                <h1>KANTOR PELAYANAN PERBENDAHARAAN NEGARA <?php echo $kppn->nmkppn;?></h1>
+                <h1>KANTOR PELAYANAN PERBENDAHARAAN NEGARA <?php echo $kppn->nmkppn."(".$kppn->kdkppn.")";?></h1>
                 
             </div>
         </div><!-- end header -->

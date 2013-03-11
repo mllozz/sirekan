@@ -52,8 +52,9 @@ abstract class User {
      */
     final public static function cekUser($ver = array()) {
         $username = $ver['username'];
-        $password = md5($ver['password']);
-
+        if($ver['password']!=null) {
+            $password = md5($ver['password']);
+        }
         $data = array(
             'is_true' => false,
             'message' => 'Username dan Password salah',
@@ -62,9 +63,10 @@ abstract class User {
         $db = Database::getInstance();
         $conn = $db->getConnection(1);
 
-        $query = "SELECT * FROM users WHERE username='" . $username . "' AND ";
-        $query .="password='" . $password . "'";
-
+        $query = "SELECT * FROM users WHERE username='" . $username."' ";
+        if($ver['password']!=null) {
+            $query .=" AND password='" . $password . "'";
+        }
         $result = $conn->prepare($query);
         $result->execute();
 
@@ -128,6 +130,29 @@ abstract class User {
         $user = $result->fetch();
         return self::getInstance($user['kdakses'], $user);
     }
+    
+    /**
+     * Update password user
+     * @param User $user
+     * @return boolean
+     */
+    final public static function updateUser($id_user,$password) {
+        $db=Database::getInstance();
+        $conn=$db->getConnection(1);
+        
+        $date_updated=date('Y-m-d H:i:s');
+        
+        $query="UPDATE users SET password='".$password."', date_updated='".$date_updated."' ";
+        $query .=" WHERE id_user='".$id_user."'";
+        
+        $result=$conn->prepare($query);
+        $result->execute();
+        
+        if($result->rowCount()==1) {
+            return true;
+        }
+        return false;
+    }
 
     /**
      * save user baru
@@ -161,6 +186,44 @@ abstract class User {
     }
     
     /**
+     * 
+     * @param User $user
+     * @return array
+     */
+    final public static function resetPass(User $user) {
+        $db = Database::getInstance();
+        $conn = $db->getConnection(1);
+        $password=self::generateRandomPassword();
+        $passmd5=md5($password);
+        $date_updated=date('Y-m-d H:i:s');
+        $query = "UPDATE users SET password='".$passmd5."', date_updated='".$date_updated."' ";
+        $query .= " WHERE username='".$user->username."' AND kdakses='".$user->kdakses."' ";
+        
+        if($user->kddept!='' && $user->kdunit!='' && $user->kdsatker!='') {
+            $query .=" AND kddept='".$user->kddept."' ";
+            $query .=" AND kdunit='".$user->kdunit."' ";
+            $query .=" AND kdsatker='".$user->kdsatker."' ";
+        }
+        
+
+        $result = $conn->prepare($query);
+        $result->execute();
+ 
+        if ($result->rowCount() != 1) {
+            return false;
+        } else {
+            $data=array(
+                'username' => $user->username,
+                'password' => $password,
+                'kddept' => $user->kddept,
+                'kdunit' => $user->kdunit,
+                'kdsatker' => $user->kdsatker,
+            );
+            return $data;
+        }
+    }
+    
+    /**
      * Cek ketersediaan user
      * @param User $user
      * @return boolean
@@ -169,8 +232,12 @@ abstract class User {
         $db=Database::getInstance();
         $conn=$db->getConnection(1);
         
-        $query="SELECT username FROM users WHERE username='".$user->username."'";
-        
+        $query="SELECT username FROM users WHERE username='".$user->username."' ";
+        if($user->kddept!='' && $user->kdunit!='' && $user->kdsatker!='') {
+            $query .=" AND kddept='".$user->kddept."' ";
+            $query .=" AND kdunit='".$user->kdunit."' ";
+            $query .=" AND kdsatker='".$user->kdsatker."' ";
+        }
         $result=$conn->prepare($query);
         $result->execute();
         if($result->rowCount()==0) {
@@ -179,21 +246,45 @@ abstract class User {
         return false;
     }
     
-    final protected static function getUserPasswordGenerated($id_user){
-        $db = Database::getInstance();
-        $conn = $db->getConnection(1);
-
-        $query = "SELECT username,password,kddept,kdunit,kdsatker,kdakses FROM users WHERE id_user='" . (int) $id_user . "'";
-
-        $result = $conn->prepare($query);
+    /**
+     * Cek apakah username admin
+     * @param type $username
+     * @return boolean
+     */
+    final public static function isAdmin($username) {
+        $db=Database::getInstance();
+        $conn=$db->getConnection(1);
+        
+        $query="SELECT kdakses FROM users WHERE username='".$username."'";
+        
+        $result=$conn->prepare($query);
         $result->execute();
-
-        if ($result->rowCount() != 1) {
+        if($result->rowCount()!=1) {
             return false;
         }
         $user = $result->fetch();
-        return self::getInstance($user['kdakses'], $user);
+        if($user['kdakses']==1) {
+            return true;
+        }
+        return false;
     }
+    
+    
+//    final protected static function getUserPasswordGenerated($id_user){
+//        $db = Database::getInstance();
+//        $conn = $db->getConnection(1);
+//
+//        $query = "SELECT username,password,kddept,kdunit,kdsatker,kdakses FROM users WHERE id_user='" . (int) $id_user . "'";
+//
+//        $result = $conn->prepare($query);
+//        $result->execute();
+//
+//        if ($result->rowCount() != 1) {
+//            return false;
+//        }
+//        $user = $result->fetch();
+//        return self::getInstance($user['kdakses'], $user);
+//    }
 
     protected static function generateRandomPassword() {
         $string = 'qwertyuiopasdfghjklzxcvbnm1234567890@#$%&';

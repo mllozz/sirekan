@@ -4,4 +4,4 @@
 	}
 	
 	$index=new Kppn();
-	$kppn=$index->getNamaKppn();
+	$kppn=$index->getKppn();
