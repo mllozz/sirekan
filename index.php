@@ -41,6 +41,7 @@
                                         <tr>
                                             <td><label for="user">Username</label></td>
                                             <td><input type="text" id="user" name="user" title="Masukan username" /></td>
+                                            <td><span id="x"></span></td>
                                         </tr>
                                         <tr>    
                                             <td></td>
@@ -48,6 +49,7 @@
                                         <tr>
                                             <td><label for="pass">Password</label></td>
                                             <td><input type="password" id="pass" name="pass" title="Masukan password" /></td>
+                                            <td><span id="x"></span></td>
                                         </tr>
                                     </table>
         							<center style="color:#ff0000"><div id="error"></div></center>
@@ -55,6 +57,7 @@
                                     <table border="0" align="center">
                                         <tr>
                                             <td align="center"><input class="btn" type="submit" value="Login" id="btn_login" name="btn_login" /></td>
+                                            <td></td>
                                             <td align="center"><input class="btn" type="reset" value="Reset" id="btn_reset"/></td>
                                         </tr>
                                     </table>

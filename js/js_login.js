@@ -9,6 +9,8 @@ $(document).ready(function() {
             //    "background-color": "red",
             //    "border": "1px solid yellow"
             //});
+            $('span#x').html('<img src="img/wrong.png" alt="loader" />').fadeIn(500).delay(2500).fadeOut(500);
+            $('span#x').html('<img src="img/wrong.png" alt="loader" />').fadeIn(500).delay(2500).fadeOut(500);
             $('#error').html("Username dan Password harus diisi").fadeIn(500).delay(2500).fadeOut(500);
         }
         else {
@@ -16,6 +18,8 @@ $(document).ready(function() {
                 if (data === 'correct') {
                     window.location = 'main.php';
                 } else {
+                    $('span#x').html('<img src="img/wrong.png" alt="loader" />').fadeIn(500).delay(2500).fadeOut(500);
+                    $('span#x').html('<img src="img/wrong.png" alt="loader" />').fadeIn(500).delay(2500).fadeOut(500);
                     $('#error').html(data).fadeIn(500).delay(5000).fadeOut(500);
                 }
             });
