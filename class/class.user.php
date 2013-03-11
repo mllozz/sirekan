@@ -132,6 +132,28 @@ abstract class User {
     }
     
     /**
+     * Mengambil object user sesuai id
+     * @param int $id_user
+     * @return object class
+     */
+    final public static function getAllUser() {
+        $db = Database::getInstance();
+        $conn = $db->getConnection(1);
+
+        $query = "SELECT id_user,kddept,kdunit,kdsatker,username,users.kdakses kdakses,nmakses FROM users ";
+        $query.= " LEFT JOIN akses ON users.kdakses=akses.kdakses";
+
+        $result = $conn->prepare($query);
+        $result->execute();
+
+        if ($result->rowCount() == 0) {
+            return false;
+        }
+        $user = $result->fetchAll();
+        return $user;
+    }
+    
+    /**
      * Update password user
      * @param User $user
      * @return boolean
