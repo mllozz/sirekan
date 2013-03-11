@@ -94,12 +94,13 @@ if (isset($_GET['cek'])) {
     }
     echo json_encode($data);
 }
-//submit fomr
+//submit form rekam user
 if (isset($_POST['kddept']) && isset($_POST['kdunit']) && isset($_POST['kdsatker']) && isset($_POST['kdakses'])) {
     $kddept=$_POST['kddept'];
     $kdunit=$_POST['kdunit'];
     $kdsatker=$_POST['kdsatker'];
     $kdakses=$_POST['kdakses'];
+    $data='';
     $arr=array(
         'kddept' => $kddept,
         'kdunit' => $kdunit,
@@ -114,10 +115,18 @@ if (isset($_POST['kddept']) && isset($_POST['kdunit']) && isset($_POST['kdsatker
     if($kdakses=='2') {
         $user=new UserSatker($arr);
     }
-
-    $data=User::saveUser($user);
-    $data['msg']='ok';
-    $data['info']='berhasil';
+    
+    $cekUser=User::checkAvailability($user);
+    if($cekUser) {
+        $data=User::saveUser($user);
+        $data['msg']='ok';
+        $data['info']='berhasil';
+    } else {
+        $data=array(
+            'msg' => 'no',
+            'info' => 'User untuk satker '.$user->username.' sudah ada'
+        );
+    }   
     echo json_encode($data);
 }
 ?>

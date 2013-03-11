@@ -16,8 +16,8 @@ include_once('controller/cont.main.php');
                 <div id="stat">
                     <div id="tgl"></div>
                     <div id="isi_stat"><a href="#" ><img src="img/profil.png"/> 
-                            <?php echo $data_log['nmsatker'] . " ( " . $data_log['kddept'] . "." . $data_log['kdunit'] . "." . $data_log['kdsatker'] . ")"; ?>
-                        </a> | <?php echo $akses['nmakses']; ?> |<a href="<?php logout(); ?>" ><img src="img/logout.png"/> Logout</a></div>
+                            <?php echo $data_satker['nmsatker'] . " ( " . $data_satker['kddept'] . "." . $data_satker['kdunit'] . "." . $data_satker['kdsatker'] . ")"; ?>
+                        </a> | <?php echo $akses['nmakses']; ?> |<a id='logout' href="logout" ><img src="img/logout.png"/> Logout</a></div>
                 </div>
                 <div id="header">
                     <div id="logo"><a href="#" ><img src="img/logo-small.png"/></a></div>

@@ -11,4 +11,13 @@ $(document).ready(function(){
         $('#isinya').load(hal+'.php');
         return false;
     });
+    
+    $("a#logout").click(function(){
+        var hal= $(this).attr('href');
+        if(hal===''){
+            return false;
+        }
+        window.location=hal+'.php';
+        return false;
+    });
 });

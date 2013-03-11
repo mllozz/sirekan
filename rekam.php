@@ -8,6 +8,7 @@
         <option value="1">Admin</option>
         <option value="2">Satker</option>
     </select>
+    <br />
     <span id="error"></span>
     <br />
     <div id="loader"></div>

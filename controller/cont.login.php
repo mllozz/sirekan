@@ -6,7 +6,7 @@ function __autoload($class_name) {
 
 
 if (isset($_POST['user']) && isset($_POST['pass'])) {
-    session_start();
+    
     $message = array();
     $username = $_POST['user'];
     $password = $_POST['pass'];
@@ -29,16 +29,17 @@ if (isset($_POST['user']) && isset($_POST['pass'])) {
         $id_user=$cek['id_user'];
         $data_user=User::getUser($id_user);
         $arr=  get_object_vars($data_user);
-        
+
         $akses=User::getAkses($arr[4]);
 
         //inisiasi object satker
-        $satker = new Satker($arr);
-        $data_satker = $satker->getSatker();
-
+        //$satker = new Satker($arr);
+        //$data_satker = $satker->getSatker();
+        session_start();
         //buat session
-        $_SESSION['isLogged']=true;        
-        $_SESSION['satker']=  $data_satker;
+        $_SESSION['isLogged']=true;  
+        $_SESSION['username']=$arr[0];
+        //$_SESSION['satker']=  $data_satker;
         $_SESSION['akses']=$akses;
         
         echo 'correct';

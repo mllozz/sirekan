@@ -160,6 +160,25 @@ abstract class User {
         return $data;
     }
     
+    /**
+     * Cek ketersediaan user
+     * @param User $user
+     * @return boolean
+     */
+    final public static function checkAvailability(User $user) {
+        $db=Database::getInstance();
+        $conn=$db->getConnection(1);
+        
+        $query="SELECT username FROM users WHERE username='".$user->username."'";
+        
+        $result=$conn->prepare($query);
+        $result->execute();
+        if($result->rowCount()==0) {
+            return true;
+        }
+        return false;
+    }
+    
     final protected static function getUserPasswordGenerated($id_user){
         $db = Database::getInstance();
         $conn = $db->getConnection(1);

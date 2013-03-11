@@ -29,9 +29,9 @@ $(document).ready(function() {
             });
         }
         if (field === 'kdunit' && val.length === 2) {
-            var kddept=$('#kddept').val();
+            var kddept = $('#kddept').val();
             $('#loader').html('<img src="img/loader.gif" alt="loader" />').show();
-            $.getJSON('controller/cont.rekam.php', {kdunit: val,kddept: kddept, cek: true}, function(data) {
+            $.getJSON('controller/cont.rekam.php', {kdunit: val, kddept: kddept, cek: true}, function(data) {
                 $.each(data, function() {
                     if (data.msg === 'ok') {
                         $('input#' + field).next('#kdunit').fadeIn(1000).text(data.nama);
@@ -43,8 +43,8 @@ $(document).ready(function() {
             });
         }
         if (field === 'kdsatker' && val.length === 6) {
-            var kddept=$('#kddept').val();
-            var kdunit=$('#kdunit').val();
+            var kddept = $('#kddept').val();
+            var kdunit = $('#kdunit').val();
             $('#loader').html('<img src="img/loader.gif" alt="loader" />').show();
             $.getJSON('controller/cont.rekam.php', {kdsatker: val, kdunit: kdunit, kddept: kddept, cek: true}, function(data) {
                 $.each(data, function() {
@@ -63,20 +63,23 @@ $(document).ready(function() {
     $('#frm_rekam').submit(function() {
         $('#loader').html('<img src="img/loader.gif" alt="loader" />').show();
         if ($('#kddept').val() === '' || $('#kdunit').val() === '' || $('#kdsatker').val() === '') {
-            $('#error').html('Tidak boleh kosong').show();
+            $('#error').html('Tidak boleh kosong').fadeIn(1000).delay(3500).fadeOut(500);
+            $('#loader').html('<img src="img/loader.gif" alt="loader" />').hide();
             return false;
         } else {
             $.post($('#frm_rekam').attr('action'), $('#frm_rekam').serialize(), function(data) {
                 $.each(data, function() {
                     if (data.msg === 'ok') {
-                        
-                        
                         $("input[type=text]").val('');
-                        $("span").html('');
-                        $('#user_baru').html(data.password+''+data.username).show();
+                        $("input").next('span').fadeOut(500).text('');
+                        $('#user_baru').html(data.password + ' ====> ' + data.username).show();
+                    } else {
+                        $("input[type=text]").val('');
+                        $("input").next('span').fadeOut(500).text('');
+                        $('#user_baru').html(data.info).fadeIn(500).delay(3500).fadeOut(500);
                     }
                 });
-            },'json');
+            }, 'json');
         }
         $('#loader').html('<img src="img/loader.gif" alt="loader" />').hide();
         return false;
