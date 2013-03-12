@@ -153,6 +153,25 @@ abstract class User {
         return $user;
     }
     
+    final public static function cariUser($kata) {
+        $db = Database::getInstance();
+        $conn = $db->getConnection(1);
+
+        $query = "SELECT id_user,kddept,kdunit,kdsatker,username,users.kdakses kdakses,nmakses FROM users ";
+        $query.= " LEFT JOIN akses ON users.kdakses=akses.kdakses ";
+        $query .= " WHERE username LIKE  '%".$kata."%' OR kdsatker LIKE  '%".$kata."%' ";
+        //$query .= " OR nmsatker LIKE  '%".$kata."%'";
+        
+        $result = $conn->prepare($query);
+        $result->execute();
+
+        if ($result->rowCount() == 0) {
+            return false;
+        }
+        $user = $result->fetchAll();
+        return $user;
+    }
+    
     /**
      * Update password user
      * @param User $user
