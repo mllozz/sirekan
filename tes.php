@@ -35,20 +35,31 @@
 
 //	print_r($data);
 	
-	echo '<br />';
-	echo '<br />';
-	echo '<br />';
+//	echo '<br />';
+//	echo '<br />';
+//	echo '<br />';
+//	
+//	$kppn=new Kppn();
+//	$data=$kppn->getNamaKppn();
+//	
+//	//print_r($data);
+//	
+//	echo '<br />';
+//	echo '<br />';
+//	
+//	echo $data->nmkppn;
+//        
+//        echo date('Y-m-d H:i:s');
 	
-	$kppn=new Kppn();
-	$data=$kppn->getNamaKppn();
-	
-	//print_r($data);
-	
-	echo '<br />';
-	echo '<br />';
-	
-	echo $data->nmkppn;
+$input = 'bl';
+$data = array('orange', 'blue', 'green', 'red', 'pink', 'brown', 'black');
         
-        echo date('Y-m-d H:i:s');
-	
+$result = array_filter($data, function ($item) use ($input) {
+    if (stripos($item, $input) !== false) {
+        return true;
+    }
+    return false;
+});
+
+var_dump($result);
 ?>

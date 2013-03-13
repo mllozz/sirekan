@@ -33,8 +33,14 @@ if (!isset($_REQUEST['aksi'])) {
 if (isset($_REQUEST['aksi'])) {
     switch (@$_REQUEST['aksi']) {
         case 'cari' :
-            $users = User::cariUser($_REQUEST['kata']);
+            if (isset($_REQUEST['filter'])) {
+                $users = User::getAllUser();
+            } else {
+                $users = User::cariUser($_REQUEST['kata']);
+            }
+
             $data[] = array();
+            $hasil[]=array();
             $i = 0;
             foreach ($users as $rows) {
                 $arr[$i] = array(
@@ -45,7 +51,7 @@ if (isset($_REQUEST['aksi'])) {
                 $satker[$i] = new Satker($arr[$i]);
                 $res[$i] = $satker[$i]->getSatker();
 
-                $data[$i] = array(
+                $hasil[$i] = array(
                     'id_user' => $rows['id_user'],
                     'kddept' => $rows['kddept'],
                     'kdunit' => $rows['kdunit'],
@@ -55,6 +61,29 @@ if (isset($_REQUEST['aksi'])) {
                     'nmsatker' => $res[$i]['nmsatker'],
                 );
                 $i++;
+            }
+            if (isset($_REQUEST['filter'])) {
+                $input = $_REQUEST['kata'];
+                $k = 0;
+                $result=false;
+                foreach ($hasil as $item) {
+                    //$result = array_filter($item, function ($x) use ($input) {      
+                    for ($j = 0; $j < strlen($item['nmsatker']); $j++) {
+                        if (stripos(strtolower($input), strtolower(substr($item['nmsatker'], $j, strlen($input)))) !== false) {
+                            $result=true;
+                        } else {
+                        $result=false;
+                        }
+                    }
+                    //  });
+                    
+                    if ($result) {
+                        $data = $hasil[$k];
+                    }
+                    $k++;
+                }
+            } else {
+                $data = $hasil;
             }
             echo json_encode($data);
             exit;
