@@ -140,9 +140,8 @@ abstract class User {
         $db = Database::getInstance();
         $conn = $db->getConnection(1);
 
-        $query = "SELECT id_user,kddept,kdunit,kdsatker,username,users.kdakses kdakses,nmakses FROM users ";
+        $query = "SELECT id_user,kddept,kdunit,kdsatker,username,users.kdakses kdakses,nmakses,if(is_blokir=0,'AKTIF','TERBLOKIR') blokir FROM users ";
         $query.= " LEFT JOIN akses ON users.kdakses=akses.kdakses";
-
         $result = $conn->prepare($query);
         $result->execute();
 
@@ -157,7 +156,7 @@ abstract class User {
         $db = Database::getInstance();
         $conn = $db->getConnection(1);
 
-        $query = "SELECT id_user,kddept,kdunit,kdsatker,username,users.kdakses kdakses,nmakses FROM users ";
+        $query = "SELECT id_user,kddept,kdunit,kdsatker,username,users.kdakses,is_blokir kdakses,nmakses,if(is_blokir=0,'AKTIF','TERBLOKIR') blokir FROM users ";
         $query.= " LEFT JOIN akses ON users.kdakses=akses.kdakses ";
         $query .= " WHERE username LIKE  '%".$kata."%' OR kdsatker LIKE  '%".$kata."%' ";
         //$query .= " OR nmsatker LIKE  '%".$kata."%'";

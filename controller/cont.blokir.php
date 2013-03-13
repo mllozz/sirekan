@@ -16,7 +16,6 @@ if (!isset($_REQUEST['aksi'])) {
         );
         $satker[$i] = new Satker($arr[$i]);
         $res[$i] = $satker[$i]->getSatker();
-
         $data[$i] = array(
             'id_user' => $rows['id_user'],
             'kddept' => $rows['kddept'],
@@ -25,6 +24,7 @@ if (!isset($_REQUEST['aksi'])) {
             'username' => $rows['username'],
             'nmakses' => $rows['nmakses'],
             'nmsatker' => $res[$i]['nmsatker'],
+            'status_blokir' => $rows['blokir'],
         );
         $i++;
     }
@@ -59,6 +59,7 @@ if (isset($_REQUEST['aksi'])) {
                     'username' => $rows['username'],
                     'nmakses' => $rows['nmakses'],
                     'nmsatker' => $res[$i]['nmsatker'],
+                    'status_blokir' => $rows['blokir'],
                 );
                 $i++;
             }
@@ -86,6 +87,15 @@ if (isset($_REQUEST['aksi'])) {
                 $data = $hasil;
             }
             echo json_encode($data);
+            exit;
+        case 'ubah' :
+            $id_user=$_REQUEST['id_user'];
+            $user=User::getUser($id_user);
+//            $data=array(
+//                'msg' => 'ok',
+//                'info' => 'yooooo',
+//            );
+            echo json_encode($user);
             exit;
     }
 }

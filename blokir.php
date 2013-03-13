@@ -54,19 +54,21 @@
     <table id="grid">
         <thead>
             <tr>
-                <th>ID</th>
                 <th>KDDEPT</th>
                 <th>KDUNIT</th>
                 <th>KDSATKER</th>
                 <th>NAMA SATKER</th>
                 <th>HAK AKSES</th>
-                <th>Username</th>
+                <th>USERNAME</th>
+                <th>STATUS</th>
             </tr>
         </thead>
         <tbody>
         </tbody>
     </table>
 </div>
-
+<div id="frm_blokir">
+    
+</div>
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/blokir.js"></script>
