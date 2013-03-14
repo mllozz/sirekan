@@ -193,6 +193,28 @@ abstract class User {
         }
         return false;
     }
+    
+    /**
+     * Blokir user
+     * @param type $id_user
+     * @return boolean
+     */
+    final public static function blokirUser($id_user,$int) {
+        $db=Database::getInstance();
+        $conn=$db->getConnection(1);
+        
+        $date_updated=date('Y-m-d H:i:s');
+        
+        $query="UPDATE users SET is_blokir=".(int) $int.", date_updated='".$date_updated."' ";
+        $query .=" WHERE id_user='".$id_user."'";
+        $result=$conn->prepare($query);
+        $result->execute();
+        
+        if($result->rowCount()==1) {
+            return true;
+        }
+        return false;
+    }
 
     /**
      * save user baru
