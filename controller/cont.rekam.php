@@ -82,7 +82,8 @@ if (isset($_GET['cek'])) {
             if (is_array($data_satker)) {
                 $data = array(
                     'msg' => 'yes',
-                    'nama' => $data_satker['kddept'] . '.' . $data_satker['kdunit'] . '.' . $data_satker['kdsatker'] . '.' . $data_satker['nmsatker'],
+                    'nama' => $data_satker['nmsatker'],
+                    //'nama' => $data_satker['kddept'] . '.' . $data_satker['kdunit'] . '.' . $data_satker['kdsatker'] . '.' . $data_satker['nmsatker'],
                 );
             } else {
                 $data = array(

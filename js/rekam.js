@@ -20,9 +20,9 @@ $(document).ready(function() {
             $.getJSON('controller/cont.rekam.php', {kddept: val, cek: true}, function(data) {
                 $.each(data, function() {
                     if (data.msg === 'ok') {
-                        $('input#' + field).next('#kddept').fadeIn(1000).text(data.nama);
+                        $('span#kddept').html(data.nama).fadeIn(500);
                     } else {
-                        $('input#' + field).next('#kddept').fadeIn(1000).text(data.nama);
+                        $('span#kddept').fadeIn(1000).text(data.nama);
                     }
                     $('#loader').html('<img src="img/loader.gif" alt="loader" />').hide();
                 });
@@ -34,9 +34,9 @@ $(document).ready(function() {
             $.getJSON('controller/cont.rekam.php', {kdunit: val, kddept: kddept, cek: true}, function(data) {
                 $.each(data, function() {
                     if (data.msg === 'ok') {
-                        $('input#' + field).next('#kdunit').fadeIn(1000).text(data.nama);
+                        $('span#kdunit').fadeIn(1000).text(data.nama);
                     } else {
-                        $('input#' + field).next('#kdunit').fadeIn(1000).text(data.nama);
+                        $('span#kdunit').fadeIn(1000).text(data.nama);
                     }
                     $('#loader').html('<img src="img/loader.gif" alt="loader" />').hide();
                 });
@@ -49,9 +49,9 @@ $(document).ready(function() {
             $.getJSON('controller/cont.rekam.php', {kdsatker: val, kdunit: kdunit, kddept: kddept, cek: true}, function(data) {
                 $.each(data, function() {
                     if (data.msg === 'ok') {
-                        $('input#' + field).next('#kdsatker').fadeIn(1000).text(data.nama);
+                        $('span#kdsatker').fadeIn(1000).text(data.nama);
                     } else {
-                        $('input#' + field).next('#kdsatker').fadeIn(1000).text(data.nama);
+                        $('span#kdsatker').fadeIn(1000).text(data.nama);
                     }
                     $('#loader').html('<img src="img/loader.gif" alt="loader" />').hide();
                 });

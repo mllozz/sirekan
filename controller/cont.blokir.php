@@ -129,7 +129,13 @@ if (isset($_REQUEST['aksi'])) {
                 $data['tgl_akhir'] = $data_blokir['date_ended'];
                 $data['ket_blokir'] = $data_blokir['ket_blokir'];
             } else {
-                $data['is_blokir'] = 'no';
+                if ($user->kdakses == 1) {
+                    $data['is_blokir_c'] = 'yes';
+                    $data['is_blokir'] = 'no';
+                } else {
+                    $data['is_blokir'] = 'no';
+                    $data['is_blokir_c'] = 'no';
+                }
             }
 
             echo json_encode($data);
@@ -172,7 +178,7 @@ if (isset($_REQUEST['aksi'])) {
             echo json_encode($data);
             exit;
         case 'simpan_ubah' :
-
+            
             $id_blokir = $_POST['id_blokir'];
             $id_user = $_POST['id_user'];
             $date_started = $_POST['tgl_mulai'];
@@ -186,15 +192,24 @@ if (isset($_REQUEST['aksi'])) {
                 'date_ended' => $date_ended,
                 'ket_blokir' => $ket_blokir
             );
+
             $blokir = new Blokir($arr);
 
             $saveBlokir = $blokir->ubahBlokir();
 
             if ($saveBlokir) {
-                $data = array(
-                    'msg' => 'ok',
-                    'info' => 'berhasil',
-                );
+                $blokirUser = User::blokirUser($id_user, 1);
+                if ($blokirUser) {
+                    $data = array(
+                        'msg' => 'ok',
+                        'info' => 'berhasil',
+                    );
+                } else {
+                    $data = array(
+                        'msg' => 'no',
+                        'info' => 'Gagal simpan data blokir',
+                    );
+                }
             } else {
                 $data = array(
                     'msg' => 'no',
@@ -210,8 +225,8 @@ if (isset($_REQUEST['aksi'])) {
 
             if ($blokir_user) {
                 $data = array(
-                'msg' => 'ok',
-                'info' => 'berhasil di buka',
+                    'msg' => 'ok',
+                    'info' => 'berhasil di buka',
                 );
             }
             echo json_encode($data);

@@ -16,7 +16,7 @@ abstract class User {
         User::AKSES_ADMIN => 'Admin',
         User::AKSES_SATKER => 'Satker',
     );
-    protected $kdakses;
+    public $kdakses;
     protected $date_created;
     protected $data_updated;
     protected $is_blokir = 0;
