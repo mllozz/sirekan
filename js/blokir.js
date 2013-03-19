@@ -1,33 +1,45 @@
 $(document).ready(function() {
-    
+
     function appendData(data) {
-        $('#grid tbody').append('<tr id="row" class="' + data.id_user + '"><td>' + data.kddept + "</td><td>" + data.kdunit
+        if (data.length === 0) {
+            $('#grid tbody').append('<tr id="row"><td colspan="7">Tidak Ada</td></tr>');
+        } else {
+            $('#grid tbody').append('<tr id="row" class="' + data.id_user + '"><td>' + data.kddept + "</td><td>" + data.kdunit
                     + "</td><td>" + data.kdsatker + "</td><td>" + data.nmsatker + "</td><td>" + data.nmakses +
                     "</td><td>" + data.username + "</td><td>" + data.status_blokir + "</td></tr>");
+        }
+    }
+
+    function appendHtml(data) {
+        if (data.length === 0) {
+            $('#grid tbody').html('<tr id="row"><td colspan="7">Tidak Ada</td></tr>');
+        } else {
+            $('#grid tbody').html('<tr id="row" class="' + data.id_user + '"><td>' + data.kddept + "</td><td>" + data.kdunit
+                    + "</td><td>" + data.kdsatker + "</td><td>" + data.nmsatker + "</td><td>" + data.nmakses +
+                    "</td><td>" + data.username + "</td><td>" + data.status_blokir + "</td></tr>");
+        }
     }
 
     $.getJSON('controller/cont.blokir.php', function(data) {
-        
+
         $.each(data, function(index, data) {
             appendData(data);
         });
     });
-    
-    $('#next').click(function(){
-        
+
+    $('#next').click(function() {
+
     });
-    
-    
-    
+
+
+
     $('#refresh').click(function() {
         $('#grid tbody').empty();
         $('input#cari').val('');
         $.getJSON('controller/cont.blokir.php', function(data) {
 
             $.each(data, function(index, data) {
-                $('#grid tbody').append('<tr id="row" class="' + data.id_user + '"><td>' + data.kddept + "</td><td>" + data.kdunit
-                        + "</td><td>" + data.kdsatker + "</td><td>" + data.nmsatker + "</td><td>" + data.nmakses +
-                        "</td><td>" + data.username + "</td><td>" + data.status_blokir + "</td></tr>");
+                appendData(data);
             });
         });
     });
@@ -41,17 +53,13 @@ $(document).ready(function() {
             $.getJSON('controller/cont.blokir.php', function(data) {
 
                 $.each(data, function(index, data) {
-                    $('#grid tbody').append('<tr id="row" class="' + data.id_user + '"><td>' + data.kddept + "</td><td>" + data.kdunit
-                            + "</td><td>" + data.kdsatker + "</td><td>" + data.nmsatker + "</td><td>" + data.nmakses +
-                            "</td><td>" + data.username + "</td><td>" + data.status_blokir + "</td></tr>");
+                    appendData(data);
                 });
             });
         } else if (!isNaN(str)) {
             $.post('controller/cont.blokir.php', {aksi: 'cari', kata: $('input#cari').val()}, function(data) {
                 $.each(data, function(index, data) {
-                    $('#grid tbody').html('<tr id="row" class="' + data.id_user + '"><td>' + data.kddept + "</td><td>" + data.kdunit
-                            + "</td><td>" + data.kdsatker + "</td><td>" + data.nmsatker + "</td><td>" + data.nmakses +
-                            "</td><td>" + data.username + "</td><td>" + data.status_blokir + "</td></tr>");
+                    appendHtml(data);
                 });
             }, 'json');
         } else {
@@ -60,14 +68,10 @@ $(document).ready(function() {
                     //alert(data.nmsatker);
                     if (Object(data).length > 1) {
                         $.each(data, function(index, data) {
-                            $('#grid tbody').html('<tr id="row" class="' + data.id_user + '"><td>' + data.kddept + "</td><td>" + data.kdunit
-                                    + "</td><td>" + data.kdsatker + "</td><td>" + data.nmsatker + "</td><td>" + data.nmakses +
-                                    "</td><td>" + data.username + "</td><td>" + data.status_blokir + "</td></tr>");
+                            appendHtml(data);
                         });
                     } else {
-                        $('#grid tbody').html('<tr id="row" class="' + data.id_user + '"><td>' + data.kddept + "</td><td>" + data.kdunit
-                                + "</td><td>" + data.kdsatker + "</td><td>" + data.nmsatker + "</td><td>" + data.nmakses +
-                                "</td><td>" + data.username + "</td><td>" + data.status_blokir + "</td></tr>");
+                        appendHtml(data);
                     }
                 }
             }, 'json');

@@ -86,6 +86,7 @@ if (isset($_REQUEST['aksi'])) {
             } else {
                 $data = $hasil;
             }
+
             echo json_encode($data);
             exit;
         case 'ubah' :
@@ -178,7 +179,7 @@ if (isset($_REQUEST['aksi'])) {
             echo json_encode($data);
             exit;
         case 'simpan_ubah' :
-            
+
             $id_blokir = $_POST['id_blokir'];
             $id_user = $_POST['id_user'];
             $date_started = $_POST['tgl_mulai'];
