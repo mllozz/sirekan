@@ -45,7 +45,7 @@ class Blokir {
         $date=date('Y-m-d');
         
         $query="SELECT * FROM blokir WHERE id_user='".$id_user."' ";
-        $query .= " AND is_blokir=1";
+        $query .= " AND is_blokir=1 ORDER BY date_created DESC";
 
         $result=$conn->prepare($query);
         $result->execute();
@@ -77,7 +77,7 @@ class Blokir {
         $db=Database::getInstance();
         $conn=$db->getConnection(1);
         $date=date('Y-m-d H:i:s');
-        $query="UPDATE blokir SET is_blokir='".$this->is_blokir."', date_started='".$this->date_started."', date_ended='".$this->date_ended."', ket_blokir='".$this->ket_blokir."',date_updated='".$date."' ";
+        $query="UPDATE blokir SET date_started='".$this->date_started."', date_ended='".$this->date_ended."', ket_blokir='".$this->ket_blokir."',date_updated='".$date."' ";
         $query .=" WHERE id_blokir='".$this->id_blokir."'";
         
         $result=$conn->prepare($query);

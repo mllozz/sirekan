@@ -116,7 +116,7 @@
         </tr>
         <form method="post" id="frm_blokir">
             <input type="hidden" name="id_user" id="id_user"/>
-            <input type="text" name="id_blokir" id="id_blokir"/>
+            <input type="hidden" name="id_blokir" id="id_blokir"/>
             <tr>
                 <th>TGL MULAI BLOKIR</th>
                 <td colspan="2"><input type="text" name="tgl_mulai" id="tgl_mulai" placeHolder="Tgl Mulai"/></td>

@@ -153,18 +153,27 @@ if (isset($_REQUEST['aksi'])) {
                 'ket_blokir' => $ket_blokir
             );
             $blokir = new Blokir($arr);
-            $saveBlokir = $blokir->saveBlokir();
-            if ($blokirUser) {
+            $isBlokir=$blokir->isBlokir($id_user);
+            if($isBlokir) {
                 $data = array(
-                    'msg' => 'ok',
-                    'info' => 'berhasil',
-                );
+                        'msg' => 'no',
+                        'info' => 'User sudah diblokir',
+                    );
             } else {
-                $data = array(
-                    'msg' => 'no',
-                    'info' => 'Gagal blokir user',
-                );
+                $saveBlokir = $blokir->saveBlokir();
+                if ($saveBlokir) {
+                    $data = array(
+                        'msg' => 'ok',
+                        'info' => 'berhasil',
+                    );
+                } else {
+                    $data = array(
+                        'msg' => 'no',
+                        'info' => 'Gagal blokir user',
+                    );
+                }
             }
+            
             echo json_encode($data);
             exit;
         case 'simpan_ubah' :
