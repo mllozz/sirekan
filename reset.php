@@ -48,6 +48,11 @@
         text-align: left;
         width: 280px;
     }
+    
+    input[type=text] {
+        background-color: #fbec88;
+        border-width: 1px;
+    }
 
 </style>
 <form method="post" action="controller/cont.reset.php" id="frm_reset">

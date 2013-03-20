@@ -8,6 +8,7 @@ if (!isset($_REQUEST['aksi'])) {
     $users = User::getAllUser();
     $data[] = array();
     $i = 0;
+    $blokir = new Blokir();
     foreach ($users as $rows) {
         $arr[$i] = array(
             'kddept' => $rows['kddept'],
@@ -16,6 +17,7 @@ if (!isset($_REQUEST['aksi'])) {
         );
         $satker[$i] = new Satker($arr[$i]);
         $res[$i] = $satker[$i]->getSatker();
+        $isBlokir = $blokir->isBlokir($rows['id_user']) ? 'Blokir' : 'Aktif';
         $data[$i] = array(
             'id_user' => $rows['id_user'],
             'kddept' => $rows['kddept'],
@@ -24,7 +26,7 @@ if (!isset($_REQUEST['aksi'])) {
             'username' => $rows['username'],
             'nmakses' => $rows['nmakses'],
             'nmsatker' => $res[$i]['nmsatker'],
-            'status_blokir' => $rows['blokir'],
+            'status_blokir' => $isBlokir,
         );
         $i++;
     }
@@ -42,6 +44,7 @@ if (isset($_REQUEST['aksi'])) {
             $data[] = array();
             $hasil[] = array();
             $i = 0;
+            $blokir = new Blokir();
             foreach ($users as $rows) {
                 $arr[$i] = array(
                     'kddept' => $rows['kddept'],
@@ -50,7 +53,7 @@ if (isset($_REQUEST['aksi'])) {
                 );
                 $satker[$i] = new Satker($arr[$i]);
                 $res[$i] = $satker[$i]->getSatker();
-
+                $isBlokir = $blokir->isBlokir($rows['id_user']) ? 'Blokir' : 'Aktif';
                 $hasil[$i] = array(
                     'id_user' => $rows['id_user'],
                     'kddept' => $rows['kddept'],
@@ -59,7 +62,7 @@ if (isset($_REQUEST['aksi'])) {
                     'username' => $rows['username'],
                     'nmakses' => $rows['nmakses'],
                     'nmsatker' => $res[$i]['nmsatker'],
-                    'status_blokir' => $rows['blokir'],
+                    'status_blokir' => $isBlokir,
                 );
                 $i++;
             }
@@ -122,6 +125,7 @@ if (isset($_REQUEST['aksi'])) {
 
             $blokir = new Blokir();
             $isBlokir = $blokir->isBlokir($id_user);
+
             if ($isBlokir) {
                 $data_blokir = $blokir->getBlokir($id_user);
                 $data['is_blokir'] = 'ya';
@@ -130,13 +134,7 @@ if (isset($_REQUEST['aksi'])) {
                 $data['tgl_akhir'] = $data_blokir['date_ended'];
                 $data['ket_blokir'] = $data_blokir['ket_blokir'];
             } else {
-                if ($user->kdakses == 1) {
-                    $data['is_blokir_c'] = 'yes';
-                    $data['is_blokir'] = 'no';
-                } else {
-                    $data['is_blokir'] = 'no';
-                    $data['is_blokir_c'] = 'no';
-                }
+                $data['is_blokir'] = 'no';
             }
 
             echo json_encode($data);
@@ -155,22 +153,13 @@ if (isset($_REQUEST['aksi'])) {
                 'ket_blokir' => $ket_blokir
             );
             $blokir = new Blokir($arr);
-            $blokirUser = User::blokirUser($id_user, 1);
+            $saveBlokir = $blokir->saveBlokir();
             if ($blokirUser) {
-                $saveBlokir = $blokir->saveBlokir();
-                if ($saveBlokir) {
-                    $data = array(
-                        'msg' => 'ok',
-                        'info' => 'berhasil',
-                    );
-                } else {
-                    $data = array(
-                        'msg' => 'no',
-                        'info' => 'Gagal simpan data blokir',
-                    );
-                }
+                $data = array(
+                    'msg' => 'ok',
+                    'info' => 'berhasil',
+                );
             } else {
-
                 $data = array(
                     'msg' => 'no',
                     'info' => 'Gagal blokir user',
@@ -197,20 +186,11 @@ if (isset($_REQUEST['aksi'])) {
             $blokir = new Blokir($arr);
 
             $saveBlokir = $blokir->ubahBlokir();
-
             if ($saveBlokir) {
-                $blokirUser = User::blokirUser($id_user, 1);
-                if ($blokirUser) {
                     $data = array(
                         'msg' => 'ok',
                         'info' => 'berhasil',
                     );
-                } else {
-                    $data = array(
-                        'msg' => 'no',
-                        'info' => 'Gagal simpan data blokir',
-                    );
-                }
             } else {
                 $data = array(
                     'msg' => 'no',
@@ -221,13 +201,19 @@ if (isset($_REQUEST['aksi'])) {
             echo json_encode($data);
             exit;
         case 'buka' :
-            $id_user = $_POST['id_user'];
-            $blokir_user = User::blokirUser($id_user, 0);
+            $id_blokir = $_POST['id_blokir'];
+            $blokir = new Blokir();
+            $blokir_user = $blokir->bukaBlokir($id_blokir);
 
             if ($blokir_user) {
                 $data = array(
                     'msg' => 'ok',
                     'info' => 'berhasil di buka',
+                );
+            } else {
+                $data = array(
+                    'msg' => 'no',
+                    'info' => 'Gagal membuka blokir',
                 );
             }
             echo json_encode($data);

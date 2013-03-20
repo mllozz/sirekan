@@ -48,6 +48,11 @@
         text-align: left;
         width: auto;
     }
+    
+    input[type=password] {
+        background-color: #fbec88;
+        border-width: 1px;
+    }
 
 </style>
 

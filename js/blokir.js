@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+    $('#tgl_mulai').datepicker({dateFormat: 'yy-mm-dd'});
+    $('#tgl_akhir').datepicker({dateFormat: 'yy-mm-dd'});
     function appendData(data) {
         if (data.length === 0) {
             $('#grid tbody').append('<tr id="row"><td colspan="7">Tidak Ada</td></tr>');
@@ -21,14 +23,13 @@ $(document).ready(function() {
     }
 
     $.getJSON('controller/cont.blokir.php', function(data) {
-
         $.each(data, function(index, data) {
             appendData(data);
         });
     });
 
     $('#next').click(function() {
-
+        return false;
     });
 
 
@@ -79,7 +80,8 @@ $(document).ready(function() {
 
     });
     $('#grid tbody').on('click', 'td', function(data) {
-
+        $('#tgl_mulai').datepicker({dateFormat: 'yy-mm-dd'});
+        $('#tgl_akhir').datepicker({dateFormat: 'yy-mm-dd'});
         var id = $(this).closest('tr').attr('class');
         if (id !== '') {
             $.post('controller/cont.blokir.php', {aksi: 'ubah', id_user: id}, function(data) {
@@ -107,7 +109,6 @@ $(document).ready(function() {
                 $('#buka_blokir').attr("disabled", true);
                 if (data.is_blokir === 'no') {
                     $('#simpan_blokir').show();
-                    $('#buka_blokir').hide();
                     $('#edit_blokir').hide();
                     $('#simpan_baru_blokir').hide();
                     $('#tgl_mulai').removeAttr("disabled");
@@ -119,15 +120,6 @@ $(document).ready(function() {
                     document.getElementById('ket_blokir').value = '';
                     document.getElementById('id_blokir').value = '';
                 }
-                if (data.is_blokir_c === 'yes') {
-                    $('#buka_blokir').hide();
-                    $('#buka_blokir').attr("disabled", true);
-                } else {
-                    $('#buka_blokir').show();
-                    $('#buka_blokir').removeAttr("disabled");
-                }
-                $('#tgl_mulai').datepicker({dateFormat: 'yy-mm-dd'});
-                $('#tgl_akhir').datepicker({dateFormat: 'yy-mm-dd'});
             }, 'json');
         }
     });
@@ -142,10 +134,11 @@ $(document).ready(function() {
         $('#tgl_akhir').datepicker({dateFormat: 'yy-mm-dd'});
         return false;
     });
-    $('#tgl_mulai').datepicker({dateFormat: 'yy-mm-dd'});
-    $('#tgl_akhir').datepicker({dateFormat: 'yy-mm-dd'});
+    
 
     $('#batal_blokir').click(function() {
+        $('#tgl_mulai').datepicker({dateFormat: 'yy-mm-dd'});
+        $('#tgl_akhir').datepicker({dateFormat: 'yy-mm-dd'});
         $('#div_blokir').fadeOut();
         return false;
     });
@@ -193,10 +186,13 @@ $(document).ready(function() {
     });
 
     $('#buka_blokir').click(function() {
-        var varr = $('#id_user').val();
-        $.post('controller/cont.blokir.php', {aksi: 'buka', id_user: varr}, function(data) {
+        var varr = $('#id_blokir').val();
+        $.post('controller/cont.blokir.php', {aksi: 'buka', id_blokir: varr}, function(data) {
             if (data.msg === 'ok') {
                 $('#error').html('Blokir dibuka').fadeIn(500).delay(2500).fadeOut(500);
+                $('#buka_blokir').hide();
+                $('#refresh').trigger('click');
+                $('#div_blokir').fadeOut();
             } else {
                 $('#error').html('Gagal membuka blokir').fadeIn(500).delay(2500).fadeOut(500);
             }

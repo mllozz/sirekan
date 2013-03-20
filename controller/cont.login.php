@@ -27,22 +27,28 @@ if (isset($_POST['user']) && isset($_POST['pass'])) {
         $message[] = $cek['message'];
     } else {
         $id_user=$cek['id_user'];
-        $data_user=User::getUser($id_user);
-        $arr=  get_object_vars($data_user);
+        $blokir=new Blokir();
+        $isBlokir=$blokir->isBlokir($id_user);
+        if($isBlokir) {
+            $message[] = "User diblokir, silahkan hubungi KPPN";
+        } else {
+            $data_user=User::getUser($id_user);
+            $arr=  get_object_vars($data_user);
 
-        $akses=User::getAkses($arr[4]);
+            $akses=User::getAkses($arr[4]);
 
-        //inisiasi object satker
-        //$satker = new Satker($arr);
-        //$data_satker = $satker->getSatker();
-        session_start();
-        //buat session
-        $_SESSION['isLogged']=true;  
-        $_SESSION['username']=$arr[0];
-        //$_SESSION['satker']=  $data_satker;
-        $_SESSION['akses']=$akses;
-        
-        echo 'correct';
+            //inisiasi object satker
+            //$satker = new Satker($arr);
+            //$data_satker = $satker->getSatker();
+            session_start();
+            //buat session
+            $_SESSION['isLogged']=true;  
+            $_SESSION['username']=$arr[0];
+            //$_SESSION['satker']=  $data_satker;
+            $_SESSION['akses']=$akses;
+
+            echo 'correct';
+        }
     }
 
     $error = count($message);

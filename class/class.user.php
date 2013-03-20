@@ -19,7 +19,6 @@ abstract class User {
     public $kdakses;
     protected $date_created;
     protected $data_updated;
-    protected $is_blokir = 0;
 
     function __construct($data = array()) {
 
@@ -73,14 +72,6 @@ abstract class User {
         if ($result->rowCount() == 1) {
             $arr = $result->fetch();
             $user_checked = self::getInstance($arr['kdakses'], $arr);
-            //print_r($user_checked);
-            if (((int) $user_checked->is_blokir) == 1) {
-                $data = array(
-                    'is_true' => false,
-                    'message' => 'User diblokir',
-                );
-                return $data;
-            }
             $data = array(
                 'is_true' => true,
                 'id_user' => $user_checked->id_user,
@@ -140,7 +131,7 @@ abstract class User {
         $db = Database::getInstance();
         $conn = $db->getConnection(1);
 
-        $query = "SELECT id_user,kddept,kdunit,kdsatker,username,users.kdakses kdakses,nmakses,if(is_blokir=0,'AKTIF','TERBLOKIR') blokir FROM users ";
+        $query = "SELECT id_user,kddept,kdunit,kdsatker,username,users.kdakses kdakses,nmakses FROM users ";
         $query.= " LEFT JOIN akses ON users.kdakses=akses.kdakses";
         $result = $conn->prepare($query);
         $result->execute();
@@ -156,7 +147,7 @@ abstract class User {
         $db = Database::getInstance();
         $conn = $db->getConnection(1);
 
-        $query = "SELECT id_user,kddept,kdunit,kdsatker,username,users.kdakses,is_blokir kdakses,nmakses,if(is_blokir=0,'AKTIF','TERBLOKIR') blokir FROM users ";
+        $query = "SELECT id_user,kddept,kdunit,kdsatker,username,users.kdakses kdakses,nmakses FROM users ";
         $query.= " LEFT JOIN akses ON users.kdakses=akses.kdakses ";
         $query .= " WHERE username LIKE  '%".$kata."%' OR kdsatker LIKE  '%".$kata."%' ";
         //$query .= " OR nmsatker LIKE  '%".$kata."%'";
@@ -199,22 +190,22 @@ abstract class User {
      * @param type $id_user
      * @return boolean
      */
-    final public static function blokirUser($id_user,$int) {
-        $db=Database::getInstance();
-        $conn=$db->getConnection(1);
-        
-        $date_updated=date('Y-m-d H:i:s');
-        
-        $query="UPDATE users SET is_blokir=".(int) $int.", date_updated='".$date_updated."' ";
-        $query .=" WHERE id_user='".$id_user."'";
-        $result=$conn->prepare($query);
-        $result->execute();
-        
-        if($result->rowCount()==1) {
-            return true;
-        }
-        return false;
-    }
+//    final public static function blokirUser($id_user,$int) {
+//        $db=Database::getInstance();
+//        $conn=$db->getConnection(1);
+//        
+//        $date_updated=date('Y-m-d H:i:s');
+//        
+//        $query="UPDATE users SET is_blokir=".(int) $int.", date_updated='".$date_updated."' ";
+//        $query .=" WHERE id_user='".$id_user."'";
+//        $result=$conn->prepare($query);
+//        $result->execute();
+//        
+//        if($result->rowCount()==1) {
+//            return true;
+//        }
+//        return false;
+//    }
 
     /**
      * save user baru

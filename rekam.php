@@ -48,6 +48,11 @@
         text-align: left;
         width: 280px;
     }
+    
+    input[type=text], option {
+        background-color: #fbec88;
+        border-width: 1px;
+    }
 
 </style>
 <div id="div_rekam">
