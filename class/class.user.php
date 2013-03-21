@@ -123,16 +123,39 @@ abstract class User {
     }
     
     /**
-     * Mengambil object user sesuai id
-     * @param int $id_user
-     * @return object class
+     * Mengambil semua object user
+     * @return array
      */
     final public static function getAllUser() {
         $db = Database::getInstance();
         $conn = $db->getConnection(1);
 
         $query = "SELECT id_user,kddept,kdunit,kdsatker,username,users.kdakses kdakses,nmakses FROM users ";
-        $query.= " LEFT JOIN akses ON users.kdakses=akses.kdakses";
+        $query.= " LEFT JOIN akses ON users.kdakses=akses.kdakses ORDER BY kddept,kdunit,kdsatker";
+        $result = $conn->prepare($query);
+        $result->execute();
+
+        if ($result->rowCount() == 0) {
+            return false;
+        }
+        $user = $result->fetchAll();
+        return $user;
+    }
+    
+    /**
+     * Mengambil semua object user
+     * @param int $page
+     * @return array
+     */
+    final public static function getAllUserWithPage($page) {
+        $db = Database::getInstance();
+        $conn = $db->getConnection(1);
+        $top=5;
+        $next=$page*$top;
+        
+
+        $query = "SELECT id_user,kddept,kdunit,kdsatker,username,users.kdakses kdakses,nmakses FROM users ";
+        $query.= " LEFT JOIN akses ON users.kdakses=akses.kdakses ORDER BY kddept,kdunit,kdsatker ASC LIMIT $next,$top";
         $result = $conn->prepare($query);
         $result->execute();
 
@@ -149,7 +172,7 @@ abstract class User {
 
         $query = "SELECT id_user,kddept,kdunit,kdsatker,username,users.kdakses kdakses,nmakses FROM users ";
         $query.= " LEFT JOIN akses ON users.kdakses=akses.kdakses ";
-        $query .= " WHERE username LIKE  '%".$kata."%' OR kdsatker LIKE  '%".$kata."%' ";
+        $query .= " WHERE username LIKE  '%".$kata."%' OR kdsatker LIKE  '%".$kata."%' ORDER BY kddept,kdunit,kdsatker";
         //$query .= " OR nmsatker LIKE  '%".$kata."%'";
         
         $result = $conn->prepare($query);

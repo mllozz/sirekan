@@ -5,8 +5,20 @@ function __autoload($class_name) {
 }
 
 if (!isset($_REQUEST['aksi'])) {
-    $users = User::getAllUser();
-    $data[] = array();
+    if(!isset($_GET['hal'])) {
+        $page=0;
+    } else {
+        $page=$_GET['hal']-1;
+    }
+    
+    $users = User::getAllUserWithPage($page);
+    
+    $alluser=User::getAllUser();
+    $jml_user=count($alluser);
+    $data['jml']=$jml_user/5;
+    $data['page']=$page+1;
+    $data['user'] = array();
+    
     $i = 0;
     $blokir = new Blokir();
     foreach ($users as $rows) {
@@ -18,7 +30,7 @@ if (!isset($_REQUEST['aksi'])) {
         $satker[$i] = new Satker($arr[$i]);
         $res[$i] = $satker[$i]->getSatker();
         $isBlokir = $blokir->isBlokir($rows['id_user']) ? 'Blokir' : 'Aktif';
-        $data[$i] = array(
+        $data['user'][$i] = array(
             'id_user' => $rows['id_user'],
             'kddept' => $rows['kddept'],
             'kdunit' => $rows['kdunit'],

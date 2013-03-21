@@ -87,7 +87,7 @@
         <tbody>
         </tbody>
     </table>
-    <a id="prev" href="">Prev</a>||<a id="next" href="">Next</a>
+    <a id="prev" href="">Prev</a>|<span id="hal"></span>|<a id="next" href="">Next</a>
 </div>
 <div id="div_blokir">
     <table id="tbl_user" >

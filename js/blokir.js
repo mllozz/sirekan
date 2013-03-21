@@ -12,35 +12,65 @@ $(document).ready(function() {
         }
     }
 
-    function appendHtml(data) {
-        if (data.length === 0) {
-            $('#grid tbody').html('<tr id="row"><td colspan="7">Tidak Ada</td></tr>');
-        } else {
-            $('#grid tbody').html('<tr id="row" class="' + data.id_user + '"><td>' + data.kddept + "</td><td>" + data.kdunit
-                    + "</td><td>" + data.kdsatker + "</td><td>" + data.nmsatker + "</td><td>" + data.nmakses +
-                    "</td><td>" + data.username + "</td><td>" + data.status_blokir + "</td></tr>");
-        }
-    }
-
+//    function appendHtml(data) {
+//        if (data.length === 0) {
+//            $('#grid tbody').html('<tr id="row"><td colspan="7">Tidak Ada</td></tr>');
+//        } else {
+//            $('#grid tbody').html('<tr id="row" class="' + data.id_user + '"><td>' + data.kddept + "</td><td>" + data.kdunit
+//                    + "</td><td>" + data.kdsatker + "</td><td>" + data.nmsatker + "</td><td>" + data.nmakses +
+//                    "</td><td>" + data.username + "</td><td>" + data.status_blokir + "</td></tr>");
+//        }
+//    }
+    var page = 1;
+    var max_page = 0;
     $.getJSON('controller/cont.blokir.php', function(data) {
-        $.each(data, function(index, data) {
-            appendData(data);
+        max_page = Math.ceil(Number(data.jml));
+        page = data.page;
+        $('span#hal').html('<a id="link">Halaman ' + page + ' dari '+max_page+'</a>');
+        $.each(data.user, function(index, user) {
+            appendData(user);
         });
     });
 
     $('#next').click(function() {
+        page++;
+        if (page <= max_page && page >= 1) {
+            $.getJSON('controller/cont.blokir.php?hal='+page, function(data) {
+                $('#grid tbody').empty();
+                $('span#hal').html('<a id="link">Halaman ' + page + ' dari '+max_page+'</a>');
+                $.each(data.user, function(index, user) {
+                    appendData(user);
+                });
+            });
+        } else {
+            alert('Hal Terakhir');
+        }
         return false;
     });
-
+    $('#prev').click(function() {
+        page--;
+        if (page <= max_page && page >= 1) {
+            $.getJSON('controller/cont.blokir.php?hal='+page, function(data) {
+                $('#grid tbody').empty();
+                $('span#hal').html('<a id="link">Halaman ' + page + ' dari '+max_page+'</a>');
+                $.each(data.user, function(index, user) {
+                    appendData(user);
+                });
+            });
+        } else {
+            alert('Hal Pertama');
+        }
+        return false;
+    });
 
 
     $('#refresh').click(function() {
         $('#grid tbody').empty();
         $('input#cari').val('');
         $.getJSON('controller/cont.blokir.php', function(data) {
-
-            $.each(data, function(index, data) {
-                appendData(data);
+            page = data.page;
+            $.each(data.user, function(index, user) {
+                appendData(user);
             });
         });
     });
@@ -52,15 +82,16 @@ $(document).ready(function() {
             $('#grid tbody').empty();
             $('input#cari').val('');
             $.getJSON('controller/cont.blokir.php', function(data) {
-
-                $.each(data, function(index, data) {
-                    appendData(data);
+                page = data.page;
+                $.each(data.user, function(index, user) {
+                    appendData(user);
                 });
             });
         } else if (!isNaN(str)) {
             $.post('controller/cont.blokir.php', {aksi: 'cari', kata: $('input#cari').val()}, function(data) {
+                $('#grid tbody').empty();
                 $.each(data, function(index, data) {
-                    appendHtml(data);
+                    appendData(data);
                 });
             }, 'json');
         } else {
@@ -68,11 +99,13 @@ $(document).ready(function() {
                 if (Object.keys(data).length > 4) {
                     //alert(data.nmsatker);
                     if (Object(data).length > 1) {
+                        $('#grid tbody').empty();
                         $.each(data, function(index, data) {
-                            appendHtml(data);
+                            appendData(data);
                         });
                     } else {
-                        appendHtml(data);
+                        $('#grid tbody').empty();
+                        appendData(data);
                     }
                 }
             }, 'json');
@@ -134,7 +167,7 @@ $(document).ready(function() {
         $('#tgl_akhir').datepicker({dateFormat: 'yy-mm-dd'});
         return false;
     });
-    
+
 
     $('#batal_blokir').click(function() {
         $('#tgl_mulai').datepicker({dateFormat: 'yy-mm-dd'});
@@ -152,8 +185,8 @@ $(document).ready(function() {
             return false;
         } else {
             $.post('controller/cont.blokir.php', {id_user: $('#id_user').val(),
-                tgl_mulai: $('#tgl_mulai').val(),tgl_akhir: $('#tgl_akhir').val(),
-                ket_blokir: $('#ket_blokir').val(),aksi: 'simpan'
+                tgl_mulai: $('#tgl_mulai').val(), tgl_akhir: $('#tgl_akhir').val(),
+                ket_blokir: $('#ket_blokir').val(), aksi: 'simpan'
             }, function(data) {
                 if (data.msg === 'ok') {
                     $('#error').html('Berhasil di blokir').fadeIn(500).delay(2500).fadeOut(500);
@@ -175,10 +208,10 @@ $(document).ready(function() {
             $('#error').html('Tgl mulai harus lebih dahulu').fadeIn(500).delay(2500).fadeOut(500);
             return false;
         } else {
-            
-            $.post('controller/cont.blokir.php',{id_blokir: $('#id_blokir').val(),id_user: $('#id_user').val(),
-                tgl_mulai: $('#tgl_mulai').val(),tgl_akhir: $('#tgl_akhir').val(),
-                ket_blokir: $('#ket_blokir').val(),aksi: 'simpan_ubah'
+
+            $.post('controller/cont.blokir.php', {id_blokir: $('#id_blokir').val(), id_user: $('#id_user').val(),
+                tgl_mulai: $('#tgl_mulai').val(), tgl_akhir: $('#tgl_akhir').val(),
+                ket_blokir: $('#ket_blokir').val(), aksi: 'simpan_ubah'
             }, function(data) {
                 if (data.msg === 'ok') {
                     $('#error').html('Berhasil di Simpan').fadeIn(500).delay(2500).fadeOut(500);
