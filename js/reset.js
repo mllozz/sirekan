@@ -1,6 +1,7 @@
 $(document).ready(function() {
+    $('#tgl_surat').datepicker({dateFormat: 'yy-mm-dd'});
     //input hanya angka
-    $("input[type=text]").keydown(function(e) {
+    $(".int").keydown(function(e) {
         var key = e.charCode || e.keyCode || 0;
         return (
                 key === 8 ||
@@ -77,8 +78,9 @@ $(document).ready(function() {
     
     //submit
     $('#btn_reset').click(function(){
-        if($('input[type="text"]').val()==='') {
-            $('input[type="text"]').next('span').fadeIn(500).html('<img src="img/wrong.png" alt="loader" /> ').delay(2500).fadeOut(500);
+        if($('#kddept').val()==='' || $('#kdunit').val()==='' || $('#kdsatker').val()==='' || $('#username').val()==='' || 
+            $('#no_surat').val()==='' || $('#tgl_surat').val()==='') {
+            $('td span').fadeIn(500).html('<img src="img/wrong.png" alt="loader" /> ').delay(2500).fadeOut(500);
             $('#error').html('Semua harus diisi').show();
         } else {
             $.post($('#frm_reset').attr('action'),$('#frm_reset').serialize(),function(data){

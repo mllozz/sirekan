@@ -1,4 +1,3 @@
-<link rel="stylesheet" href="css/themes/blitzer/jquery-ui.css" />
 <style type="text/css">
     #grid,#tbl_user {
         margin: 1px 1px;
@@ -140,6 +139,4 @@
         </form>
     </table>
 </div>
-<script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/blokir.js"></script>
-<script type="text/javascript" src="js/jquery-ui.js"></script>

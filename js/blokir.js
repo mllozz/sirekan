@@ -106,7 +106,7 @@ $(document).ready(function() {
                 $('#tgl_akhir').attr('disabled', true);
                 $('#ket_blokir').attr('disabled', true);
                 $('#edit_blokir').removeAttr("disabled");
-                $('#buka_blokir').attr("disabled", true);
+                $('#buka_blokir').removeAttr("disabled");
                 if (data.is_blokir === 'no') {
                     $('#simpan_blokir').show();
                     $('#edit_blokir').hide();

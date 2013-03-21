@@ -78,5 +78,4 @@
 </form>
 </table>
 <span id='error'></span><br />
-<script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/ubah.js"></script>

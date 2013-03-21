@@ -229,6 +229,7 @@ abstract class User {
         //print_r($id_user.''.$password);
         $user = self::getUser($id_user);
         $data=array(
+            'id_user' => $id_user,
             'username' => $user->username,
             'password' => $password,
             'kddept' => $user->kddept,

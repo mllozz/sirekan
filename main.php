@@ -7,7 +7,9 @@ include_once('controller/cont.main.php');
         <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
         <link rel="stylesheet" type="text/css" href="css/main.css" />
         <link rel="stylesheet" type="text/css" href="css/menu.css" />
+        <link rel="stylesheet" href="css/themes/blitzer/jquery-ui.css" />
         <script type="text/javascript" src="js/jquery.js"></script>
+        <script type="text/javascript" src="js/jquery-ui.js"></script>
         <script type="text/javascript" src="js/menu.js"></script>
     </head>
     <body>

@@ -94,16 +94,19 @@ if (isset($_GET['cek'])) {
     echo json_encode($data);
 }
 
-if (isset($_POST['kddept']) && isset($_POST['kdunit']) && isset($_POST['kdsatker']) && isset($_POST['username'])) {
+if (isset($_POST['kddept']) && isset($_POST['kdunit']) && isset($_POST['kdsatker']) 
+        && isset($_POST['username'])  && isset($_POST['no_surat']) && isset($_POST['tgl_surat'])) {
 
     $kddept = $_POST['kddept'];
     $kdunit = $_POST['kdunit'];
     $kdsatker = $_POST['kdsatker'];
     $username = $_POST['username'];
+    $no_surat = $_POST['no_surat'];
+    $tgl_surat = $_POST['tgl_surat'];
     
     $user_cek=$kddept.$kdunit.$kdsatker;
 
-    if (empty($kddept) || empty($kdunit) || empty($kdsatker) || empty($username)) {
+    if (empty($kddept) || empty($kdunit) || empty($kdsatker) || empty($username) || empty($no_surat)|| empty($tgl_surat)) {
         $data = array(
             'msg' => 'no',
             'info' => 'Semua Harus Diisi',
@@ -138,8 +141,28 @@ if (isset($_POST['kddept']) && isset($_POST['kdunit']) && isset($_POST['kdsatker
             if(!$isExist) {
                 $reset=User::resetPass($user);
                 if($reset) {
-                    $data=$reset;
-                    $data['msg']='ok';
+                    $arr2=array(
+                        'username' => $kddept.''.$kdunit.''.$kdsatker,
+                        'password' => '',
+                    );
+                    $users=User::cekUser($arr2);
+                    $arr2=array(
+                        'id_user' => $users['id_user'],
+                        'no_surat' => $no_surat,
+                        'tgl_surat' => $tgl_surat,
+                        'id_jns_trs' => 2,
+                    );
+
+                    $log = new Loguser($arr2);
+                    $cekLog = $log->saveLog();
+                    if($cekLog) {
+                        $data=$reset;
+                        $data['msg']='ok';
+                    } else {
+                        $data=$reset;
+                        $data['msg']='ok';
+                        $data['info'] = 'Berhasil reset tapi log tidak tersimpan';
+                    }
                 } else {
                     $data = array(
                         'msg' => 'no',

@@ -101,6 +101,8 @@ if (isset($_POST['kddept']) && isset($_POST['kdunit']) && isset($_POST['kdsatker
     $kdunit=$_POST['kdunit'];
     $kdsatker=$_POST['kdsatker'];
     $kdakses=$_POST['kdakses'];
+    $tgl_surat=$_POST['tgl_surat'];
+    $no_surat=$_POST['no_surat'];
     $data='';
     $arr=array(
         'kddept' => $kddept,
@@ -120,8 +122,23 @@ if (isset($_POST['kddept']) && isset($_POST['kdunit']) && isset($_POST['kdsatker
     $cekUser=User::checkAvailability($user);
     if($cekUser) {
         $data=User::saveUser($user);
-        $data['msg']='ok';
-        $data['info']='berhasil';
+        
+        $arr2=array(
+            'id_user' => $data['id_user'],
+            'no_surat' => $no_surat,
+            'tgl_surat' => $tgl_surat,
+            'id_jns_trs' =>1,
+        );
+        
+        $log=new Loguser($arr2);
+        $cekLog=$log->saveLog();
+        if($cekLog) {
+            $data['msg']='ok';
+            $data['info']='berhasil';
+        } else {
+            $data['msg']='ok';
+            $data['info']='berhasil tetapi log tidak tersimpan';
+        }
     } else {
         $data=array(
             'msg' => 'no',

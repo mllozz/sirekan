@@ -1,6 +1,8 @@
 $(document).ready(function() {
+    
+    $('#tgl_surat').datepicker({dateFormat: 'yy-mm-dd'});
     //input hanya angka
-    $("input[type=text]").keydown(function(e) {
+    $(".int").keydown(function(e) {
         var key = e.charCode || e.keyCode || 0;
         return (
                 key === 8 ||
@@ -62,7 +64,7 @@ $(document).ready(function() {
     //submit form
     $('#frm_rekam').submit(function() {
         $('#loader').html('<img src="img/loader.gif" alt="loader" />').show();
-        if ($('#kddept').val() === '' || $('#kdunit').val() === '' || $('#kdsatker').val() === '') {
+        if ($('#kddept').val() === '' || $('#kdunit').val() === '' || $('#kdsatker').val() === '' || $('#no_surat').val() === '' || $('#tgl_surat').val() === '') {
             $('#error').html('Tidak boleh kosong').fadeIn(1000).delay(3500).fadeOut(500);
             $('#loader').html('<img src="img/loader.gif" alt="loader" />').hide();
             return false;

@@ -1,3 +1,4 @@
+<script type="text/javascript" src="js/rekam.js"></script>
 <style type="text/css">
     #grid {
         margin: 1px 1px;
@@ -53,6 +54,10 @@
         background-color: #fbec88;
         border-width: 1px;
     }
+    
+    div.ui-datepicker, .ui-datepicker input{
+        font-size:62.5%;
+    }
 
 </style>
 <div id="div_rekam">
@@ -64,19 +69,25 @@
     <tbody>
 
     <tr>
-        <th><label>Kode Departemen</label></th><td><input type="text" name="kddept" maxlength="3" id="kddept"/></td><td><span id="kddept"></span></td>
+        <th><label>Kode Departemen</label></th><td><input type="text" class="int" name="kddept" maxlength="3" id="kddept"/></td><td><span id="kddept"></span></td>
     </tr>
     <tr>
-     <th><label>Kode Eselon 1</label></th><td><input type="text" name="kdunit" maxlength="2" id="kdunit"/></td><td><span id="kdunit"></span></td>
+     <th><label>Kode Eselon 1</label></th><td><input type="text" name="kdunit"  class="int" maxlength="2" id="kdunit"/></td><td><span id="kdunit"></span></td>
     </tr>
     <tr>
-     <th><label>Kode Satker</label></th><td><input type="text" name="kdsatker" maxlength="6" id="kdsatker"/></td><td><span id="kdsatker"></span></td>
+     <th><label>Kode Satker</label></th><td><input type="text" name="kdsatker"  class="int" maxlength="6" id="kdsatker"/></td><td><span id="kdsatker"></span></td>
     </tr>
     <tr>
      <th><label>Hak Akses</label></th><td colspan="2"><select id="kdakses" name="kdakses">
         <option value="1">Admin</option>
         <option value="2">Satker</option>
     </select></td>
+    </tr>
+    <tr>
+     <th><label>No Surat</label></th><td><input type="text" name="no_surat" maxlength="50" id="no_surat"/></td><td><span id="no_surat"></span></td>
+    </tr>
+    <tr>
+     <th><label>Tgl Surat</label></th><td><input type="text" name="tgl_surat" id="tgl_surat"/></td><td><span id="tgl_surat"></span></td>
     </tr>
     <tr>
     <td colspan="3"><input type="submit" name="btn_rekam" value="Buat User" /></td>
@@ -90,5 +101,6 @@
 <div id="loader"></div>
 <div style="display:none; border:1px solid red;" id="user_baru"> 
 </div>
-<script type="text/javascript" src="js/jquery.js"></script>
-<script type="text/javascript" src="js/rekam.js"></script>
+<script type="text/javascript">
+    $('#tgl_surat').datepicker({dateFormat: 'yy-mm-dd'});
+</script>
