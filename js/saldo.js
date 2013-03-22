@@ -1,15 +1,7 @@
-$(document).ready(function(){
-    $('#frm_saldo').on('submit',function(e){
-        e.preventDefault();
-        $('#rekon_btn').attr('disabled',true);
-        $.ajax({
-        target: '#output',
-        success:  afterSuccess //call function after success
-        });
-        return false;
+$(document).ready(function() {
+    $.getJSON('controller/cont.saldo.php',function(data){
+        if($('input:radio[name=dekon]').is(':checked') === false) {
+            $('input:radio[name=dekon]').filter('[value='+data.kddekon+']').attr('checked', true);
+        }
     });
 });
-
-function afterSuccess() {
-    $('#rekon_btn').removeAttr('disabled');
-}

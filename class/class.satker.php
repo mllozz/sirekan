@@ -54,6 +54,25 @@ class Satker {
         $data=get_object_vars($data);
         return $data;
     }
+    
+    public function getKewenangan(){
+        $db=  Database::getInstance();
+        $conn=$db->getConnection(2);
+
+        $query="select DISTINCT kdkppn,kdbaes1,kdsatker,kddekon from t_glsaud ";
+        $query .=" WHERE kdsatker='".$this->kdsatker."' AND ";
+        $query .=" kdbaes1='".$this->kddept.''.$this->kdunit."'";
+        
+        $result=$conn->prepare($query);
+        $result->execute();
+
+        if($result->rowCount()!=1) {
+            return false;
+        }
+        $data=$result->fetch();
+
+        return $data;
+    }
         
 
 }

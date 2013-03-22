@@ -4,7 +4,7 @@
         border: 1px solid black;
         font-family: Calibri, sans-serif;
         font-size: 12px;
-        width: 90%;
+        width: 80%;
         text-align: left;
     }
 
@@ -49,30 +49,30 @@
         width: auto;
     }
 
+  
 </style>
 <table id="grid" >
     <thead>
     <th colspan="7">Rekonsiliasi Saldo Awal</th>
-    </thead>
-    <tbody>
-    <form id="frm_saldo" method="post" action="" enctype="multipart/form-data">
+</thead>
+<tbody>
+<form id="frm_saldo" method="post" action="" enctype="multipart/form-data">
     <tr>
         <th>File ADK</th>
         <td colspan="6"><input type="file" name="file_adk" id="file_adk" multiple="none" /></td>
     </tr>
     <tr>
-    <th>Jenis Satker</th>
-    <td><input type="radio" name="jnssat" id="jnssat" value="dk"/>Dekonsentrasi</td>
-    <td><input type="radio" name="jnssat" id="jnssat" value="4"/>Kantor Daerah</td>
-    <td><input type="radio" name="jnssat" id="jnssat" value="1"/>Kantor Pusat</td>
-    <td><input type="radio" name="jnssat" id="jnssat" value="tp"/>Tugas Pembantuan</td>
-    <td><input type="radio" name="jnssat" id="jnssat" value="ub"/>Urusan Bersama</td>
-    <td><input type="radio" name="jnssat" id="jnssat" value="ds"/>Desentralisasi</td>
+        <th>Jenis Satker</th>
+        <td><input type="radio" name="dekon" id="dekon" value="KP"/>Kantor Pusat</td>
+        <td><input type="radio" name="dekon" id="dekon" value="KD"/>Kantor Daerah</td>
+        <td><input type="radio" name="dekon" id="dekon" value="DK"/>Dekonsentrasi</td>
+        <td><input type="radio" name="dekon" id="dekon" value="TP"/>Tugas Pembantuan</td>
+        <td><input type="radio" name="dekon" id="dekon" value="UB"/>Urusan Bersama</td>
     </tr>
     <tr>
-    <td colspan="7"><input type="submit" id="rekon_btn" value="Rekon" /></td>
-</tr>
-</tbody>
+        <td colspan="7"><input type="submit" id="rekon_btn" value="Rekon" /></td>
+    </tr>
+    </tbody>
 </form>
 </table>
 <div id="output"></div>
