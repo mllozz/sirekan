@@ -71,7 +71,7 @@
     }
 </style>
 <div id="div_grid">
-    <input type="text" id="cari" placeHolder="Cari Username"/><input type="submit" value="Refresh" id="refresh">
+    <input type="text" id="cari" placeHolder="Cari Satker"/><input type="submit" value="Refresh" id="refresh">
     <table id="grid">
         <thead>
             <tr>

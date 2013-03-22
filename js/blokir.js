@@ -35,6 +35,7 @@ $(document).ready(function() {
     $('#next').click(function() {
         page++;
         if (page <= max_page && page >= 1) {
+            
             $.getJSON('controller/cont.blokir.php?hal='+page, function(data) {
                 $('#grid tbody').empty();
                 $('span#hal').html('<a id="link">Halaman ' + page + ' dari '+max_page+'</a>');
@@ -43,6 +44,7 @@ $(document).ready(function() {
                 });
             });
         } else {
+            page--;
             alert('Hal Terakhir');
         }
         return false;
@@ -50,6 +52,7 @@ $(document).ready(function() {
     $('#prev').click(function() {
         page--;
         if (page <= max_page && page >= 1) {
+            
             $.getJSON('controller/cont.blokir.php?hal='+page, function(data) {
                 $('#grid tbody').empty();
                 $('span#hal').html('<a id="link">Halaman ' + page + ' dari '+max_page+'</a>');
@@ -58,6 +61,7 @@ $(document).ready(function() {
                 });
             });
         } else {
+            page++;
             alert('Hal Pertama');
         }
         return false;
@@ -96,7 +100,7 @@ $(document).ready(function() {
             }, 'json');
         } else {
             $.post('controller/cont.blokir.php', {aksi: 'cari', filter: 'nmsatker', kata: $('input#cari').val()}, function(data) {
-                if (Object.keys(data).length > 4) {
+                if (Object.keys(data).length > 7) {
                     //alert(data.nmsatker);
                     if (Object(data).length > 1) {
                         $('#grid tbody').empty();

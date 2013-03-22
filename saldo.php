@@ -4,7 +4,7 @@
         border: 1px solid black;
         font-family: Calibri, sans-serif;
         font-size: 12px;
-        width: 40%;
+        width: 90%;
         text-align: left;
     }
 
@@ -62,12 +62,12 @@
     </tr>
     <tr>
     <th>Jenis Satker</th>
-    <td><input type="radio" name="jnssat" id="jnssat" value="dk"/>DK</td>
-    <td><input type="radio" name="jnssat" id="jnssat" value="kd"/>KD</td>
-    <td><input type="radio" name="jnssat" id="jnssat" value="kp"/>KP</td>
-    <td><input type="radio" name="jnssat" id="jnssat" value="tp"/>TP</td>
-    <td><input type="radio" name="jnssat" id="jnssat" value="ub"/>UB</td>
-    <td><input type="radio" name="jnssat" id="jnssat" value="ds"/>DS</td>
+    <td><input type="radio" name="jnssat" id="jnssat" value="dk"/>Dekonsentrasi</td>
+    <td><input type="radio" name="jnssat" id="jnssat" value="4"/>Kantor Daerah</td>
+    <td><input type="radio" name="jnssat" id="jnssat" value="1"/>Kantor Pusat</td>
+    <td><input type="radio" name="jnssat" id="jnssat" value="tp"/>Tugas Pembantuan</td>
+    <td><input type="radio" name="jnssat" id="jnssat" value="ub"/>Urusan Bersama</td>
+    <td><input type="radio" name="jnssat" id="jnssat" value="ds"/>Desentralisasi</td>
     </tr>
     <tr>
     <td colspan="7"><input type="submit" id="rekon_btn" value="Rekon" /></td>
@@ -76,5 +76,4 @@
 </form>
 </table>
 <div id="output"></div>
-<script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/saldo.js"></script>

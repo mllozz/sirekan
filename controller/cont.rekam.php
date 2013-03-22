@@ -83,7 +83,7 @@ if (isset($_GET['cek'])) {
                 $data = array(
                     'msg' => 'yes',
                     'nama' => $data_satker['nmsatker'],
-                    //'nama' => $data_satker['kddept'] . '.' . $data_satker['kdunit'] . '.' . $data_satker['kdsatker'] . '.' . $data_satker['nmsatker'],
+                        //'nama' => $data_satker['kddept'] . '.' . $data_satker['kdunit'] . '.' . $data_satker['kdsatker'] . '.' . $data_satker['nmsatker'],
                 );
             } else {
                 $data = array(
@@ -97,54 +97,77 @@ if (isset($_GET['cek'])) {
 }
 //submit form rekam user
 if (isset($_POST['kddept']) && isset($_POST['kdunit']) && isset($_POST['kdsatker']) && isset($_POST['kdakses'])) {
-    $kddept=$_POST['kddept'];
-    $kdunit=$_POST['kdunit'];
-    $kdsatker=$_POST['kdsatker'];
-    $kdakses=$_POST['kdakses'];
-    $tgl_surat=$_POST['tgl_surat'];
-    $no_surat=$_POST['no_surat'];
-    $data='';
-    $arr=array(
+    $kddept = $_POST['kddept'];
+    $kdunit = $_POST['kdunit'];
+    $kdsatker = $_POST['kdsatker'];
+    $kdakses = $_POST['kdakses'];
+    $tgl_surat = $_POST['tgl_surat'];
+    $no_surat = $_POST['no_surat'];
+    $data = '';
+    $kppn = new Kppn();
+
+    $kdkppn = $kppn->getKppn();
+
+    $arrSatker = array(
         'kddept' => $kddept,
         'kdunit' => $kdunit,
         'kdsatker' => $kdsatker,
-        'kdakses' => $kdakses,
-        'username' => $kddept.''.$kdunit.''.$kdsatker,
     );
-    $user='';
-    if($kdakses=='1') {
-        $user=new UserAdmin($arr);
-    } 
-    if($kdakses=='2') {
-        $user=new UserSatker($arr);
-    }
-    
-    $cekUser=User::checkAvailability($user);
-    if($cekUser) {
-        $data=User::saveUser($user);
-        
-        $arr2=array(
-            'id_user' => $data['id_user'],
-            'no_surat' => $no_surat,
-            'tgl_surat' => $tgl_surat,
-            'id_jns_trs' =>1,
+
+    $satker = new Satker($arrSatker);
+
+    $kdkppnSatker = $satker->getSatker();
+
+    if ($kdkppnSatker['kdkppn'] == $kdkppn->kdkppn) {
+        $arr = array(
+            'kddept' => $kddept,
+            'kdunit' => $kdunit,
+            'kdsatker' => $kdsatker,
+            'kdakses' => $kdakses,
+            'username' => $kddept . '' . $kdunit . '' . $kdsatker,
         );
-        
-        $log=new Loguser($arr2);
-        $cekLog=$log->saveLog();
-        if($cekLog) {
-            $data['msg']='ok';
-            $data['info']='berhasil';
+        $user = '';
+        if ($kdakses == '1') {
+            $user = new UserAdmin($arr);
+        }
+        if ($kdakses == '2') {
+            $user = new UserSatker($arr);
+        }
+
+        $cekUser = User::checkAvailability($user);
+        if ($cekUser) {
+            $data = User::saveUser($user);
+
+            $arr2 = array(
+                'id_user' => $data['id_user'],
+                'no_surat' => $no_surat,
+                'tgl_surat' => $tgl_surat,
+                'id_jns_trs' => 1,
+            );
+
+            $log = new Loguser($arr2);
+            $cekLog = $log->saveLog();
+            if ($cekLog) {
+                $data['msg'] = 'ok';
+                $data['info'] = 'berhasil';
+            } else {
+                $data['msg'] = 'ok';
+                $data['info'] = 'berhasil tetapi log tidak tersimpan';
+            }
         } else {
-            $data['msg']='ok';
-            $data['info']='berhasil tetapi log tidak tersimpan';
+            $data = array(
+                'msg' => 'no',
+                'info' => 'User untuk satker ' . $user->username . ' sudah ada'
+            );
         }
     } else {
-        $data=array(
+        $data = array(
             'msg' => 'no',
-            'info' => 'User untuk satker '.$user->username.' sudah ada'
+            'info' => 'Satker bukan mitra kerja KPPN ' . $kdkppn->nmkppn,
         );
-    }   
+    }
+
+
     echo json_encode($data);
 }
 ?>

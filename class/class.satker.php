@@ -37,7 +37,7 @@ class Satker {
         $db=  Database::getInstance();
         $conn=$db->getConnection(2);
 
-        $query="SELECT kdsatker,kddept,kdunit,nmsatker,kdjnssat ";
+        $query="SELECT kdsatker,kddept,kdunit,nmsatker,kdjnssat,kdkppn ";
         $query .="FROM t_satker WHERE kdsatker='".$this->kdsatker."' AND ";
         $query .="kddept='".$this->kddept."' AND kdunit='".$this->kdunit."'";
         
@@ -54,6 +54,6 @@ class Satker {
         $data=get_object_vars($data);
         return $data;
     }
-    
+        
 
 }
