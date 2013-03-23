@@ -49,7 +49,7 @@
         width: auto;
     }
 
-  
+
 </style>
 <table id="grid" >
     <thead>
@@ -59,7 +59,7 @@
 <form id="frm_saldo" method="post" action="" enctype="multipart/form-data">
     <tr>
         <th>File ADK</th>
-        <td colspan="6"><input type="file" name="file_adk" id="file_adk" multiple="none" /></td>
+        <td colspan="6"><input type="file" name="file_adk" id="file_adk"/></td>
     </tr>
     <tr>
         <th>Jenis Satker</th>
@@ -70,10 +70,12 @@
         <td><input type="radio" name="dekon" id="dekon" value="UB"/>Urusan Bersama</td>
     </tr>
     <tr>
-        <td colspan="7"><input type="submit" id="rekon_btn" value="Rekon" /></td>
+        <td colspan="7"><input type="submit" id="rekon_btn" value="Rekon" name="btn_rekon" onclick="return ajaxFileUpload();"/></td>
     </tr>
     </tbody>
 </form>
 </table>
+<div id="loader"></div>
 <div id="output"></div>
+<script type="text/javascript" src="js/ajaxfileupload.js"></script>
 <script type="text/javascript" src="js/saldo.js"></script>

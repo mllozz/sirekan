@@ -21,4 +21,5 @@ $satker = new Satker($arr);
 $data_satker = $satker->getKewenangan();
 
 echo json_encode($data_satker);
+
 ?>
