@@ -51,15 +51,24 @@
 //        
 //        echo date('Y-m-d H:i:s');
 	
-$input = 'bl';
-$data = array('orange', 'blue', 'green', 'red', 'pink', 'brown', 'black');
+//$input = 'bl';
+//$data = array('orange', 'blue', 'green', 'red', 'pink', 'brown', 'black');
+//        
+//$result = array_filter($data, function ($item) use ($input) {
+//    if (stripos($item, $input) !== false) {
+//        return true;
+//    }
+//    return false;
+//});
+//
+//var_dump($result);
         
-$result = array_filter($data, function ($item) use ($input) {
-    if (stripos($item, $input) !== false) {
-        return true;
-    }
-    return false;
-});
-
-var_dump($result);
+        $adk=new Adk();
+                        $content=$adk->getFile('SAKD01508635162.012', 1);
+                        print_r($content);
+                        echo '<hr />';
+                        $content=  explode(' ', $content);
+                        print_r($content[0]);
+                        echo '<hr />';
+                        print_r($content[count($content)-1]);
 ?>

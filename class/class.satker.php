@@ -59,7 +59,7 @@ class Satker {
         $db=  Database::getInstance();
         $conn=$db->getConnection(2);
 
-        $query="select DISTINCT kdkppn,kdbaes1,kdsatker,kddekon from t_glsaud ";
+        $query="select DISTINCT kddekon from t_glsaud ";
         $query .=" WHERE kdsatker='".$this->kdsatker."' AND ";
         $query .=" kdbaes1='".$this->kddept.''.$this->kdunit."'";
         

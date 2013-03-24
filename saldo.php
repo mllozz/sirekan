@@ -57,6 +57,7 @@
 </thead>
 <tbody>
 <form id="frm_saldo" method="post" action="" enctype="multipart/form-data">
+    <input type="hidden" name="id_rekon" id="id_rekon" value="1"/>
     <tr>
         <th>File ADK</th>
         <td colspan="6"><input type="file" name="file_adk" id="file_adk"/></td>
