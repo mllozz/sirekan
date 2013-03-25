@@ -9,6 +9,7 @@ $msg = "";
 $direktori = 'adk';
 $ekstensi = array('012', '112', '212', '120', '312', '1212');
 $size = 2000000; //2mb
+$rekon=array();
 if (empty($_FILES['file_adk']['tmp_name']) || $_FILES['file_adk']['tmp_name'] == 'none') {
     $error = 'File Tidak Ada';
 } elseif (empty($_POST['dekon'])) {
@@ -51,14 +52,34 @@ if (empty($_FILES['file_adk']['tmp_name']) || $_FILES['file_adk']['tmp_name'] ==
                 } elseif ($id_rekon == '2' && $id_sai != 'KPPN') {
                     $error = 'File Bukan Untuk Rekon SAI';
                 } else {
-                    $save = move_uploaded_file($_FILES['file_adk']['tmp_name'], 
-                            '../' . $direktori . '/' . $_FILES['file_adk']['name']);
+                    
+                    $save = move_uploaded_file($_FILES['file_adk']['tmp_name'], '../' . $direktori . '/' . $_FILES['file_adk']['name']);
                     if ($save) {
-//                        $msg .= " File Name: " . $_FILES['file_adk']['size'] . ", ";
-//                        $msg .= " Read and Rekon";
-                        $adk=new Adk();
-                        $content=$adk->getFile($filename, $id_rekon);
-                        var_dump(substr($content,0,100));
+                        /**
+                         * bisa juga tanpa if
+                         * $msg = 'Rekonsiliasi Sedang Diproses';
+                            $rekon=array(
+                                'id_rekon' => $id_rekon,
+                                'kdbaes' => $kddept . '' . $kdunit,
+                                'kdsatker' => $kdsatker,
+                                'nama_file' => $_FILES['file_adk']['name'],
+                            );
+                         */
+                        if ($id_rekon == '1') {
+                            $msg = 'Rekon Saldo Awal Sedang Diproses';
+                            $rekon=array(
+                                'id_rekon' => $id_rekon,
+                                'nama_file' => $_FILES['file_adk']['name'],
+                            );
+                        } elseif ($id_rekon == '2') {
+                            $msg = 'Rekon SAI Sedang Diproses';
+                            $rekon=array(
+                                'id_rekon' => $id_rekon,
+                                'nama_file' => $_FILES['file_adk']['name'],
+                            );
+                        } else {
+                            $error = 'Rekonsiliasi Tidak Ada';
+                        }
                     } else {
                         $error = 'Gagal save file';
                     }
@@ -75,9 +96,10 @@ if (empty($_FILES['file_adk']['tmp_name']) || $_FILES['file_adk']['tmp_name'] ==
     }
 }
 
-$data=array(
-    'error'=>$error,
+$data = array(
+    'error' => $error,
     'msg' => $msg,
+    'rekon' => $rekon,
 );
 
 echo json_encode($data);

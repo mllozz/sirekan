@@ -32,7 +32,8 @@ function ajaxFileUpload() {
                     $('#output').html(data.error).fadeIn(500);
                 } else
                 {
-                    $('#output').html(data.msg).fadeIn(500);
+                    $('#output').html(data.msg).fadeIn(500).delay(1000).fadeOut(500);
+                    Rekon(data.rekon);
                 }
             }
         },
@@ -44,4 +45,11 @@ function ajaxFileUpload() {
     return false;
 }
 
-
+function Rekon(data) {
+    var id_rekon=data.id_rekon,kdbaes=data.kdbaes,nama_file=data.nama_file;
+    $.post('controller/cont.rekon.php',{rekon:true,id:id_rekon,kdbaes1:kdbaes,nama:nama_file},function(data){
+        //$('#output').html(data).fadeIn(500).delay(1000).fadeOut(500);
+        alert('Tess');
+    },'json');
+    //alert(data.kdbaes+'/'+data.nama_file+'/'+data.kdsatker);
+}

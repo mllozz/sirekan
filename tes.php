@@ -62,6 +62,11 @@ if($cek) {
     print_r('Sudah rekon');
 } else {
     $content = $adk->getFile('SAKD01508635162.012', 1);
-    print_r($content[0]['KDKANWIL']);
+    $insert=$adk->insertGLSA($content);
+    if($insert) {
+        echo 'Berhasil';
+    } else {
+        echo 'gagal';
+    }
 }
 ?>

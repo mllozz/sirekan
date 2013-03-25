@@ -49,6 +49,33 @@
         width: auto;
     }
 
+    #mask {
+        display: none;
+        background: #000; 
+        position: fixed; left: 0; top: 0; 
+        z-index: 10;
+        width: 100%; height: 100%;
+        opacity: 0.8;
+        z-index: 999;
+    }
+
+    #confirmBox {
+        display:none;
+        background: #333;
+        padding: 10px; 	
+        border: 2px solid #ddd;
+        float: left;
+        font-size: 1.2em;
+        position: fixed;
+        top: 50%; left: 50%;
+        z-index: 99999;
+        box-shadow: 0px 0px 20px #999; /* CSS3 */
+        -moz-box-shadow: 0px 0px 20px #999; /* Firefox */
+        -webkit-box-shadow: 0px 0px 20px #999; /* Safari, Chrome */
+        border-radius:3px 3px 3px 3px;
+        -moz-border-radius: 3px; /* Firefox */
+        -webkit-border-radius: 3px; /* Safari, Chrome */
+    }
 
 </style>
 <table id="grid" >
@@ -80,3 +107,9 @@
 <div id="output"></div>
 <script type="text/javascript" src="js/ajaxfileupload.js"></script>
 <script type="text/javascript" src="js/saldo.js"></script>
+
+<div id="confirmBox" style="display:none;">
+    <div class="message"></div>
+    <span class="yes">Yes</span>
+    <span class="no">No</span>
+</div>
