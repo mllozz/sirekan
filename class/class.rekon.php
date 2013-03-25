@@ -39,18 +39,17 @@ class Rekon {
         
         $result->execute();
         
-        if($result->rowCount()>1) {
+        if($result->rowCount()>=1) {
             return true;
         }
         return false;
     }
     
     public function deleteRekonSA($kdbaes, $kdsatker) {
-        $thnang = 2011;
         $db = Database::getInstance();
         $conn = $db->getConnection(1);
 
-        $query = "DELETE FROM glsa WHERE KDBAES1='$kdbaes' AND KDSATKER='$kdsatker' AND THNANG='$thnang'";
+        $query = "DELETE FROM glsa WHERE KDBAES1='$kdbaes' AND KDSATKER='$kdsatker'";
         $result = $conn->prepare($query);
         $result->execute();
 
@@ -58,6 +57,16 @@ class Rekon {
             return true;
         }
         return false;
+    }
+    
+    protected function valuesOfArray($array = array()) {
+        foreach ($array as $rowValues) {
+            foreach ($rowValues as $key => $rowValue) {
+                $rowValues[$key] = "'".trim($rowValues[$key],' ')."'";
+            }
+            $values[] = "(" . implode(', ', $rowValues) . ")";
+        }
+        return $values;
     }
 }
 ?>

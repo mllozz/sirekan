@@ -61,6 +61,7 @@ function Rekon(data) {
                 Rekon(rekon_lagi);
             }, function no()
             {
+                ulang = 0;
                 tutup();
             });
         } else {
