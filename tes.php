@@ -56,17 +56,11 @@ function __autoload($class_name) {
 //
 //var_dump($result);
 
-$adk = new Adk();
-$cek=$adk->cekRekonSA('01508', '635162');
-if($cek) {
-    print_r('Sudah rekon');
-} else {
-    $content = $adk->getFile('SAKD01508635162.012', 1);
-    $insert=$adk->insertGLSA($content);
-    if($insert) {
-        echo 'Berhasil';
-    } else {
-        echo 'gagal';
-    }
-}
+//$adk = new Adk();
+//$content = $adk->getAdkFile('SAKD01508635162.012', 1);
+//
+//var_dump($content);
+
+echo substr('KPPN_KD0150863516201',-2);
+
 ?>

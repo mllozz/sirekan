@@ -19,8 +19,10 @@ class Adk {
         $i = 0;
         $data[] = array();
         while (($hasil = $reader->GetNextRecord(true)) && !empty($hasil)) {
-            $data[$i] = $hasil;
-            $i++;
+            if(array_filter($hasil)){
+                $data[$i] = $hasil;
+                $i++;
+            }
         }
         return $data;
     }

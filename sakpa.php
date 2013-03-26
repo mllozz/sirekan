@@ -49,7 +49,63 @@
         width: auto;
     }
 
+    #mask {
+        display: none;
+        background: #000; 
+        position: fixed; left: 0; top: 0; 
+        z-index: 10;
+        width: 100%; height: 100%;
+        opacity: 0.8;
+        z-index: 999;
+    }
 
+    #confirmBox {
+        display:none;
+        width: 20%;
+        height: 15%;
+        background: #333;
+        padding: 10px; 	
+        border: 2px solid #ddd;
+        float: left;
+        font-size: 1.2em;
+        color: white;
+        position: fixed;
+        top: 50%; left: 50%;
+        z-index: 99999;
+        text-align: center;
+        box-shadow: 0px 0px 20px #999; /* CSS3 */
+        -moz-box-shadow: 0px 0px 20px #999; /* Firefox */
+        -webkit-box-shadow: 0px 0px 20px #999; /* Safari, Chrome */
+        border-radius:3px 3px 3px 3px;
+        -moz-border-radius: 3px; /* Firefox */
+        -webkit-border-radius: 3px; /* Safari, Chrome */
+    }
+
+    span.yes,span.no {
+        display: inline-block;
+        outline: none;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        font: 14px/100% Arial, Helvetica, sans-serif;
+        padding: .5em 2em .55em;
+        text-shadow: 0 1px 1px rgba(0,0,0,.3);
+        -webkit-border-radius: .5em; 
+        -moz-border-radius: .5em;
+        border-radius: .5em;
+        -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+        -moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+        box-shadow: 0 1px 2px rgba(0,0,0,.2);
+        background: -moz-linear-gradient(center top , #FFFFFF, #EDEDED) repeat scroll 0 0 transparent;
+        border: 1px solid #B7B7B7;
+        color: #606060;
+    }
+    span.yes:hover,span.no:hover {
+        background: #247c20;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f88e11), to(#f06015));
+	background: -moz-linear-gradient(top,  #f88e11,  #f06015);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#f88e11', endColorstr='#f06015');
+    }
 </style>
 <table id="grid" >
     <thead>
@@ -61,6 +117,12 @@
     <tr>
         <th>File ADK</th>
         <td colspan="6"><input type="file" name="file_adk" id="file_adk"/></td>
+    </tr>
+    <tr>
+        <th>Periode</th>
+        <td colspan="6">
+            <select id="periode" name="periode"></select>
+        </td>
     </tr>
     <tr>
         <th>Jenis Satker</th>
@@ -80,3 +142,10 @@
 <div id="output"></div>
 <script type="text/javascript" src="js/ajaxfileupload.js"></script>
 <script type="text/javascript" src="js/sakpa.js"></script>
+
+<div id="confirmBox" style="display:none;">
+    <div class="message"></div>
+    <br />
+    <span class="yes">Ya</span>
+    <span class="no">Tidak</span>
+</div>

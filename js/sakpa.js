@@ -4,6 +4,15 @@ $(document).ready(function() {
             $('input:radio[name=dekon]').filter('[value=' + data.kddekon + ']').attr('checked', true);
         }
     });
+    
+    $.getJSON('controller/cont.periode.php', function(data) {
+        $.each(data,function(index,data){
+            var option = $('<option />');
+            option.attr('value', data.kdperiode).text(data.nmbulan); 
+            $('#periode').append(option);
+        });
+        
+    });
 
 });
 
@@ -17,12 +26,13 @@ function ajaxFileUpload() {
 
     var kddekon = $('#dekon:checked').val();
     var id = $('#id_rekon').val();
+    var kdperiode = $('#periode').val();
     $.ajaxFileUpload({
         url: 'controller/cont.upload.php',
         secureuri: false,
         fileElementId: 'file_adk',
         dataType: 'json',
-        data: {dekon: kddekon, id_rekon: id},
+        data: {dekon: kddekon, id_rekon: id, periode: kdperiode},
         success: function(data, status)
         {
             if (typeof(data.error) != 'undefined')
@@ -45,11 +55,64 @@ function ajaxFileUpload() {
     return false;
 }
 
+var ulang = 0;
 function Rekon(data) {
-    var id_rekon=data.id_rekon,kdbaes=data.kdbaes,nama_file=data.nama_file;
-    $.post('controller/cont.rekon.php',{rekon:true,id:id_rekon,kdbaes1:kdbaes,nama:nama_file},function(data){
+    var id_rekon = data.id_rekon, nama_file = data.nama_file, kdperiode=data.periode;
+    $.post('controller/cont.rekon.php', {rekon: ulang, id: id_rekon, nama: nama_file,periode: kdperiode}, function(data) {
         //$('#output').html(data).fadeIn(500).delay(1000).fadeOut(500);
-        alert('Tess');
-    },'json');
+        if (data === 'pernah' && ulang === 0) {
+            doConfirm("Rekon Sudah Pernah Dilakukan. Rekon lagi?", function yes()
+            {
+                ulang = 1;
+                var rekon_lagi = {id_rekon: id_rekon, nama_file: nama_file, periode: kdperiode};
+                tutup();
+                Rekon(rekon_lagi);
+            }, function no()
+            {
+                ulang = 0;
+                tutup();
+            });
+        } else {
+            alert(data);
+            ulang = 0;
+        }
+    }, 'json');
     //alert(data.kdbaes+'/'+data.nama_file+'/'+data.kdsatker);
+}
+
+function doConfirm(msg, yesFn, noFn)
+{
+    var confirmBox = $("#confirmBox");
+    confirmBox.fadeIn(300);
+
+    //Set the center alignment padding + border see css style
+    var popMargTop = (confirmBox.height() + 24) / 2;
+    var popMargLeft = (confirmBox.width() + 48) / 2;
+
+    confirmBox.css({
+        'margin-top': -popMargTop,
+        'margin-left': -popMargLeft
+    });
+
+    confirmBox.find(".message").text(msg);
+    confirmBox.find(".yes,.no").unbind().click(function()
+    {
+        confirmBox.hide();
+    });
+    confirmBox.find(".yes").click(yesFn);
+    confirmBox.find(".no").click(noFn);
+    confirmBox.show();
+
+    // Add the mask to body
+    $('body').append('<div id="mask"></div>');
+    $('#mask').fadeIn(300);
+
+    return false;
+}
+
+function tutup() {
+    $('#mask , #confirmBox').fadeOut(300, function() {
+        $('#mask').remove();
+    });
+    return false;
 }
