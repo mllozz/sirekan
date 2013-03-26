@@ -1,5 +1,10 @@
 $(document).ready(function() {
+    var now = new Date();
 
+    var day = ("0" + now.getDate()).slice(-2);
+    var month = ("0" + (now.getMonth() + 1)).slice(-2);
+
+    var today = now.getFullYear()+"-"+(month)+"-"+(day) ;
     $('#tgl_mulai').datepicker({dateFormat: 'yy-mm-dd'});
     $('#tgl_akhir').datepicker({dateFormat: 'yy-mm-dd'});
     function appendData(data) {
@@ -152,8 +157,8 @@ $(document).ready(function() {
                     $('#tgl_akhir').removeAttr("disabled");
                     $('#ket_blokir').removeAttr("disabled");
                     $('#buka_blokir').attr("disabled", true);
-                    document.getElementById('tgl_mulai').value = '';
-                    document.getElementById('tgl_akhir').value = '';
+                    document.getElementById('tgl_mulai').value = today;
+                    document.getElementById('tgl_akhir').value = today;
                     document.getElementById('ket_blokir').value = '';
                     document.getElementById('id_blokir').value = '';
                 }

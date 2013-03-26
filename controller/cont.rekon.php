@@ -56,7 +56,7 @@ if (isset($_POST['rekon'])) {
                     //posting dan ambil data
                     //cocokkan
                     //return hasil
-                    echo json_encode('Berhasil Rekon');
+                    echo json_encode('Upload ADK Rekonsiliasi Berhasil, Silahkan Cek Hasil Rekonsiliasi');
                 } else {
                     echo json_encode('Gagal Membaca ADK, File Corrupt atau Kosong');
                 }

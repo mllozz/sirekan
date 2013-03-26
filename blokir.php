@@ -118,11 +118,11 @@
             <input type="hidden" name="id_blokir" id="id_blokir"/>
             <tr>
                 <th>TGL MULAI BLOKIR</th>
-                <td colspan="2"><input type="text" name="tgl_mulai" id="tgl_mulai" placeHolder="Tgl Mulai"/></td>
+                <td colspan="2"><input type="text" name="tgl_mulai" id="tgl_mulai" /></td>
             </tr>
             <tr>
                 <th>TGL BERAKHIR BLOKIR</th>
-                <td colspan="2" ><input type="text" name="tgl_akhir" id="tgl_akhir" placeHolder="Tgl Berakhir"/></td>
+                <td colspan="2" ><input type="text" name="tgl_akhir" id="tgl_akhir" /></td>
             </tr>
             <tr>
                 <th>KETERANGAN BLOKIR</th>
