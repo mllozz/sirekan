@@ -6,6 +6,76 @@ class Rekon {
         include 'class/class.' . strtolower($class_name) . '.php';
     }
 
+    public function rekonSaldo($kddept, $kdunit, $kdsatker, $tgl_awal, $tgl_akhir) {
+        $db = Database::getInstance();
+        $conn = $db->getConnection(1);
+
+        $query = "SELECT IF(ISNULL(A.KDPERK), B.KDPERK, A.KDPERK) AS KDPERK, ";
+        $query .= "IF(ISNULL(A.KDBAES1), B.KDBAES1, A.KDBAES1) AS KDBAES1, ";
+        $query .= "IF(ISNULL(A.KDSATKER), B.KDSATKER, A.KDSATKER) AS KDSATKER, ";
+        $query .= "IF(ISNULL(A.JNSDOK1), B.JNSDOK1, A.JNSDOK1) AS JNSDOK1, ";
+        $query .= "IF(ISNULL(A.TGLDOK1), B.TGLDOK1, A.TGLDOK1) AS TGLDOK1, ";
+        $query .= "IF(ISNULL(A.NODOK1), B.NODOK1, A.NODOK1) AS NODOK1, ";
+        $query .= "IF(ISNULL(A.RPHREAL), 000000000000000000, A.RPHREAL) AS RPSAU, ";
+        $query .= "IF(ISNULL(B.RPHREAL), 000000000000000000, B.RPHREAL) AS RPSAI, ";
+        $query .= "IF(A.RPHREAL=B.RPHREAL,'SAMA','BEDA') HASIL FROM ";
+        $query .= "(SELECT KDBAES1, KDSATKER, JNSDOK1, NODOK1, TGLDOK1, KDPERK, ";
+        $query .= "SUM(-RPHREAL) AS RPHREAL ";
+        $query .= "FROM (SELECT KDBAES1, KDSATKER, KDDEKON, JNSDOK1, LEFT(NODOK1, 40) AS NODOK1, ";
+        $query .= "TGLDOK1, LEFT(KDPERK, 2) AS KDPERK, KDSDCP, ";
+        $query .= "KDPROGRAM, KDGIAT, KDSGIAT, SUM(RPHREAL) AS RPHREAL FROM ";
+        $query .= "(SELECT KDBAES1, KDSATKER, KDDEKON ,JNSDOK1, NODOK1, TGLDOK1, LEFT(PERKSAU ,4) KDPERK,  ";
+        $query .= "KDSDCP, KDPROGRAM, KDGIAT, KDOUTPUT KDSGIAT, SUM(RPHREAL) RPHREAL FROM rekon_tglsau ";
+        $query .= "where tglpost >= '$tgl_awal' AND tglpost <= '$tgl_akhir' AND ";
+        $query .= "LEFT(kdbaes1,3) = '$kddept' AND substr(kdbaes1,4,2) = '$kdunit' ";
+        $query .= " AND kdsatker = '$kdsatker'  AND kdtrn='2' AND substr(jnsdok1,2,2) in('02','03','99') ";
+        $query .= " and left(perksau, 1) in ('5','6','7') ";
+        $query .= "GROUP BY KDSDCP, KDDEKON, KDPROGRAM, KDGIAT, KDOUTPUT, KDBAES1, ";
+        $query .= "KDSATKER, PERKSAU, JNSDOK1, TGLDOK1, NODOK1 ";
+        $query .= "ORDER BY KDSDCP, KDDEKON, KDPROGRAM, KDGIAT, KDOUTPUT, ";
+        $query .= "KDBAES1, KDSATKER, PERKSAU, JNSDOK1, TGLDOK1, NODOK1 ) x ";
+        $query .= "GROUP BY KDSDCP, KDDEKON, KDPROGRAM, KDGIAT, KDSGIAT, ";
+        $query .= "KDBAES1, KDSATKER, KDPERK, JNSDOK1, TGLDOK1, NODOK1 ";
+        $query .= "ORDER BY KDSDCP, KDDEKON, KDPROGRAM, KDGIAT, KDSGIAT, KDBAES1, ";
+        $query .= "KDSATKER, KDPERK, JNSDOK1, TGLDOK1, NODOK1) xx ";
+        $query .= "GROUP BY KDPERK, KDBAES1, KDSATKER, JNSDOK1, TGLDOK1, NODOK1 ";
+        $query .= "ORDER BY KDPERK, KDBAES1, KDSATKER, JNSDOK1, TGLDOK1, NODOK1) A LEFT OUTER JOIN ";
+        $query .= "(SELECT KDBAES1, KDSATKER, JNSDOK1, NODOK1, TGLDOK1, KDPERK, SUM(-RPHREAL) AS RPHREAL FROM ";
+        $query .= "(SELECT KDBAES1, KDSATKER, KDDEKON, JNSDOK1, ";
+        $query .= "LEFT(NODOK1, 40) AS NODOK1, TGLDOK1, LEFT(KDPERK, 2) AS KDPERK, ";
+        $query .= "KDSDCP, KDPROGRAM, KDGIAT, KDSGIAT, SUM(RPHREAL) AS RPHREAL FROM ";
+        $query .= "(SELECT KDBAES1, KDSATKER, KDDEKON, JNSDOK1, NODOK1, TGLDOK1, ";
+        $query .= "LEFT(PERKSAI,4) AS KDPERK, KDSDCP, KDPROGRAM, KDGIAT, KDOUTPUT KDSGIAT, SUM(RPHREAL) AS RPHREAL ";
+        $query .= "FROM rekon_tglsai where tglpost >= '$tgl_awal' AND tglpost <= '$tgl_akhir' ";
+        $query .= "AND LEFT(kdbaes1,3) = '$kddept' AND substr(kdbaes1,4,2) = '$kdunit' ";
+        $query .= " AND kdsatker = '$kdsatker' AND kdtrn='2' AND substr(jnsdok1,2,2) in('02','03','99') ";
+        $query .= " and left(perksai, 1) in ('5','6','7')   ";
+        $query .= "GROUP BY KDSDCP, KDDEKON, KDPROGRAM, KDGIAT, KDOUTPUT, ";
+        $query .= "KDBAES1, KDSATKER, PERKSAI, JNSDOK1, TGLDOK1, NODOK1 ";
+        $query .= "ORDER BY KDSDCP, KDDEKON, KDPROGRAM, KDGIAT, KDOUTPUT, KDBAES1, ";
+        $query .= "KDSATKER, PERKSAI, JNSDOK1, TGLDOK1, NODOK1) z ";
+        $query .= "GROUP BY KDSDCP, KDDEKON, KDPROGRAM,KDGIAT, KDSGIAT, KDBAES1, ";
+        $query .= "KDSATKER, KDPERK, JNSDOK1, TGLDOK1, NODOK1 ";
+        $query .= "ORDER BY KDSDCP, KDDEKON, KDPROGRAM, KDGIAT, KDSGIAT, KDBAES1, ";
+        $query .= "KDSATKER, KDPERK, JNSDOK1, TGLDOK1, NODOK1) zz ";
+        $query .= "GROUP BY KDPERK, KDBAES1, KDSATKER, JNSDOK1, TGLDOK1, NODOK1 ";
+        $query .= "ORDER BY KDPERK, KDBAES1, KDSATKER, JNSDOK1, TGLDOK1, NODOK1) B ";
+        $query .= "ON A.KDPERK=B.KDPERK AND A.KDPERK+A.KDBAES1+A.KDSATKER=B.KDPERK+B.KDBAES1+B.KDSATKER ";
+        $query .= "AND A.JNSDOK1=B.JNSDOK1 AND A.TGLDOK1=B.TGLDOK1 ";
+        $query .= "AND A.NODOK1=B.NODOK1 ORDER BY A.KDPERK, A.KDBAES1, A.KDSATKER, A.JNSDOK1, A.TGLDOK1, A.NODOK1";
+
+        $result = $conn->prepare($query);
+        $result->execute();
+
+        $resultarray = array();
+        if ($result->rowCount() >= 1) {
+            while ($row = $result->fetchAll(PDO::FETCH_ASSOC)) {
+                return $resultarray[] = $row;
+            }
+        }
+        return false;
+    }
+
     /**
      * Cek apakah pernah rekon saldo awal sebelumnya
      * @param type $kdbaes
@@ -219,7 +289,7 @@ class Rekon {
         $query.="kdvalas,nilkurs,tglkurs,nokarwas,kdkem,kdval,kdkm,cad1,cad2,kdbeban,";
         $query.="kdjnsban,kdkpknl,stat_rekon,trn_bmn,kppnasal,KDOUTPUT,tglterima) ";
         $query.="VALUES " . implode(', ', $values);
- 
+
         $result = $conn->prepare($query);
 
         $result->execute();

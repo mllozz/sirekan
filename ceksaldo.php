@@ -54,6 +54,38 @@
         border-width: 1px;
     }
     
+    #mask {
+        display: none;
+        background: #000; 
+        position: fixed; left: 0; top: 0; 
+        z-index: 10;
+        width: 100%; height: 100%;
+        opacity: 0.8;
+        z-index: 999;
+    }
+
+    #loader {
+        display:none;
+        width: 20%;
+        height: 13%;
+        background: #111;
+        padding: 10px; 	
+        border: 2px solid #ddd;
+        float: left;
+        font-size: 1.2em;
+        color: white;
+        position: fixed;
+        top: 50%; left: 50%;
+        z-index: 99999;
+        text-align: center;
+        box-shadow: 0px 0px 20px #999; /* CSS3 */
+        -moz-box-shadow: 0px 0px 20px #999; /* Firefox */
+        -webkit-box-shadow: 0px 0px 20px #999; /* Safari, Chrome */
+        border-radius:3px 3px 3px 3px;
+        -moz-border-radius: 3px; /* Firefox */
+        -webkit-border-radius: 3px; /* Safari, Chrome */
+    }
+    
 
 </style>
 <form id="ceksaldo" method="post" action="">
@@ -84,4 +116,8 @@
 </form>
 
 <script type="text/javascript" src="js/cek_saldo.js"></script>
-<div id="loader"></div>
+<div id="loader" style="display:none;">
+    <br />
+    <img src="img/loader.gif" alt="loader" />
+    <div class="message"></div>
+</div>

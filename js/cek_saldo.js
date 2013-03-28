@@ -9,7 +9,7 @@ $(document).ready(function() {
 
     $('#ceksaldo').submit(function() {
         var kddekon = $('#dekon:checked').val();
-        $('#loader').html('<img src="img/loader.gif" alt="loader" />').show();
+        loading('Sedang Memproses Data')
         $.post('controller/cont.server_data.php?server', {kddekon: kddekon}, function(data) {
                 if (data.error === false) {
                     //pengecekan 
@@ -17,7 +17,7 @@ $(document).ready(function() {
                 } else {
                     alert(data.error);
                 }
-                $('#loader').html('<img src="img/loader.gif" alt="loader" />').hide();
+                tutup();
         },'json');
         return false;
     });
@@ -25,3 +25,33 @@ $(document).ready(function() {
 });
 
 
+function loading(msg)
+{
+    var confirmBox = $("#loader");
+    confirmBox.fadeIn(300);
+
+    //Set the center alignment padding + border see css style
+    var popMargTop = (confirmBox.height() + 24) / 2;
+    var popMargLeft = (confirmBox.width() + 48) / 2;
+
+    confirmBox.css({
+        'margin-top': -popMargTop,
+        'margin-left': -popMargLeft
+    });
+
+    confirmBox.find(".message").text(msg);
+    confirmBox.show();
+
+    // Add the mask to body
+    $('body').append('<div id="mask"></div>');
+    $('#mask').fadeIn(300);
+
+    return false;
+}
+
+function tutup() {
+    $('#mask , #loader').fadeOut(300, function() {
+        $('#mask').remove();
+    });
+    return false;
+}

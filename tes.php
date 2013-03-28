@@ -56,11 +56,11 @@ function __autoload($class_name) {
 //
 //var_dump($result);
 
-$adk = new Server_Data();
-$content = $adk->getDataSakpa('015','08','635162', 'KD');
+$adk = new Rekon();
+$content = $adk->rekonSaldo('015','08','635162', '2012-01-01','2012-12-31');
 
 
-print_r($adk->deleteRekonSakpaLokal('01508','635162', 'KD'));
+print_r($content);
 //$adk->insertGLSakpa($content);
 //
 //var_dump($content);
