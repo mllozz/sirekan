@@ -10,6 +10,9 @@ $(document).ready(function() {
     $.getJSON('controller/cont.ceksakpa.php?data', function(data) {
         $('#kdsatker').html(data.kdsatker).show(); 
         $('#nmsatker').html(data.nmsatker).show();
+        if ($('input:radio[name=dekon]').is(':checked') === false) {
+            $('input:radio[name=dekon]').filter('[value=' + data.kddekon + ']').attr('checked', true);
+        }
     });
 });
 

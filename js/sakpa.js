@@ -57,14 +57,14 @@ function ajaxFileUpload() {
 
 var ulang = 0;
 function Rekon(data) {
-    var id_rekon = data.id_rekon, nama_file = data.nama_file, kdperiode=data.periode;
-    $.post('controller/cont.rekon.php', {rekon: ulang, id: id_rekon, nama: nama_file,periode: kdperiode}, function(data) {
+    var id_rekon = data.id_rekon, nama_file = data.nama_file, kdperiode=data.periode,kddekon=data.kddekon;
+    $.post('controller/cont.rekon.php', {rekon: ulang, id: id_rekon, nama: nama_file,periode: kdperiode,kddekon:kddekon}, function(data) {
         //$('#output').html(data).fadeIn(500).delay(1000).fadeOut(500);
         if (data === 'pernah' && ulang === 0) {
             doConfirm("Rekon Sudah Pernah Dilakukan. Rekon lagi?", function yes()
             {
                 ulang = 1;
-                var rekon_lagi = {id_rekon: id_rekon, nama_file: nama_file, periode: kdperiode};
+                var rekon_lagi = {id_rekon: id_rekon, nama_file: nama_file, periode: kdperiode,kddekon:kddekon};
                 tutup();
                 Rekon(rekon_lagi);
             }, function no()

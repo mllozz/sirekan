@@ -22,10 +22,11 @@ if(isset($_GET['data'])){
     
     $satker = new Satker($arr);
     $data_satker = $satker->getSatker();
-
+    $kewe=$satker->getKewenangan();
     $data=array(
         'kdsatker' => $baes1satker,
         'nmsatker' => $data_satker['nmsatker'],
+        'kddekon' => $kewe['kddekon'],
     );
     
     echo json_encode($data);

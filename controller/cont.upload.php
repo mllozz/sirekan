@@ -9,7 +9,7 @@ $msg = "";
 $direktori = 'adk';
 $ekstensi = array('012', '112', '212', '120', '312', '1212');
 $size = 2000000; //2mb
-$rekon=array();
+$rekon = array();
 if (empty($_FILES['file_adk']['tmp_name']) || $_FILES['file_adk']['tmp_name'] == 'none') {
     $error = 'File Tidak Ada';
 } elseif (empty($_POST['dekon'])) {
@@ -17,8 +17,8 @@ if (empty($_FILES['file_adk']['tmp_name']) || $_FILES['file_adk']['tmp_name'] ==
 } else {
     $kddekon = $_POST['dekon'];
     $id_rekon = $_POST['id_rekon'];
-    if($id_rekon == '2') {
-        $periode=$_POST['periode'];
+    if ($id_rekon == '2') {
+        $periode = $_POST['periode'];
     }
     session_start();
     $username = $_SESSION['username'];
@@ -36,6 +36,9 @@ if (empty($_FILES['file_adk']['tmp_name']) || $_FILES['file_adk']['tmp_name'] ==
     $satker = new Satker($arr);
     $data_satker = $satker->getKewenangan();
 
+    $setup = new Setup();
+    $set = $setup->getSetup();
+
     if ($kddekon != $data_satker['kddekon']) {
         $error = 'Jenis Kewenangan Salah';
     } else {
@@ -45,44 +48,55 @@ if (empty($_FILES['file_adk']['tmp_name']) || $_FILES['file_adk']['tmp_name'] ==
         $tmp = explode('.', $_FILES['file_adk']['name']);
         $fileEks = $tmp[count($tmp) - 1];
         $fileName = $tmp[0];
-        
+
         if (in_array($fileEks, $ekstensi)) {
             if ($_FILES['file_adk']['size'] <= $size) {
                 $id_sa = substr($fileName, 0, 2);
                 $id_sai = substr($fileName, 0, 4);
-                $per=substr($fileName,-2);
-                if ($id_rekon == '1' && $id_sa != 'SA') {
+                $per = substr($fileName, -2);
+
+                if ($id_rekon == '1') {
+                    $nmFile = 'SA' . $data_satker['kddekon'] . '' . $kddept . '' . $kdunit . '' . $kdsatker . '.0' . substr($set['thnang'], -2);
+                } else {
+                    $nmFile = 'KPPN_' . $data_satker['kddekon'] . '' . $kddept . '' . $kdunit . '' . $kdsatker . '' . $periode . '' . '.0' . substr($set['thnang'], -2);
+                }
+
+                if ($_FILES['file_adk']['name'] != $nmFile) {
+                    $error = 'File ADK Salah atau Bukan Untuk Periode Ini';
+                } elseif ($id_rekon == '1' && $id_sa != 'SA') {
                     $error = 'File Bukan Untuk Rekon Saldo Awal';
                 } elseif ($id_rekon == '2' && $id_sai != 'KPPN') {
                     $error = 'File Bukan Untuk Rekon SAI';
                 } elseif ($id_rekon == '2' && $per != $periode) {
                     $error = 'File Bukan Untuk Rekon Periode Ini';
                 } else {
-                    if(file_exists('../adk/'.$_FILES['file_adk']['name'])){
-                        copy('../adk/'.$_FILES['file_adk']['name'], '../adk/bck_'.$_FILES['file_adk']['name']);
+                    if (file_exists('../adk/' . $_FILES['file_adk']['name'])) {
+                        copy('../adk/' . $_FILES['file_adk']['name'], '../adk/bck_' . $_FILES['file_adk']['name']);
                     }
                     $save = move_uploaded_file($_FILES['file_adk']['tmp_name'], '../' . $direktori . '/' . $_FILES['file_adk']['name']);
                     if ($save) {
                         /**
                          * bisa juga tanpa if
                          * $msg = 'Rekonsiliasi Sedang Diproses';
-                            $rekon=array(
-                                'id_rekon' => $id_rekon,
-                                'kdbaes' => $kddept . '' . $kdunit,
-                                'kdsatker' => $kdsatker,
-                                'nama_file' => $_FILES['file_adk']['name'],
-                            );
+                          $rekon=array(
+                          'id_rekon' => $id_rekon,
+                          'kdbaes' => $kddept . '' . $kdunit,
+                          'kdsatker' => $kdsatker,
+                          'nama_file' => $_FILES['file_adk']['name'],
+                          );
                          */
                         if ($id_rekon == '1') {
                             $msg = 'Rekon Saldo Awal Sedang Diproses';
-                            $rekon=array(
+                            $rekon = array(
                                 'id_rekon' => $id_rekon,
+                                'kddekon' => $kddekon,
                                 'nama_file' => $_FILES['file_adk']['name'],
                             );
                         } elseif ($id_rekon == '2') {
                             $msg = 'Rekon SAI Sedang Diproses';
-                            $rekon=array(
+                            $rekon = array(
                                 'id_rekon' => $id_rekon,
+                                'kddekon' => $kddekon,
                                 'periode' => $periode,
                                 'nama_file' => $_FILES['file_adk']['name'],
                             );

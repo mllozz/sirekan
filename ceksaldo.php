@@ -4,7 +4,7 @@
         border: 1px solid black;
         font-family: Calibri, sans-serif;
         font-size: 12px;
-        width: 50%;
+        width: 80%;
         text-align: left;
     }
 
@@ -46,7 +46,7 @@
 
     #grid td:last-child {
         text-align: left;
-        width: 280px;
+        width: auto;
     }
     
     input[type=text], option {
@@ -56,23 +56,32 @@
     
 
 </style>
-<form id="ceksakpa" method="post" action="">
+<form id="ceksaldo" method="post" action="">
     <table id="grid">
         <thead>
-        <th colspan="2">Cek Hasil Rekonsiliasi SAKPA</th>
+        <th colspan="7">Cek Hasil Rekonsiliasi SAKPA</th>
         </thead>
         <tr>
             <th>Kode Satker</th>
-            <td id="kdsatker"></td>
+            <td colspan="6" id="kdsatker"></td>
         </tr>
         <tr>
             <th>Nama Satker</th>
-            <td id="nmsatker"></td>
+            <td colspan="6" id="nmsatker"></td>
         </tr>
         <tr>
-            <td colspan="2"><input type="submit" id="cek_rekon" value="Cek"/></td>
+            <th>Jenis Satker</th>
+            <td><input type="radio" name="dekon" id="dekon" value="KP"/>Kantor Pusat</td>
+            <td><input type="radio" name="dekon" id="dekon" value="KD"/>Kantor Daerah</td>
+            <td><input type="radio" name="dekon" id="dekon" value="DK"/>Dekonsentrasi</td>
+            <td><input type="radio" name="dekon" id="dekon" value="TP"/>Tugas Pembantuan</td>
+            <td><input type="radio" name="dekon" id="dekon" value="UB"/>Urusan Bersama</td>
+        </tr>
+        <tr>
+            <td colspan="7"><input type="submit" id="cek_rekon" value="Cek"/></td>
         </tr>
     </table>
 </form>
 
 <script type="text/javascript" src="js/cek_saldo.js"></script>
+<div id="loader"></div>

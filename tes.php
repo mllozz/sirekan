@@ -56,11 +56,14 @@ function __autoload($class_name) {
 //
 //var_dump($result);
 
-//$adk = new Adk();
-//$content = $adk->getAdkFile('SAKD01508635162.012', 1);
+$adk = new Server_Data();
+$content = $adk->getDataSakpa('015','08','635162', 'KD');
+
+
+print_r($adk->deleteRekonSakpaLokal('01508','635162', 'KD'));
+//$adk->insertGLSakpa($content);
 //
 //var_dump($content);
 
-echo substr('KPPN_KD0150863516201',-2);
 
 ?>
