@@ -5,8 +5,18 @@ function __autoload($class_name) {
 }
 
 if (!isset($_REQUEST['aksi'])) {
+    if(!isset($_GET['hal'])) {
+        $page=0;
+    } else {
+        $page=$_GET['hal']-1;
+    }
     
-    $users = User::getAllUser();
+    $users = User::getAllUserWithPage($page);
+    
+    $alluser=User::getAllUser();
+    $jml_user=count($alluser);
+    $data['jml']=$jml_user/5;
+    $data['page']=$page+1;
     $data['user'] = array();
     
     $i = 0;

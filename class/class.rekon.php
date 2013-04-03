@@ -5,6 +5,24 @@ class Rekon {
     protected function __autoload($class_name) {
         include 'class/class.' . strtolower($class_name) . '.php';
     }
+    
+    public function rekonPengembalianBelanja($kddept, $kdunit, $kdsatker, $tgl_awal, $tgl_akhir, $kddekon) {
+        $db = Database::getInstance();
+        $conn = $db->getConnection(1);
+        
+        
+        
+        $result = $conn->prepare($query);
+        $result->execute();
+
+        $resultarray = array();
+        if ($result->rowCount() >= 1) {
+            while ($row = $result->fetchAll(PDO::FETCH_ASSOC)) {
+                return $resultarray[] = $row;
+            }
+        }
+        return false;
+    }
 
     public function rekonRealBelanja($kddept, $kdunit, $kdsatker, $tgl_awal, $tgl_akhir, $kddekon) {
         $db = Database::getInstance();

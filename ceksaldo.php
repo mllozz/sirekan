@@ -4,8 +4,12 @@
         border: 1px solid black;
         font-family: Calibri, sans-serif;
         font-size: 12px;
-        width: 92%;
+        width: 98%;
         text-align: left;
+    }
+    
+    #rekon_saldo {
+        width: 98%;
     }
 
     thead tr {
@@ -95,7 +99,6 @@
     
     #hasil_rekon {
         border: 1px solid #111;
-        font-size: 12px;
     }
 </style>
 <form id="ceksaldo" method="post" action="">

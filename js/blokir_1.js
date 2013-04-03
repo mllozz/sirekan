@@ -29,17 +29,11 @@ $(document).ready(function() {
     var page = 1;
     var max_page = 0;
     $.getJSON('controller/cont.blokir.php', function(data) {
+        max_page = Math.ceil(Number(data.jml));
+        page = data.page;
+        $('span#hal').html('<a id="link">Halaman ' + page + ' dari '+max_page+'</a>');
         $.each(data.user, function(index, user) {
             appendData(user);
-        });
-        $('#grid').dataTable({
-            "bProcessing": true,
-            "bPaginate": true,
-            "bLengthChange": false,
-            "bFilter": true,
-            "bSort": true,
-            "bAutoWidth": false,
-            "bJQueryUI": true,
         });
     });
 

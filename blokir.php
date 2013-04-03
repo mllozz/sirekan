@@ -7,6 +7,10 @@
         font-family: Calibri, sans-serif;
         font-size: 12px;
     }
+    
+    #div_grid{
+        width: 90%;
+    }
 
     thead tr {
         border-bottom: 1px solid black;
@@ -71,7 +75,8 @@
     }
 </style>
 <div id="div_grid">
-    <input type="text" id="cari" placeHolder="Cari Satker"/><input type="submit" value="Refresh" id="refresh">
+<!--    <input type="text" id="cari" placeHolder="Cari Satker"/>-->
+    <pre>Daftar User</pre>
     <table id="grid">
         <thead>
             <tr>
@@ -87,7 +92,8 @@
         <tbody>
         </tbody>
     </table>
-    <a id="prev" href="">Prev</a>|<span id="hal"></span>|<a id="next" href="">Next</a>
+<!--    <a id="prev" href="">Prev</a>|<span id="hal"></span>|<a id="next" href="">Next</a>-->
+    <input type="submit" value="Refresh" id="refresh">
 </div>
 <div id="div_blokir">
     <table id="tbl_user" >
