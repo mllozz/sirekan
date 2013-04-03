@@ -4,7 +4,7 @@
         border: 1px solid black;
         font-family: Calibri, sans-serif;
         font-size: 12px;
-        width: 80%;
+        width: 92%;
         text-align: left;
     }
 
@@ -48,12 +48,15 @@
         text-align: left;
         width: auto;
     }
-    
+    div.ui-datepicker, .ui-datepicker input{
+        font-size:62.5%;
+    }
+
     input[type=text], option {
         background-color: #fbec88;
         border-width: 1px;
     }
-    
+
     #mask {
         display: none;
         background: #000; 
@@ -86,7 +89,14 @@
         -webkit-border-radius: 3px; /* Safari, Chrome */
     }
     
-
+    #rekon_saldo {
+        display: none;
+    }
+    
+    #hasil_rekon {
+        border: 1px solid #111;
+        font-size: 12px;
+    }
 </style>
 <form id="ceksaldo" method="post" action="">
     <table id="grid">
@@ -100,6 +110,13 @@
         <tr>
             <th>Nama Satker</th>
             <td colspan="6" id="nmsatker"></td>
+        </tr>
+        <tr>
+            <th>Tgl Awal</th>
+            <td ><input type="text" name="tgl_awal" id="tgl_awal" /></td>
+            <th>Tgl Akhir</th>
+            <td><input type="text" name="tgl_akhir" id="tgl_akhir" /></td>
+            <td colspan="3"></td>
         </tr>
         <tr>
             <th>Jenis Satker</th>
@@ -120,4 +137,23 @@
     <br />
     <img src="img/loader.gif" alt="loader" />
     <div class="message"></div>
+</div>
+<div id="rekon_saldo">
+    <pre>Hasil Rekonsiliasi Saldo</pre>
+    <table id="hasil_rekon">
+        <thead>
+            <th>Kd Perk</th>
+            <th>Kd Baes1</th>
+            <th>Kd Satker</th>
+            <th>Jns Dok</th>
+            <th>Tgl Dok</th>
+            <th>No Dok</th>
+            <th>Rp SAU</th>
+            <th>Rp SAI</th>
+            <th>Keterangan</th>
+        </thead>
+        <tbody>
+            
+        </tbody>
+    </table>
 </div>

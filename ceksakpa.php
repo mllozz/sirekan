@@ -4,7 +4,7 @@
         border: 1px solid black;
         font-family: Calibri, sans-serif;
         font-size: 12px;
-        width: 80%;
+        width: 90%;
         text-align: left;
     }
 
@@ -54,6 +54,10 @@
         border-width: 1px;
     }
     
+    div.ui-datepicker, .ui-datepicker input{
+        font-size:62.5%;
+    }
+    
     #mask {
         display: none;
         background: #000; 
@@ -85,7 +89,14 @@
         -moz-border-radius: 3px; /* Firefox */
         -webkit-border-radius: 3px; /* Safari, Chrome */
     }
+    #rekon_sakpa {
+        display: none;
+    }
     
+    #hasil_rekon {
+        border: 1px solid #111;
+        font-size: 12px;
+    }
     
 
 </style>
@@ -111,11 +122,11 @@
             <td><input type="radio" name="dekon" id="dekon" value="UB"/>Urusan Bersama</td>
         </tr>
         <tr>
-            <th>Periode</th>
-            <td colspan="6" >
-                <select id="periode">    
-                </select>
-            </td>
+            <th>Tgl Awal</th>
+            <td ><input type="text" name="tgl_awal" id="tgl_awal" /></td>
+            <th>Tgl Akhir</th>
+            <td><input type="text" name="tgl_akhir" id="tgl_akhir" /></td>
+            <td colspan="3"></td>
         </tr>
         <tr>
             <th>Jenis Rekonsiliasi</th>
@@ -142,4 +153,27 @@
     <br />
     <img src="img/loader.gif" alt="loader" />
     <div class="message"></div>   
+</div>
+
+<div id="rekon_sakpa">
+    <pre>Hasil Rekonsiliasi Saldo</pre>
+    <table id="hasil_rekon">
+        <thead>
+            <tr>
+            <th>No</th>
+            <th data-key="KDPERK">KDPERK</th>
+            <th data-key="KDBAES1">KDBAES1</th>
+            <th data-key="KDSATKER">KDSATKER</th>
+            <th data-key="JNSDOK1">JNSDOK1</th>
+            <th data-key="TGLDOK1">TGLDOK1</th>
+            <th data-key="NODOK1">NODOK1</th>
+            <th data-key="RPSAU">RPSAU</th>
+            <th data-key="RPSAI">RPSAI</th>
+            <th data-key="HASIL">HASIL</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+        </tbody>
+    </table>
 </div>

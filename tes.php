@@ -57,7 +57,7 @@ function __autoload($class_name) {
 //var_dump($result);
 
 $adk = new Rekon();
-$content = $adk->rekonSaldo('015','08','635162', '2012-01-01','2012-12-31');
+$content = $adk->rekonRealBelanja('015','08','635162', '2012-01-01','2012-12-31','KD');
 
 
 print_r($content);

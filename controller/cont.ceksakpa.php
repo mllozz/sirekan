@@ -31,4 +31,30 @@ if(isset($_GET['data'])){
     
     echo json_encode($data);
 }
+
+if(isset($_GET['cek'])){
+    $kddekon=$_REQUEST['kddekon'];
+    $tgl_awal=$_REQUEST['tgl_awal'];
+    $tgl_akhir=$_REQUEST['tgl_akhir'];
+    $jns_rekon=$_REQUEST['jns_rekon'];
+    session_start();
+
+    $username=$_SESSION['username'];
+
+    
+    $kddept= substr($username, 0, 3);
+    $kdunit= substr($username, 3, 2);
+    $kdsatker= substr($username, 5, 6);
+    $rekon = new Rekon();
+    switch ($jns_rekon) {
+        case '1':
+            $content = $rekon->rekonRealBelanja($kddept,$kdunit,$kdsatker, $tgl_awal,$tgl_akhir,$kddekon);
+            break;
+        default:
+            break;
+    }
+    
+    echo json_encode($content);
+    
+}
 ?>

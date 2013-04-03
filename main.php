@@ -8,6 +8,7 @@ include_once('controller/cont.main.php');
         <link rel="stylesheet" type="text/css" href="css/main.css" />
         <link rel="stylesheet" type="text/css" href="css/menu.css" />
         <link rel="stylesheet" href="css/themes/blitzer/jquery-ui.css" />
+        <link rel="stylesheet" type="text/css" href="css/qunit.css" />
         <script type="text/javascript" src="js/jquery.js"></script>
         <script type="text/javascript" src="js/jquery-ui.js"></script>
         <script type="text/javascript" src="js/menu.js"></script>
