@@ -4,7 +4,7 @@
         border: 1px solid black;
         font-family: Calibri, sans-serif;
         font-size: 12px;
-        width: 90%;
+        width: 95%;
         text-align: left;
     }
 
@@ -95,7 +95,11 @@
     
     #hasil_rekon {
         border: 1px solid #111;
-        font-size: 12px;
+    }
+        
+    #data_rekon {
+        overflow-y: auto;
+        height: 60%;
     }
     
 
@@ -160,16 +164,15 @@
     <table id="hasil_rekon">
         <thead>
             <tr>
-            <th>No</th>
-            <th data-key="KDPERK">KDPERK</th>
-            <th data-key="KDBAES1">KDBAES1</th>
-            <th data-key="KDSATKER">KDSATKER</th>
-            <th data-key="JNSDOK1">JNSDOK1</th>
-            <th data-key="TGLDOK1">TGLDOK1</th>
-            <th data-key="NODOK1">NODOK1</th>
-            <th data-key="RPSAU">RPSAU</th>
-            <th data-key="RPSAI">RPSAI</th>
-            <th data-key="HASIL">HASIL</th>
+            <th>KDPERK</th>
+            <th>KDBAES1</th>
+            <th>KDSATKER</th>
+            <th>JNSDOK1</th>
+            <th>TGLDOK1</th>
+            <th>NODOK1</th>
+            <th>RPSAU</th>
+            <th>RPSAI</th>
+            <th>HASIL</th>
             </tr>
         </thead>
         <tbody>

@@ -90,6 +90,26 @@ function Cek(data) {
                     + '</tr>'
                     );
         });
+        $('#hasil_rekon').dataTable({
+            "bProcessing": true,
+            "bPaginate": true,
+            "bLengthChange": false,
+            "bFilter": false,
+            "bSort": true,
+            "bAutoWidth": false,
+            "bJQueryUI": true,
+            "aoColumns": [
+                {"mData": "KDPERK"},
+                {"mData": "KDBAES1"},
+                {"mData": "KDSATKER"},
+                {"mData": "JNSDOK1"},
+                {"mData": "TGLDOK1"},
+                {"mData": "NODOK1"},
+                {"mData": "RPSAU"},
+                {"mData": "RPSAI"},
+                {"mData": "HASIL"}
+            ]
+        });
         $('#rekon_saldo').fadeIn(500);
     }, 'json');
 }
