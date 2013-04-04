@@ -87,44 +87,54 @@ function Cek(data) {
         //alert(data);
         $('#hasil_rekon tbody').empty();
         //var i = 1;
-        $.each(data, function(index, data) {
+        if (data === false) {
             $('#hasil_rekon tbody').append(
                     '<tr>' +
-                    //'<td>' + i + '</td>' +
-                    '<td>' + data.KDPERK + '</td>' +
-                    '<td>' + data.KDBAES1 + '</td>' +
-                    '<td>' + data.KDSATKER + '</td>' +
-                    '<td>' + data.JNSDOK1 + '</td>' +
-                    '<td>' + data.TGLDOK1 + '</td>' +
-                    '<td>' + data.NODOK1 + '</td>' +
-                    '<td>' + formatRp(data.RPSAU) + '</td>' +
-                    '<td>' + formatRp(data.RPSAI) + '</td>' +
-                    '<td>' + data.HASIL + '</td>'
+                    '<td align="center" colspan="9">Transaksi Kosong</td>'
                     + '</tr>'
                     );
-            //i++;
-        });
-        $('#hasil_rekon').dataTable({
-            "bProcessing": true,
-            "bPaginate": true,
-            "bLengthChange": false,
-            "bFilter": false,
-            "bSort": true,
-            "bAutoWidth": false,
-            "bJQueryUI": true,
-            "aoColumns": [
-                {"mData": "KDPERK"},
-                {"mData": "KDBAES1"},
-                {"mData": "KDSATKER"},
-                {"mData": "JNSDOK1"},
-                {"mData": "TGLDOK1"},
-                {"mData": "NODOK1"},
-                {"mData": "RPSAU"},
-                {"mData": "RPSAI"},
-                {"mData": "HASIL"}
-            ]
-        });
+        } else {
+            $.each(data, function(index, data) {
+                $('#hasil_rekon tbody').append(
+                        '<tr>' +
+                        //'<td>' + i + '</td>' +
+                        '<td>' + data.KDPERK + '</td>' +
+                        '<td>' + data.KDBAES1 + '</td>' +
+                        '<td>' + data.KDSATKER + '</td>' +
+                        '<td>' + data.JNSDOK1 + '</td>' +
+                        '<td>' + data.TGLDOK1 + '</td>' +
+                        '<td>' + data.NODOK1 + '</td>' +
+                        '<td>' + formatRp(data.RPSAU) + '</td>' +
+                        '<td>' + formatRp(data.RPSAI) + '</td>' +
+                        '<td>' + data.HASIL + '</td>'
+                        + '</tr>'
+                        );
+                //i++;
+            });
+
+            var otable = $('#hasil_rekon').dataTable({
+                "bProcessing": true,
+                "bPaginate": true,
+                "bLengthChange": false,
+                "bFilter": false,
+                "bSort": true,
+                "bAutoWidth": false,
+                "bJQueryUI": true,
+                "aoColumns": [
+                    {"mData": "KDPERK"},
+                    {"mData": "KDBAES1"},
+                    {"mData": "KDSATKER"},
+                    {"mData": "JNSDOK1"},
+                    {"mData": "TGLDOK1"},
+                    {"mData": "NODOK1"},
+                    {"mData": "RPSAU"},
+                    {"mData": "RPSAI"},
+                    {"mData": "HASIL"}
+                ]
+            });
+        }
         $('#rekon_sakpa').fadeIn(500);
+        $('#ceksakpa').fadeOut(300);
     }, 'json');
 }
 

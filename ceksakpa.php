@@ -10,6 +10,7 @@
     
     #rekon_sakpa {
         width: 90%;
+        margin-left: 5%;
     }
 
     thead tr {

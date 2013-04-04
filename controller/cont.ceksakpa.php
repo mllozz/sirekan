@@ -50,6 +50,15 @@ if(isset($_GET['cek'])){
         case '1':
             $content = $rekon->rekonRealBelanja($kddept,$kdunit,$kdsatker, $tgl_awal,$tgl_akhir,$kddekon);
             break;
+        case '2':
+            $content = $rekon->rekonPengembalianBelanja($kddept,$kdunit,$kdsatker, $tgl_awal,$tgl_akhir,$kddekon);
+            break;
+        case '3':
+            $content = $rekon->rekonPendapatanBPjk($kddept,$kdunit,$kdsatker, $tgl_awal,$tgl_akhir,$kddekon);
+            break;
+        case '4':
+            $content = $rekon->rekonPendapatanPajak($kddept,$kdunit,$kdsatker, $tgl_awal,$tgl_akhir,$kddekon);
+            break;
         default:
             break;
     }
