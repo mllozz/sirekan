@@ -6,6 +6,98 @@ class Rekon {
         include 'class/class.' . strtolower($class_name) . '.php';
     }
 
+    public function cekRekonBenarSalah($kddept, $kdunit, $kdsatker, $periode, $kddekon) {
+        $setup = new Setup();
+        $set = $setup->getSetup();
+
+        $thnang = $set['thnang'];
+        $tgl_awal = $thnang . '-' . $periode . '-01';
+        $tgl_akhir = $thnang . '-' . $periode . '-31';
+        $UP = true;
+        $Saldo = true;
+        $RBelanja = true;
+        $BPjk = true;
+        $Pjk = true;
+        $PBiaya = true;
+        $KBiaya = true;
+        $PBelanja = true;
+        $rekonUP = $this->rekonUP($kddept, $kdunit, $kdsatker, $tgl_awal, $tgl_akhir, $kddekon);
+        for ($i = 0; $i < count($rekonUP); $i++) {
+            if ($rekonUP[$i]['HASIL'] == 'BEDA') {
+                $UP = false;
+                break;
+            }
+        }
+        $rekonBP = $this->rekonPendapatanBPjk($kddept, $kdunit, $kdsatker, $tgl_awal, $tgl_akhir, $kddekon);
+        for ($i = 0; $i < count($rekonBP); $i++) {
+            if ($rekonBP[$i]['HASIL'] == 'BEDA') {
+                $BPjk = false;
+                break;
+            }
+        }
+        $rekonP = $this->rekonPendapatanPajak($kddept, $kdunit, $kdsatker, $tgl_awal, $tgl_akhir, $kddekon);
+        for ($i = 0; $i < count($rekonP); $i++) {
+            if ($rekonP[$i]['HASIL'] == 'BEDA') {
+                $Pjk = false;
+               break;
+            }
+        }
+        $rekonPBiaya = $this->rekonPenerimaanPembiayaan($kddept, $kdunit, $kdsatker, $tgl_awal, $tgl_akhir, $kddekon);
+        for ($i = 0; $i < count($rekonPBiaya); $i++) {
+            if ($rekonPBiaya[$i]['HASIL'] == 'BEDA') {
+                $PBiaya = false;
+                break;
+            }
+        }
+        $rekonLBiaya = $this->rekonPengeluaranPembiayaan($kddept, $kdunit, $kdsatker, $tgl_awal, $tgl_akhir, $kddekon);
+        for ($i = 0; $i < count($rekonLBiaya); $i++) {
+            if ($rekonLBiaya[$i]['HASIL'] == 'BEDA') {
+                $KBiaya = false;
+                break;
+            }
+        }
+        $rekonPBelanja = $this->rekonPengembalianBelanja($kddept, $kdunit, $kdsatker, $tgl_awal, $tgl_akhir, $kddekon);
+        for ($i = 0; $i < count($rekonPBelanja); $i++) {
+            if ($rekonPBelanja[$i]['HASIL'] == 'BEDA') {
+                $PBelanja = false;
+                break;
+            }
+        }
+        $rekonRBelanja = $this->rekonRealBelanja($kddept, $kdunit, $kdsatker, $tgl_awal, $tgl_akhir, $kddekon);
+        for ($i = 0; $i < count($rekonRBelanja); $i++) {
+            if ($rekonRBelanja[$i]['HASIL'] == 'BEDA') {
+                $RBelanja = false;
+                break;
+            }
+        }
+        $rekonSaldo = $this->rekonSaldo($kddept, $kdunit, $kdsatker, $tgl_awal, $tgl_akhir, $kddekon);
+        for ($i = 0; $i < count($rekonSaldo); $i++) {
+            if ($rekonSaldo[$i]['HASIL'] == 'BEDA') {
+                $Saldo = false;
+                break;
+            }
+        }
+        $rekon = array(
+            'UP' => $UP,
+            'SALDO' => $Saldo,
+            'RBelanja' => $RBelanja,
+            'BPjk' => $BPjk,
+            'Pjk' => $Pjk,
+            'PBiaya' => $PBiaya,
+            'KBiaya' => $KBiaya,
+            'PBelanja' => $PBelanja,
+        );
+        if(in_array(false, $rekon)){
+            $rek=new LogRekon();
+            if($rekon['SALDO']==false){
+                $rek->updateLog($kddept, $kdunit, $kdsatker, $kddekon, '00', 3);
+            }else {
+                $rek->updateLog($kddept, $kdunit, $kdsatker, $kddekon, $periode, 3);
+            }    
+        }
+        return $rekon;
+    }
+
     public function rekonUP($kddept, $kdunit, $kdsatker, $tgl_awal, $tgl_akhir, $kddekon) {
         $db = Database::getInstance();
         $conn = $db->getConnection(1);

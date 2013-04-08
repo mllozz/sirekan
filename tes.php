@@ -67,10 +67,19 @@ function __autoload($class_name) {
 //);
 //$log = new LogRekon($data_log);
 //$log->insertLog($log);
-$adk=new LogRekon();
+//$adk=new LogRekon();
 //$c=$adk->getJmlRecordAdk('SAKD01508635162.012');
 ////
 //var_dump($c);
-$adk->insertLogServer('01508', '635162', 'KD', '00', '604', 'TAL')
+//$adk->insertLogServer('01508', '635162', 'KD', '00', '604', 'TAL')
 //print_r(date('m'));
+
+$rekon=new Rekon();
+
+$tes=$rekon->cekRekonBenarSalah('015', '08', '635162', '01', 'KD');
+var_dump($tes);
+if(in_array(false, $tes)){
+    echo 'ya';
+}
+//var_dump($tes);
 ?>
