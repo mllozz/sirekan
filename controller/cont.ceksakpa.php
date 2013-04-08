@@ -68,6 +68,9 @@ if(isset($_GET['cek'])){
         case '7':
             $content = $rekon->rekonUP($kddept,$kdunit,$kdsatker, $tgl_awal,$tgl_akhir,$kddekon);
             break;
+        case '8':
+            $content = $rekon->rekonSaldo($kddept,$kdunit,$kdsatker, $tgl_awal,$tgl_akhir,$kddekon);
+            break;
         default:
             break;
     }

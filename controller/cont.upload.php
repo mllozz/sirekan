@@ -19,6 +19,8 @@ if (empty($_FILES['file_adk']['tmp_name']) || $_FILES['file_adk']['tmp_name'] ==
     $id_rekon = $_POST['id_rekon'];
     if ($id_rekon == '2') {
         $periode = $_POST['periode'];
+    }else {
+        $periode='00';
     }
     session_start();
     $username = $_SESSION['username'];
@@ -85,6 +87,23 @@ if (empty($_FILES['file_adk']['tmp_name']) || $_FILES['file_adk']['tmp_name'] ==
                           'nama_file' => $_FILES['file_adk']['name'],
                           );
                          */
+                        $data_log=array(
+                            'kddept' => $kddept,
+                            'kdunit' => $kdunit,
+                            'kdsatker' => $kdsatker,
+                            'kddekon' => $kddekon,
+                            'tgl_rekon' => date('Y-m-d H:i:s'),
+                            'id_jns_rekon' => '',
+                            'periode' => $periode,
+                            'id_status_rekon' => 1,
+                        );
+                        $log=new LogRekon($data_log);
+                        $cek=$log->cekLog($kddept, $kdunit, $kdsatker, $kddekon, $periode);
+                        if($cek) {
+                            $log->updateLog($kddept, $kdunit, $kdsatker, $kddekon, $periode, 1);
+                        }else {
+                            $log->insertLog($log);
+                        }
                         if ($id_rekon == '1') {
                             $msg = 'Rekon Saldo Awal Sedang Diproses';
                             $rekon = array(

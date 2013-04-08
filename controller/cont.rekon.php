@@ -10,6 +10,8 @@ if (isset($_POST['rekon'])) {
     $username = $_SESSION['username'];
 
     $kdbaes = substr($username, 0, 5);
+    $kddept = substr($username, 0, 3);
+    $kdunit = substr($username, 3, 2);
     $kdsatker = substr($username, 5, 6);
     $ulang = $_POST['rekon'];
     $id_rekon = $_POST['id'];
@@ -17,6 +19,8 @@ if (isset($_POST['rekon'])) {
     $kddekon = $_POST['kddekon'];
     if ($id_rekon == '2') {
         $periode = $_POST['periode'];
+    }else{
+        $periode='00';
     }
     //rekon saldo awal
 
@@ -65,12 +69,15 @@ if (isset($_POST['rekon'])) {
             echo json_encode('Data Lama Gagal Dihapus');
         } else {
             $adk = new Adk();
+            $log_rekon=new LogRekon();
             $content = $adk->getAdkFile($nama_file);
+            $jmlrec=$adk->getJmlRecordAdk($nama_file);
             if (count($content) == 0) {
                 echo json_encode('File ADK Kosong atau Tidak Ada Transaksi');
             } else {
                 if ($id_rekon == '1') {
                     $insert = $rekon->insertAdkGLSA($content);
+                    $log=$log_rekon->insertLogServer($kdbaes, $kdsatker, $kddekon, $periode, $jmlrec, 'TAL');
                     if ($insert) {
                         $data=$rekon->getAdkSA($kdbaes, $kdsatker, $kddekon);
                         $insert2 = $rekon->insertGLSA($data);
@@ -86,6 +93,7 @@ if (isset($_POST['rekon'])) {
                     }
                 } else {
                     $insert = $rekon->insertAdkGLSakpa($content);
+                    $log=$log_rekon->insertLogServer($kdbaes, $kdsatker, $kddekon, $periode, $jmlrec, 'TAB');
                     if ($insert) {
                         $data=$rekon->getAdkSakpa($kdbaes, $kdsatker,$periode, $kddekon);
                         $insert2 = $rekon->insertGLSakpa($data);

@@ -34,8 +34,8 @@ include_once('controller/cont.main.php');
                                     <li class="topfirst topmenu"><a href="sakpa" ><img src="img/doc.png"/> Rekon SAKPA</a></li>
                                     <li class="toplast topmenu"><a href="saldo" ><img src="img/doc.png"/> Rekon Saldo Awal</a></li>
                                     <li class="topfirst topmenu"><a>    -------------------------------</a></li>
-                                    <li class="topfirst topmenu"><a href="ceksakpa" ><img src="img/doc.png"/> Cek Rekon SAKPA</a></li>
-                                    <li class="topfirst topmenu"><a href="ceksaldo" ><img src="img/doc.png"/> Cek Rekon Saldo</a></li>
+                                    <li class="topfirst topmenu"><a href="ceksakpa" ><img src="img/doc.png"/> Cek Hasil Rekon</a></li>
+<!--                                    <li class="topfirst topmenu"><a href="ceksaldo" ><img src="img/doc.png"/> Cek Rekon Saldo</a></li>-->
                                 </ul>
                             </li>
                             <li class="topmenu"><a href="" ><span><img src="img/laporan.png"/> Laporan</span></a>

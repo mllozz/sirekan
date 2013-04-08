@@ -26,6 +26,18 @@ class Adk {
         }
         return $data;
     }
+    
+    public function getJmlRecordAdk($filename) {
+        $file = '../adk/' . $filename;
+        $reader = new Prodigy_DBF($file);
+        $i = 0;
+        while (($hasil = $reader->GetNextRecord(true)) && !empty($hasil)) {
+            if(array_filter($hasil)){
+                $i++;
+            }
+        }
+        return $i;
+    }
 
 }
 

@@ -141,13 +141,13 @@
             <th>Jenis Rekonsiliasi</th>
             <td colspan="6" >
                 <select id="jenis_rekon">
-                    <option value="1">Realisasi Belanja</option>
+<!--                    <option value="1">Realisasi Belanja</option>
                     <option value="2">Realisasi Pengembalian Belanja</option>
                     <option value="3">Realisasi Pendapatan Non Pajak</option>
                     <option value="4">Realisasi Pendapatan Pajak</option>
                     <option value="5">Realisasi Penerimaan Pembiayaan</option>
                     <option value="6">Realisasi Pengeluaran Pembiayaan</option>
-                    <option value="7">Realisasi Mutasi Uang Persediaan</option>
+                    <option value="7">Realisasi Mutasi Uang Persediaan</option>-->
                 </select>
             </td>
         </tr>

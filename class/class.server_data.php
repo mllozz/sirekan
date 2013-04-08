@@ -6,6 +6,7 @@ class Server_Data {
         include 'class/class.' . strtolower($class_name) . '.php';
     }
     
+
     public function prosesData($kddept, $kdunit, $kdsatker, $kddekon){
         $sai=$this->getDataSAI($kddept, $kdunit, $kdsatker, $kddekon);
         $sau=$this->getDataSau($kddept, $kdunit, $kdsatker, $kddekon);

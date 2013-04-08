@@ -56,14 +56,21 @@ function __autoload($class_name) {
 //
 //var_dump($result);
 
-$adk = new Rekon();
-$content = $adk->rekonRealBelanja('015','08','635162', '2012-01-01','2012-12-31','KD');
-
-
-print_r($content);
-//$adk->insertGLSakpa($content);
-//
-//var_dump($content);
-
-
+//$data_log = array(
+//    'kddept' => '015',
+//    'kdunit' => '08',
+//    'kdsatker' => '635162',
+//    'tgl_rekon' => date('Y-m-d H:i:s'),
+//    'id_jns_rekon' => '',
+//    'periode' => '',
+//    'id_status_rekon' => 1,
+//);
+//$log = new LogRekon($data_log);
+//$log->insertLog($log);
+$adk=new LogRekon();
+//$c=$adk->getJmlRecordAdk('SAKD01508635162.012');
+////
+//var_dump($c);
+$adk->insertLogServer('01508', '635162', 'KD', '00', '604', 'TAL')
+//print_r(date('m'));
 ?>
