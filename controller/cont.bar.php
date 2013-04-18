@@ -58,14 +58,17 @@ if (isset($_REQUEST['cetak'])) {
     $msg='';
     $bulan = (int) date('m');
     if ($kddekon != $kewe['kddekon']) {
-        $msg = 'Kode Kewenangan Salah';
+        //$msg = 'Kode Kewenangan Salah';
+        echo json_encode($error);
     } elseif (((int) $periode) > $bulan) {
-        $msg = 'Periode Rekonsiliasi Salah';
+        //$msg = 'Periode Rekonsiliasi Salah';
+        echo json_encode($error);
     } else {
         $log=new LogRekon();
         $cek=$log->getLog($kddept, $kdunit, $kdsatker, $kddekon, $periode);
-        if(!$cek){
-            $msg='Rekonsiliasi Belum Dilakukan';
+        if(!$cek){       
+            //$msg='Rekonsiliasi Belum Dilakukan';
+            echo json_encode($error);
         }else {
             if($cek['id_status_rekon']=='2'){
                 //rekon benar cetak pdf
@@ -74,15 +77,16 @@ if (isset($_REQUEST['cetak'])) {
                 //$msg='Rekonsiliasi Benar';
                 $bar->createBar();
             }else{
-                $msg='Rekonsiliasi Masih Salah';
+                //$msg='Rekonsiliasi Masih Salah';
+                echo json_encode($error);
             }
         }
     }
 
-    $data = array(
-        'error'=> $error,
-        'msg' => $msg,
-    );
-    echo json_encode($data);
+//    $data = array(
+//        'error'=> $error,
+//        'msg' => $msg,
+//    );
+    //echo json_encode($data);
 }
 ?>

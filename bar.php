@@ -84,7 +84,7 @@
         <td><input type="radio" name="dekon" id="dekon" value="UB"/>Urusan Bersama</td>
     </tr>
     <tr>
-        <td colspan="7"><input type="submit" id="cetak_bar" value="Cetak" name="cetak_bar" /></td>
+        <td colspan="7"><input type="submit" id="cetak_bar" value="Cetak" name="cetak_bar"/></td>
     </tr>
     </tbody>
 </form>
@@ -93,3 +93,6 @@
 <div id="output"></div>
 
 <script type="text/javascript" src="js/bar.js"></script>
+<div id="pdf">
+    
+</div>
