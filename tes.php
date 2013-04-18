@@ -74,12 +74,35 @@ function __autoload($class_name) {
 //$adk->insertLogServer('01508', '635162', 'KD', '00', '604', 'TAL')
 //print_r(date('m'));
 
-$rekon=new Rekon();
+//$rekon=new Rekon();
 
-$tes=$rekon->cekRekonBenarSalah('015', '08', '635162', '01', 'KD');
-var_dump($tes);
-if(in_array(false, $tes)){
-    echo 'ya';
-}
+//$tes=$rekon->cekRekonBenarSalah('015', '08', '635162', '05', 'KD');
 //var_dump($tes);
+//if(in_array(false, $tes)){
+//    echo 'ya';
+//}
+//var_dump($tes);
+//$msg='';
+//        $hasil=false;
+//$rekon=new Rekon();
+//        $log=new LogRekon();
+//        $arr=$rekon->cekRekonBenarSalah('015', '08', '635162', '02', 'KD');
+//        if(in_array(false, $arr)){
+//            $log->updateLog('015', '08', '635162',  'KD', '02', 3);
+//            $msg='Rekonsiliasi Ada Yang Salah';
+//        }else {
+//            $log->updateLog('015', '08', '635162',  'KD', '02', 2);
+//            $hasil=true;
+//            $msg='Rekonsiliasi Benar, Silahkan Cetak BAR dan Lampiran';
+//        }
+//        
+//        $data=array(
+//            'hasil' => $hasil,
+//            'msg' => $msg,
+//            'bagian' => $arr,
+//        );
+//        print_r($data);
+
+$bar=new Pdf_Print();
+$bar->createBar();
 ?>

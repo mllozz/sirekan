@@ -19,8 +19,8 @@ if (isset($_POST['rekon'])) {
     $kddekon = $_POST['kddekon'];
     if ($id_rekon == '2') {
         $periode = $_POST['periode'];
-    }else{
-        $periode='00';
+    } else {
+        $periode = '00';
     }
     //rekon saldo awal
 
@@ -40,23 +40,22 @@ if (isset($_POST['rekon'])) {
         $delete_sp2d = true;
         if ($ulang == 1) {
             if ($id_rekon == '1') {
-                if($cek && !$ceksp2d){
+                if ($cek && !$ceksp2d) {
                     $delete = $rekon->deleteRekonSALokal($kdbaes, $kdsatker, $kddekon);
-                }else if(!$cek && $ceksp2d)
-                {
+                } else if (!$cek && $ceksp2d) {
                     $delete_sp2d = $rekon->deleteRekonSASp2d($kdbaes, $kdsatker, $kddekon);
-                }elseif($cek && $ceksp2d){
+                } elseif ($cek && $ceksp2d) {
                     $delete = $rekon->deleteRekonSALokal($kdbaes, $kdsatker, $kddekon);
                     $delete_sp2d = $rekon->deleteRekonSASp2d($kdbaes, $kdsatker, $kddekon);
                 } else {
                     echo json_encode('Data Lama Gagal Dihapus');
                 }
             } else {
-                if($cek && !$ceksp2d){
+                if ($cek && !$ceksp2d) {
                     $delete = $rekon->deleteRekonSakpaLokal($kdbaes, $kdsatker, $periode, $kddekon);
-                }else if(!$cek && $ceksp2d){
+                } else if (!$cek && $ceksp2d) {
                     $delete = $rekon->deleteRekonSakpaSp2d($kdbaes, $kdsatker, $periode, $kddekon);
-                }else if($cek && $ceksp2d){
+                } else if ($cek && $ceksp2d) {
                     $delete = $rekon->deleteRekonSakpaLokal($kdbaes, $kdsatker, $periode, $kddekon);
                     $delete = $rekon->deleteRekonSakpaSp2d($kdbaes, $kdsatker, $periode, $kddekon);
                 } else {
@@ -69,17 +68,17 @@ if (isset($_POST['rekon'])) {
             echo json_encode('Data Lama Gagal Dihapus');
         } else {
             $adk = new Adk();
-            $log_rekon=new LogRekon();
+            $log_rekon = new LogRekon();
             $content = $adk->getAdkFile($nama_file);
-            $jmlrec=$adk->getJmlRecordAdk($nama_file);
+            $jmlrec = $adk->getJmlRecordAdk($nama_file);
             if (count($content) == 0) {
                 echo json_encode('File ADK Kosong atau Tidak Ada Transaksi');
             } else {
                 if ($id_rekon == '1') {
                     $insert = $rekon->insertAdkGLSA($content);
-                    $log=$log_rekon->insertLogServer($kdbaes, $kdsatker, $kddekon, $periode, $jmlrec, 'TAL');
+                    $log = $log_rekon->insertLogServer($kdbaes, $kdsatker, $kddekon, $periode, $jmlrec, 'TAL');
                     if ($insert) {
-                        $data=$rekon->getAdkSA($kdbaes, $kdsatker, $kddekon);
+                        $data = $rekon->getAdkSA($kdbaes, $kdsatker, $kddekon);
                         $insert2 = $rekon->insertGLSA($data);
                         if ($insert2) {
                             //return hasil
@@ -93,9 +92,9 @@ if (isset($_POST['rekon'])) {
                     }
                 } else {
                     $insert = $rekon->insertAdkGLSakpa($content);
-                    $log=$log_rekon->insertLogServer($kdbaes, $kdsatker, $kddekon, $periode, $jmlrec, 'TAB');
+                    $log = $log_rekon->insertLogServer($kdbaes, $kdsatker, $kddekon, $periode, $jmlrec, 'TAB');
                     if ($insert) {
-                        $data=$rekon->getAdkSakpa($kdbaes, $kdsatker,$periode, $kddekon);
+                        $data = $rekon->getAdkSakpa($kdbaes, $kdsatker, $periode, $kddekon);
                         $insert2 = $rekon->insertGLSakpa($data);
                         if ($insert2) {
                             //return hasil
@@ -113,5 +112,40 @@ if (isset($_POST['rekon'])) {
     }
 
     //echo json_encode('Dataneeeee');
+}
+
+if (isset($_REQUEST['hasil'])) {
+    if (isset($_REQUEST['sakpa'])) {
+        $periode = $_POST['periode'];
+    } else {
+        $periode = '00';
+    }
+    $kddekon = $_POST['kddekon'];
+        session_start();
+        $username = $_SESSION['username'];
+
+        $kddept = substr($username, 0, 3);
+        $kdunit = substr($username, 3, 2);
+        $kdsatker = substr($username, 5, 6);
+        $msg='';
+        $hasil=false;
+        $rekon=new Rekon();
+        $log=new LogRekon();
+        $arr=$rekon->cekRekonBenarSalah($kddept, $kdunit, $kdsatker, $periode, $kddekon);
+        if(in_array(false, $arr)){
+            $log->updateLog($kddept, $kdunit, $kdsatker, $kddekon, $periode, 3);
+            $msg='Rekonsiliasi Ada Yang Salah, Silahkan Cek Detail Kesalahan';
+        }else {
+            $log->updateLog($kddept, $kdunit, $kdsatker, $kddekon, $periode, 2);
+            $hasil=true;
+            $msg='Rekonsiliasi Benar, Silahkan Cetak BAR dan Lampiran';
+        }
+        
+        $data=array(
+            'hasil' => $hasil,
+            'msg' => $msg,
+            'bagian' => $arr,
+        );
+    echo json_encode($data);
 }
 ?>

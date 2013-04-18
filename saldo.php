@@ -134,6 +134,11 @@
 </form>
 </table>
 <div id="loader"></div>
+<div id="loader2" style="display:none;">
+    <br />
+    <img src="img/loader.gif" alt="loader" />
+    <div class="message"></div>   
+</div>
 <div id="output"></div>
 <script type="text/javascript" src="js/ajaxfileupload.js"></script>
 <script type="text/javascript" src="js/saldo.js"></script>

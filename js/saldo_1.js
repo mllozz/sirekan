@@ -65,65 +65,11 @@ function Rekon(data) {
                 tutup();
             });
         } else {
-            //alert(data);
-            transferData(kddekon);
-            var arr={kddekon:kddekon};
-            displayHasil(arr);
+            alert(data);
             ulang = 0;
         }
     }, 'json');
     //alert(data.kdbaes+'/'+data.nama_file+'/'+data.kdsatker);
-}
-
-function transferData(data){
-    loading('Sedang Memproses Data');
-    $.post('controller/cont.server_data.php?transfer',{kddekon:data},function(data){
-        if(data!==false){
-            alert(data);
-        }
-        tutup();
-    },'json');
-}
-
-function displayHasil(data){
-    $.post('controller/cont.rekon.php',{hasil:true,kddekon:data.kddekon},function(data){
-        if(data.bagian.SALDO===true){
-            alert('Rekonsiliasi Saldo Awal Cocok');
-        }else {
-            alert('Rekonsiliasi Saldo Awal Salah, Silahkan Teliti Terlebih Dahulu')
-        }
-    },'json');
-}
-
-function loading(msg)
-{
-    var confirmBox = $("#loader_2");
-    confirmBox.fadeIn(300);
-
-    //Set the center alignment padding + border see css style
-    var popMargTop = (confirmBox.height() + 24) / 2;
-    var popMargLeft = (confirmBox.width() + 48) / 2;
-
-    confirmBox.css({
-        'margin-top': -popMargTop,
-        'margin-left': -popMargLeft
-    });
-
-    confirmBox.find(".message").text(msg);
-    confirmBox.show();
-
-    // Add the mask to body
-    $('body').append('<div id="mask"></div>');
-    $('#mask').fadeIn(300);
-
-    return false;
-}
-
-function tutup() {
-    $('#mask , #loader').fadeOut(300, function() {
-        $('#mask').remove();
-    });
-    return false;
 }
 
 function doConfirm(msg, yesFn, noFn)

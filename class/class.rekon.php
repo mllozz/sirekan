@@ -13,6 +13,9 @@ class Rekon {
         $thnang = $set['thnang'];
         $tgl_awal = $thnang . '-' . $periode . '-01';
         $tgl_akhir = $thnang . '-' . $periode . '-31';
+        
+        $tgl_awal_sal = $thnang . '-01-01';
+        $tgl_akhir_sal = $thnang . '-12-31';
         $UP = true;
         $Saldo = true;
         $RBelanja = true;
@@ -70,7 +73,7 @@ class Rekon {
                 break;
             }
         }
-        $rekonSaldo = $this->rekonSaldo($kddept, $kdunit, $kdsatker, $tgl_awal, $tgl_akhir, $kddekon);
+        $rekonSaldo = $this->rekonSaldo($kddept, $kdunit, $kdsatker, $tgl_awal_sal, $tgl_akhir_sal, $kddekon);
         for ($i = 0; $i < count($rekonSaldo); $i++) {
             if ($rekonSaldo[$i]['HASIL'] == 'BEDA') {
                 $Saldo = false;

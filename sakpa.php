@@ -7,6 +7,15 @@
         width: 80%;
         text-align: left;
     }
+    
+    #hasil {
+        margin: 1px 1px;
+        border: 1px solid black;
+        font-family: Calibri, sans-serif;
+        font-size: 12px;
+        width: 50%;
+        text-align: left;
+    }
 
     thead tr {
         border-bottom: 1px solid black;
@@ -143,7 +152,24 @@
     </tbody>
 </form>
 </table>
+<div id="div_hasil" style="display:none;">
+<table id="hasil" >
+    <thead>
+    <tr>    
+    <th colspan="2">Keterangan Hasil Rekonsiliasi</th>
+    </tr>
+    </thead>
+    <tbody>
+        
+    </tbody>
+</table>
+</div>
 <div id="loader"></div>
+<div id="loader2" style="display:none;">
+    <br />
+    <img src="img/loader.gif" alt="loader" />
+    <div class="message"></div>   
+</div>
 <div id="output"></div>
 <script type="text/javascript" src="js/ajaxfileupload.js"></script>
 <script type="text/javascript" src="js/sakpa.js"></script>

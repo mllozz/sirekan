@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $.getJSON('controller/cont.bar.php', function(data) {
+    $.getJSON('controller/cont.bar.php?detail', function(data) {
         $('#kdsatker').html(data.kdsatker).show();
         $('#nmsatker').html(data.nmsatker).show();
         if ($('input:radio[name=dekon]').is(':checked') === false) {
@@ -15,6 +15,19 @@ $(document).ready(function() {
         });
         
     });
-
+    $('#cetak_bar').on('click',function(){
+        $('#loader').html('<img src="img/loader.gif" alt="loader" />').show();
+        var periode=$('#periode').val();
+        var kddekon=$('#dekon:checked').val();
+        $.post($('#frm_bar').attr('action'),{cetak:true,periode:periode,kddekon:kddekon},function(data){
+            if(data.error===true){
+                $('#output').html(data.msg);
+            }else {
+                window.open(data);
+            }
+        },'json');
+        $('#loader').html('<img src="img/loader.gif" alt="loader" />').hide();
+        return false;
+    });
 });
 

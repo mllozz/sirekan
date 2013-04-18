@@ -41,17 +41,20 @@ $(document).ready(function() {
         var tgl_akhir = $('#tgl_akhir').val();
         var e = document.getElementById('jenis_rekon');
         var jns_rekon = e.options[e.selectedIndex].value;
+        var data={kddekon: kddekon, tgl_awal: tgl_awal, tgl_akhir: tgl_akhir,jns_rekon: jns_rekon};
         loading('Sedang Memproses Data');
-        $.post('controller/cont.server_data.php?server&sakpa', {kddekon: kddekon, tgl_awal: tgl_awal, tgl_akhir: tgl_akhir,
-            jns_rekon: jns_rekon}, function(data) {
-            if (data.error === false) {
-                //pengecekan 
-                Cek(data.msg);
-            } else {
-                alert(data.error);
-            }
-            tutup();
-        }, 'json');
+//        $.post('controller/cont.server_data.php?server&sakpa', {kddekon: kddekon, tgl_awal: tgl_awal, tgl_akhir: tgl_akhir,
+//            jns_rekon: jns_rekon}, function(data) {
+//            if (data.error === false) {
+//                //pengecekan 
+//                Cek(data.msg);
+//            } else {
+//                alert(data.error);
+//            }
+//            tutup();
+//        }, 'json');
+        Cek(data);
+        tutup();
         return false;
     });
 });
@@ -59,7 +62,7 @@ $(document).ready(function() {
 
 function loading(msg)
 {
-    var confirmBox = $("#loader");
+    var confirmBox = $("#loader1");
     confirmBox.fadeIn(300);
 
     //Set the center alignment padding + border see css style

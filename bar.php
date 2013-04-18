@@ -60,7 +60,7 @@
     <th colspan="7">Cetak Berita Acara Rekonsiliasi</th>
 </thead>
 <tbody>
-<form id="frm_sai" method="post" action="">
+<form id="frm_bar" method="post" action="controller/cont.bar.php">
     <tr>
             <th>Kode Satker</th>
             <td colspan="6" id="kdsatker"></td>
