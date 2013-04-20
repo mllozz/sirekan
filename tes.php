@@ -103,6 +103,8 @@ function __autoload($class_name) {
 //        );
 //        print_r($data);
 
-$bar=new Pdf_Print();
-$bar->createBar();
+$bar=new Periode();
+$pernya=$bar->getPeriodeByPer('02');
+
+echo $pernya['nmbulan'];
 ?>

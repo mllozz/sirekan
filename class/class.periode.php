@@ -23,6 +23,22 @@ class Periode {
         return $data;
     }
 
+    public function getPeriodeByPer($periode) {
+        $db = Database::getInstance();
+        $conn = $db->getConnection(2);
+
+        $query = "select  periode kdperiode,bulan1 nmbulan from t_periode where periode='$periode'";
+
+        $result = $conn->prepare($query);
+        $result->execute();
+
+        if ($result->rowCount() !=1) {
+            return false;
+        }
+        $data = $result->fetch();
+
+        return $data;
+    }
 }
 
 ?>
