@@ -75,7 +75,7 @@ if (isset($_REQUEST['cetak'])) {
                 $bar=new Pdf_Print();
                 //$error = false;
                 //$msg='Rekonsiliasi Benar';
-                $bar->createBar();
+                $bar->createBar($kddept, $kdunit, $kdsatker, $kddekon, $periode);
             }else{
                 //$msg='Rekonsiliasi Masih Salah';
                 echo json_encode($error);

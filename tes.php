@@ -102,9 +102,12 @@ function __autoload($class_name) {
 //            'bagian' => $arr,
 //        );
 //        print_r($data);
+//
+//$bar=new Periode();
+//$pernya=$bar->getPeriodeByPer('02');
+//
+//echo $pernya['nmbulan'];
 
-$bar=new Periode();
-$pernya=$bar->getPeriodeByPer('02');
-
-echo $pernya['nmbulan'];
+$data=false;
+echo date('l');
 ?>

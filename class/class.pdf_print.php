@@ -2,293 +2,167 @@
 
 class Pdf_Print {
 
-    public function createBar() {
+    public function createBar($kddept, $kdunit, $kdsatker, $kddekon, $periode) {
 
         require_once('../tcpdf/config/lang/eng.php');
         require_once('../tcpdf/tcpdf.php');
 
+        $arr = array(
+            'kddept' => $kddept,
+            'kdunit' => $kdunit,
+            'kdsatker' => $kdsatker,
+        );
 
-        $html = '<html>
+        $satker = new Satker($arr);
+
+        $data_satker = $satker->getSatker();
+
+
+        $setup = new Setup();
+        $set = $setup->getSetup();
+
+        $thnang = $set['thnang'];
+
+        $per = new Periode();
+        $pejabat = new Pejabat();
+
+        $pernya = $per->getPeriodeByPer($periode);
+        $bulan_ini = $per->getPeriodeByPer(date('m'));
+
+        $kasi = $pejabat->getPejabat();
+        
+        $kantor = new Kppn();
+
+        $kppn = $kantor->getKppn();
+
+        $html = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>BAR</title>
-<style type="text/css">
-body {
-	line-height:120%;
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+<style>
+	p {
+		margin-top:30px;
+                margin-bottom:20px;
 	}
-ol {
-	margin: 0;
-	padding: 0;
-}
-.c18 {
-	vertical-align: top;
-	width: 221.4pt;
-	border-style: solid;
-	border-color: #000000;
-	border-width: 0pt;
-	padding: 0pt 5.4pt 0pt 5.4pt
-}
-#atas {
-	width: 35%;
-	margin-left: 32%;
-	margin-bottom: -12px;
-}
-.c7 {
-	margin-right: -2.8pt;
-	height: 12pt;
-	text-align: right;
-	direction: ltr
-}
-.c26 {
-	max-width: 486.2pt;
-	background-color: #ffffff;
-	padding: 27.2pt 53.8pt 31.2pt 72pt
-}
-.c5 {
-	height: 12pt;
-	text-align: center;
-	direction: ltr
-}
-.c24 {
-	font-size: 13pt;
-	font-family: "Bookman Old Style";
-	text-decoration: underline
-}
-.c9 {
-	list-style-type: decimal;
-	margin: 0;
-	padding: 0;
-	line-height:120%;
-}
-.c10 {
-	height: 12pt;
-	direction: ltr
-}
-.c2 {
-	font-size: 11pt;
-	font-family: "Arial Narrow";
-	line-height:120%;
-}
-.c3 {
-	text-align: justify;
-	margin-left: 56pt;
-}
-.c0 {
-	line-height: 1;
-	direction: ltr
-}
-.c1 {
-	text-align: justify;
-	padding-bottom: 0;
-}
-.c21 {
-	padding-left: 0pt;
-	margin-left: 55.4pt
-}
-.c8 {
-	padding-left: 0.7pt;
-	margin-left: 55.4pt
-}
-.c19 {
-	padding-top: 10pt
-}
-.c27 {
-	padding-top: 10pt
-}
-.c4 {
-	text-indent: 36pt
-}
-.c25 {
-	text-align: right
-}
-.c22 {
-	border-collapse: collapse;
-}
-.c22a {
-	border-collapse: collapse;
-	margin-left:25%;
-	line-height: 120%;
-}
-.c28 {
-	font-size: 8pt
-}
-.c11 {
-	font-weight: bold
-}
-.c16 {
-	direction: ltr
-}
-.c23 {
-	margin-right: 18pt
-}
-.c17 {
-	color: #ff0000
-}
-.c20 {
-	margin-right: -2.8pt
-}
-.c14 {
-	line-height: 1.2;
-}
-.c12 {
-	text-align: center
-}
-.c13 {
-	height: 0pt
-}
-.c15 {
-	font-style: italic
-}
-.c6 {
-	text-align: justify
-}
-.title {
-	padding-top: 10pt;
-	line-height: 1;
-	text-align: left;
-	color: #000000;
-	font-size: 36pt;
-	font-family: "Times New Roman";
-	font-weight: bold;
-	padding-bottom: 6pt
-}
-.subtitle {
-	padding-top: 10pt;
-	line-height: 1;
-	text-align: left;
-	color: #666666;
-	font-style: italic;
-	font-size: 24pt;
-	font-family: "Georgia";
-	padding-bottom: 4pt
-}
-li {
-	color: #000000;
-	font-size: 12pt;
-	font-family: "Times New Roman"
-}
-p {
-	color: #000000;
-	font-size: 12pt;
-	margin: 0;
-	font-family: "Times New Roman"
-}
-h1 {
-	padding-top: 24pt;
-	line-height: 1;
-	text-align: left;
-	color: #000000;
-	font-size: 24pt;
-	font-family: "Times New Roman";
-	font-weight: bold;
-	padding-bottom: 6pt
-}
-h2 {
-	padding-top: 18pt;
-	line-height: 1;
-	text-align: left;
-	color: #000000;
-	font-size: 18pt;
-	font-family: "Times New Roman";
-	font-weight: bold;
-	padding-bottom: 4pt
-}
-h3 {
-	padding-top: 14pt;
-	line-height: 1;
-	text-align: left;
-	color: #000000;
-	font-size: 14pt;
-	font-family: "Times New Roman";
-	font-weight: bold;
-	padding-bottom: 4pt
-}
-h4 {
-	padding-top: 12pt;
-	line-height: 1;
-	text-align: left;
-	color: #000000;
-	font-size: 12pt;
-	font-family: "Times New Roman";
-	font-weight: bold;
-	padding-bottom: 2pt
-}
-h5 {
-	padding-top: 11pt;
-	line-height: 1;
-	text-align: left;
-	color: #000000;
-	font-size: 11pt;
-	font-family: "Times New Roman";
-	font-weight: bold;
-	padding-bottom: 2pt
-}
-h6 {
-	padding-top: 10pt;
-	line-height: 1;
-	text-align: left;
-	color: #000000;
-	font-size: 10pt;
-	font-family: "Times New Roman";
-	font-weight: bold;
-	padding-bottom: 2pt
-}
 </style>
 </head>
-<body class="c26">
-<div id="atas">
-<p class="c0 c12 c19"><span class="c11 c24">Berita Acara Rekonsiliasi</span></p>
-<p class="c16 c12"><span>No. BA- &nbsp; &nbsp; &nbsp; /WPB.06/KP.0140/2011</span></p>
-</div>
-<p class="c0 c1 c4 c27"><span class="c2">Pada hari ini Senin tanggal satu bulan Maret tahun Dua ribu sebelas</span><span class="c2 c17">&nbsp;</span><span class="c2">telah diselenggarakan rekonsiliasi Laporan Realisasi Anggaran antara satuan kerja / satuan kerja perangkat daerah Dinas Kehutanan Provinsi Jambi (029.05.100082.dk), yang selanjutnya disebut Kuasa Pengguna Anggaran (KPA), dengan Kantor Pelayanan Perbendaharaan Negara Jambi &nbsp;kode (527890), yang selanjutnya disebut Kuasa Bendahara Umum Negara.</span></p>
-<p class="c0 c4 c6"><span class="c2">Kuasa Pengguna Anggaran menyampaikan Laporan Realisasi Anggaran sebagai bahan rekonsiliasi, berupa:</span></p>
-<ol class="c9" start="1">
-  <li class="c0 c8 c6"><span class="c2">Laporan Realisasi Anggaran Belanja periode &nbsp;Bulan Februari &nbsp;TA 2011</span></li>
-  <li class="c0 c8 c6"><span class="c2">Laporan Realisasi Anggaran Pengembalian Belanja periode &nbsp;Bulan &nbsp;Februari </span><span class="c2 c17">&nbsp;</span><span class="c2">TA 2011</span></li>
-  <li class="c0 c8 c6"><span class="c2">Laporan Realisasi Anggaran Pendapatan periode Bulan Februari </span><span class="c2 c17">&nbsp;</span><span class="c2">TA 2011</span></li>
-  <li class="c0 c1 c8"><span class="c2">Laporan Realisasi Anggaran Pengembalian Pendapatan periode bulan Februari</span><span class="c2 c17">&nbsp;</span><span class="c2">TA 2011</span></li>
-</ol>
-<p class="c0 c1"><span class="c2">Pada tanggal 28 Bulan Februari 2011</span></p>
-<p class="c0 c1 c4"><span class="c2">Selanjutnya Kuasa Bendahara Umum Negara menyediakan data transaksi dan Laporan Realisasi Anggaran berdasarkan SPM/STS yang disampaikan oleh Kuasa Pengguna Anggaran yang diproses berdasarkan Sistem Akuntansi Umum.</span></p>
-<p class="c0 c1 c4"><span class="c2">Rekonsiliasi dilaksanakan oleh secara bersama-sama, yang hasilnya dituangkan kedalam </span><span class="c2 c15">Berita Acara Rekonsiliasi (BAR)</span><span class="c2">&nbsp;ini dengan hasil sebagai berikut:</span></p>
-<ol class="c9" start="1">
-  <li class="c0 c6 c8"><span class="c2 c11">DIPA</span></li>
-</ol>
-<p class="c0 c3"><span class="c2">Tidak terdapat perbedaan antara data SAU dengan data SAI </span></p>
-<ol class="c9" start="2">
-  <li class="c0 c6 c21"><span class="c2 c11">LRA</span></li>
-</ol>
-<p class="c3 c0"><span class="c2">Tidak terdapat perbedaan antara data SAU dengan data SAI </span></p>
-<ol class="c9" start="3">
-  <li class="c0 c21 c6"><span class="c2 c11">NERACA</span></li>
-</ol>
-<p class="c3 c0"><span class="c2">Tidak terdapat perbedaan antara data SAU dengan data SAI </span></p>
-<p class="c0 c1"><span class="c2">yang secara rinci tertuang dalam </span><span class="c2 c15">Laporan Hasil Rekonsiliasi</span><span class="c2">&nbsp;yang merupakan bagian &nbsp;yang tidak terpisahkan dari Berita Acara Rekonsiliasi (BAR) ini.</span></p>
-<p class="c0 c4 c6"><span class="c2">Kesalahan/ketidakcocokan data yang tertuang dalam Laporan Hasil Rekonsiliasi, akan dijadikan dasar perbaikan terhadap data dan laporan Kuasa Pengguna Anggaran dan Kuasa Bendahara Umum Negara.</span></p>
-<p class="c0 c4 c6"><span class="c2">Demikian berita acara ini dibuat untuk dilaksanakan.</span></p>
-<table cellpadding="0" cellspacing="0" class="c22a">
-  <tbody>
-    <tr class="c13">
-      <td class="c18"><p class="c0 c12"><span class="c2">A.n. Kuasa Bendahara Umum Negara,
-          </span></p>
-        <p class="c0 c12"><span class="c2">Kepala Seksi Verifikasi dan Akuntansi
-          </span></p>
-        <p class="c10 c14"><span class="c2"><br>
-          </span></p>
-        <p class="c0 c12"><span class="c2">Noegroho, S.Sos</span></p>
-        <p class="c0 c12"><span class="c2">NIP &nbsp;197304041994021001</span></p></td>
-      <td class="c18"><p class="c0 c12"><span class="c2">&nbsp;a.n Kuasa Pengguna Anggaran
-          </span></p>
-        <p class="c0 c12"><span class="c2">Pejabat Pembuat Komitmen
-          </span></p>
-        <p class="c10 c14"><span class="c2"><br>
-          </span></p>
-        <p class="c0 c12"><span class="c2">Nama KPA</span></p>
-        <p class="c0 c12"><span class="c2">NIP </span></p></td>
-    </tr>
-  </tbody>
+
+<body>
+<table width="540" border="0">
+  <tr>
+    <td style="text-align:center;"><img src="../img/garuda2.png" /></td>
+  </tr>
+  <tr>
+    <td style="text-align:center; line-height:1;">MENTERI KEUANGAN</td>
+  </tr>
+  <tr>
+    <td style="text-align:center; line-height:1;">REPUBLIK INDONESIA</td>
+  </tr>
+  <tr>
+    <td style="text-align:center; margin-top:10px; line-height:1.7em; font-size: 40px; text-decoration: underline; font-weight:bold;">Berita Acara  Rekonsiliasi</td>
+  </tr>
+  <tr>
+    <td style="text-align:center; text-indent: 20px;">No.  BA-       /WPB.06/KP.0140/' . $thnang . '</td>
+  </tr>
 </table>
+<br />
+<table width="540" border="0">
+  <tr>
+    <td><p style="text-indent:25px; text-align:justify; padding-top:-0.3em; line-height:1.5em;">Pada hari  ini '.$this->hari(date('l')).' tanggal ' . $this->Terbilang(date('d')) . ' bulan ' . $bulan_ini['nmbulan'] . ' tahun ' . $this->Terbilang(date('Y')) . ' telah diselenggarakan rekonsiliasi Laporan Realisasi  Anggaran antara satuan kerja / satuan kerja perangkat daerah ' . $data_satker['nmsatker'] . '  (' . $kddept . '.' . $kdunit . '.' . $kdsatker . '.' . $kddekon . '), yang  selanjutnya disebut Kuasa Pengguna Anggaran (KPA), dengan Kantor Pelayanan  Perbendaharaan Negara ' . $kppn->nmkppn . '  kode (' . $kppn->kdkppn . '), yang selanjutnya disebut Kuasa  Bendahara Umum Negara.</p></td>
+  </tr>
+</table>
+<table width="540" border="0">
+  <tr>
+    <td><p style="text-indent:25px; text-align:justify; line-height:1.5em;">Kuasa Pengguna Anggaran menyampaikan Laporan Realisasi  Anggaran sebagai bahan rekonsiliasi, berupa:</p></td>
+  </tr>
+  <tr>
+    <td style="text-indent:25px; ">1.&nbsp;&nbsp;Laporan Realisasi Anggaran Belanja periode  Bulan ' . $pernya['nmbulan'] . '  TA ' . $thnang . '</td>
+  </tr>
+  <tr>
+    <td style="text-indent:25px;">2.&nbsp;&nbsp;Laporan Realisasi Anggaran Pengembalian Belanja periode  Bulan  ' . $pernya['nmbulan'] . '  TA ' . $thnang . '</td>
+  </tr>
+  <tr>
+    <td style="text-indent:25px;">3.&nbsp;&nbsp;Laporan Realisasi Anggaran Pendapatan periode Bulan ' . $pernya['nmbulan'] . '  TA ' . $thnang . '</td>
+  </tr>
+  <tr>
+    <td style="text-indent:25px;">4.&nbsp;&nbsp;Laporan Realisasi Anggaran Pengembalian Pendapatan periode bulan ' . $pernya['nmbulan'] . ' TA ' . $thnang . '</td>
+  </tr>
+</table>
+<br />
+<table width="540" border="0">
+  <tr>
+    <td><p style="text-indent:25px; text-align:justify; line-height:1.5em;">Pada tanggal ' . date('d') . ' Bulan ' . $bulan_ini['nmbulan'] . ' ' . date('Y') . '</p></td>
+  </tr>
+  <tr>
+    <td><p style="text-indent:25px; text-align:justify; line-height:1.5em;">Selanjutnya  Kuasa Bendahara Umum Negara menyediakan data transaksi dan Laporan Realisasi  Anggaran berdasarkan SPM/STS yang disampaikan oleh Kuasa Pengguna Anggaran yang  diproses berdasarkan Sistem Akuntansi Umum. </p></td>
+  </tr>
+  <tr>
+    <td><p style="text-indent:25px; text-align:justify; line-height:1.5em;">Rekonsiliasi  dilaksanakan oleh secara bersama-sama, yang hasilnya dituangkan kedalam <em>Berita  Acara Rekonsiliasi (BAR)</em> ini dengan hasil sebagai berikut:</p></td>
+  </tr>
+</table>
+<br />
+<table width="540" border="0">
+  <tr>
+    <td style="text-indent:25px; line-height:1.5em;"><strong>1.&nbsp;&nbsp;DIPA</strong></td>
+  </tr>
+  <tr>
+    <td style="text-indent:25px; line-height:1.5em;">Tidak terdapat perbedaan antara data SAU dengan data  SAI</td>
+  </tr>
+  <tr>
+    <td style="text-indent:25px; line-height:1.5em;"><strong>2.&nbsp;&nbsp;LRA</strong></td>
+  </tr>
+  <tr>
+    <td style="text-indent:25px; line-height:1.5em;">Tidak terdapat perbedaan antara data SAU dengan data  SAI </td>
+  </tr>
+  <tr>
+    <td style="text-indent:25px; line-height:1.5em;"><strong>3.&nbsp;&nbsp;NERACA</strong></td>
+  </tr>
+  <tr>
+    <td style="text-indent:25px; line-height:1.5em;">Tidak terdapat perbedaan antara data SAU dengan data  SAI </td>
+  </tr>
+
+</table>
+<br />
+<table width="540" border="0">
+  <tr>
+    <td><p style="text-align:justify; line-height:1.5em;">yang secara rinci tertuang dalam <em>Laporan Hasil  Rekonsiliasi</em> yang merupakan bagian   yang tidak terpisahkan dari Berita Acara Rekonsiliasi (BAR) ini.</p></td>
+  </tr>
+  <tr>
+    <td><p style="text-indent:25px; text-align:justify; line-height:1.5em;">Kesalahan/ketidakcocokan data yang tertuang dalam Laporan  Hasil Rekonsiliasi, akan dijadikan dasar perbaikan terhadap data dan laporan  Kuasa Pengguna Anggaran dan Kuasa Bendahara Umum Negara.</p></td>
+  </tr>
+  <tr>
+    <td><p style="text-indent:25px; text-align:justify; line-height:1.5em;">Demikian berita acara ini dibuat untuk dilaksanakan.</p></td>
+  </tr>
+</table>
+<br />
+<table width="600" border="0">
+  <tr>
+    <td style="text-align:center; line-height:1em; text-indent: 2px;">A.n. Kuasa Bendahara Umum Negara</td>
+    <td style="text-align:center; line-height:1em;">a.n. Kuasa Pengguna Anggaran</td>
+  </tr>
+  <tr>
+    <td style="text-align:center; line-height:1em; text-indent: 25px;"><p>Kepala Seksi Verifikasi dan Akuntansi</p></td>
+    <td style="text-align:center; line-height:1em;">Pejabat Pembuat Komitmen</td>
+  </tr>
+  <tr>
+    <td style="line-height:3.2em;">&nbsp;</td>
+    <td style="line-height:3.2em;">&nbsp;</td>
+  </tr>
+  <tr>
+    <td style="line-height:1em; text-indent: 65px;">' . $kasi['nama'] . '</td>
+    <td style="line-height:1em; text-indent: 85px;">.......</td>
+  </tr>
+  <tr>
+    <td style="line-height:1em; text-indent: 65px;">' . $kasi['nip2'] . '</td>
+    <td style="line-height:1em; text-indent: 85px;">NIP.</td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+
 </body>
-</html>';
+</html>
+';
 
         $pdf = new TCPDF('P', 'mm', 'F4', true, 'UTF-8', false);
 
@@ -308,10 +182,8 @@ h6 {
 
 //set auto page breaks
         //$pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
-
 //set image scale factor
         //$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
-
 //set some language-dependent strings
         $pdf->setLanguageArray($l);
 
@@ -324,45 +196,128 @@ h6 {
 // Add a page 
 // This method has several options, check the source code documentation for more information.
         $pdf->setPrintHeader(false);
-        $pdf->setPrintFooter(true);
+        $pdf->setPrintFooter(false);
         $pdf->AddPage();
 
 //*************
         ob_end_clean();
 //************* 
-        $pdf->writeHTMLCell($w = 0, $h = 0, $x = '', $y = '', $html, $border = 0, $ln = 1, $fill = 0, $reseth = true, 
-                $align = 'left', $autopadding = false);
+        $pdf->writeHTMLCell($w = 0, $h = 0, $x = '', $y = '', $html, $border = 0, $ln = 1, $fill = 0, $reseth = true, $align = 'left', $autopadding = false);
 
         $pdf->Output('../pdf/BAR.pdf', 'F');
         echo json_encode('pdf/BAR.pdf');
     }
-    
-    public function createLamp($jns_lamp,$kddept, $kdunit, $kdsatker, $kddekon, $periode){
-        
+
+    public function createLamp($jns_lamp, $kddept, $kdunit, $kdsatker, $kddekon, $periode) {
+
         require_once('../tcpdf/config/lang/eng.php');
         require_once('../tcpdf/tcpdf.php');
-       
+
+        $pdf = new TCPDF('L', 'mm', 'F4', true, 'UTF-8', false);
+
+        $pdf->SetCreator(PDF_CREATOR);
+        $pdf->SetAuthor('Eko Sigit / 5210105007');
+        $pdf->SetTitle('Berita Acara Rekonsiliasi');
+        $pdf->SetSubject('Laporan Hasil rekonsiliasi');
+        $pdf->SetKeywords('rekonsiliasi,report,bar, php, mysql');
+
+
+        $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+
+//set margins
+        $pdf->SetMargins('4', '1', '2');
+        $pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
+        $pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
+
+//set auto page breaks
+        //$pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+//set image scale factor
+        //$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+//set some language-dependent strings
+        $pdf->setLanguageArray($l);
+
+// ---------------------------------------------------------
+// set default font subsetting mode
+        $pdf->setFontSubsetting(true);
+
+        $pdf->SetFont('helvetica', '', 11, '', true);
+
+// Add a page 
+// This method has several options, check the source code documentation for more information.
+        $pdf->setPrintHeader(false);
+        $pdf->setPrintFooter(false);
+        $pdf->AddPage();
+
+//*************
+        ob_end_clean();
+//************* 
+
+
         $setup = new Setup();
         $set = $setup->getSetup();
 
         $thnang = $set['thnang'];
         $tgl_awal = $thnang . '-' . $periode . '-01';
         $tgl_akhir = $thnang . '-' . $periode . '-31';
-        
-        $per=new Periode();
-        
-        $pernya=$per->getPeriodeByPer($periode);
-        
-        $rek=new Rekon();
-        
-        $data=$rek->rekonRealBelanja($kddept, $kdunit, $kdsatker, $tgl_awal, $tgl_akhir, $kddekon);
-        
-        
-        $html='<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+        $per = new Periode();
+
+        $pernya = $per->getPeriodeByPer($periode);
+
+        $kantor = new Kppn();
+
+        $kppn = $kantor->getKppn();
+
+        $data = '';
+        $judul = '';
+        $rek = new Rekon();
+
+        switch ($jns_lamp) {
+            case '1':
+                $data = $rek->rekonRealBelanja($kddept, $kdunit, $kdsatker, $tgl_awal, $tgl_akhir, $kddekon);
+                $judul = 'ANGGARAN BELANJA';
+                break;
+            case '2':
+                $data = $rek->rekonPengembalianBelanja($kddept, $kdunit, $kdsatker, $tgl_awal, $tgl_akhir, $kddekon);
+                $judul = 'PENGEMBALIAN BELANJA';
+                break;
+            case '3':
+                $data = $rek->rekonPendapatanBPjk($kddept, $kdunit, $kdsatker, $tgl_awal, $tgl_akhir, $kddekon);
+                $judul = 'PENDAPATAN BUKAN PAJAK';
+                break;
+            case '4':
+                $data = $rek->rekonPendapatanPajak($kddept, $kdunit, $kdsatker, $tgl_awal, $tgl_akhir, $kddekon);
+                $judul = 'PENDAPATAN PAJAK';
+                break;
+            case '5':
+                $data = $rek->rekonPenerimaanPembiayaan($kddept, $kdunit, $kdsatker, $tgl_awal, $tgl_akhir, $kddekon);
+                $judul = 'PENERIMAAN PEMBIAYAAN';
+                break;
+            case '6':
+                $data = $rek->rekonPengeluaranPembiayaan($kddept, $kdunit, $kdsatker, $tgl_awal, $tgl_akhir, $kddekon);
+                $judul = 'PENGELUARAN PEMBIAYAAN';
+                break;
+            case '7':
+                $data = $rek->rekonUP($kddept, $kdunit, $kdsatker, $tgl_awal, $tgl_akhir, $kddekon);
+                $judul = 'MUTASI UANG PERSEDIAAN';
+                break;
+            case '8':
+                $data = $rek->rekonSaldo($kddept, $kdunit, $kdsatker, $tgl_awal, $tgl_akhir, $kddekon);
+                $judul = 'PAGU BELANJA';
+                break;
+            default:
+                break;
+        }
+
+        $length = 28;
+        $num_pages = ceil(count($data) / $length);
+        $offset = 0;
+        $i = 0;
+        $html = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Untitled Document</title>
+<title>Lampiran</title>
 <style>
 	table {
 		width: 900;
@@ -380,7 +335,6 @@ h6 {
 
 	td#headc{
 		text-align:left;
-		font-size:14px;
 	}
 	#param {
 		font-size:10px;
@@ -415,29 +369,35 @@ h6 {
 	
 </style>
 </head>
-<body>
-<table id="header">
+<body>';
+        while ($i < $num_pages) {
+            if ($data != false) {
+                $output = array_slice($data, $offset, $length);
+            } else {
+                $output = false;
+            }
+            $html.='<table id="header">
   <tr>
-    <td id="headc" style="font-size:14px;">KEMENTERIAN KEUANGAN RI</td>
+    <td id="headc" style="font-size:24px;">KEMENTERIAN KEUANGAN RI</td>
   </tr>
   <tr>
-    <td id="headc" style="font-size:14px;">DIREKTORAT JENDERAL PERBENDAHARAAN</td>
+    <td id="headc" style="font-size:24px;">DIREKTORAT JENDERAL PERBENDAHARAAN</td>
   </tr>
   <tr>
-   <td style="text-align: center;">REKONSILIASI ANGGARAN BELANJA ANTARA DATA SAU DAN SAI TINGKAT KPPN</td>
+   <td style="text-align: center;">REKONSILIASI ' . $judul . ' ANTARA DATA SAU DAN SAI TINGKAT KPPN</td>
   </tr>
   <tr>
     <td  style="text-align: center;">MENURUT BA, ESELON I, SATKER, AKUN - DETAIL SEMUA DATA</td>
   </tr>
   <tr>
-    <td  style="text-align: center;">PERIODE '.  strtoupper($pernya['nmbulan']) .' '.$thnang.'</td>
+    <td  style="text-align: center;">PERIODE ' . strtoupper($pernya['nmbulan']) . ' ' . $thnang . '</td>
   </tr>
   </table>
 <table id="param">
   <tr>
     <td>KPPN : </td>
-    <td>156 </td>
-    <td>K O L A K A</td>
+    <td>' . $kppn->kdkppn . ' </td>
+    <td>' . $kppn->nmkppn . '</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
@@ -446,21 +406,21 @@ h6 {
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>Tanggal : </td>
-    <td>20-04-13</td>
+    <td>' . date('d-M-y') . '</td>
   </tr>
   <tr>
     <td>Parameter :</td>
-    <td>Kode BA '.$kddept.'</td>
-    <td>Kode Es1 '.$kdunit.'</td>
+    <td>Kode BA ' . $kddept . '</td>
+    <td>Kode Es1 ' . $kdunit . '</td>
     <td>Kode Satker </td>
-    <td>'.$kdsatker.'</td>
+    <td>' . $kdsatker . '</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>Halaman :</td>
-    <td>&nbsp;</td>
+    <td>' . ($i + 1) . '</td>
   </tr>
 </table>
 <span><br></span>
@@ -490,24 +450,39 @@ h6 {
 </table>
 <table id="data">
 ';
-        $jmlsai=0;
-        $jmlsau=0;
-        foreach($data as $rows){
-            $html.='<tr>
-            <td style="width: 70px;  text-align:center;">'.$rows['KDBAES1'].'</td>
-            <td style="width: 70px; text-align:center;">'.$rows['KDSATKER'].'</td>
-            <td style="width: 70px; text-align:center;">'.$rows['KDPERK'].'</td>
-            <td style="width: 70px; text-align:center;">'.$rows['JNSDOK1'].'</td>
-            <td style="width: 70px; text-align:center;">'.$rows['TGLDOK1'].'</td>
-            <td id="panjang" style="width: 160px; text-align:center;">'.$rows['NODOK1'].'</td>
-            <td id="rp" style="width: 160px; text-align:right;">'.$rows['RPSAU'].'</td>
-            <td id="rp" style="width: 160px;  text-align:right;">'.$rows['RPSAI'].'</td>
-            <td style="width: 70px; text-align:center;">'.$rows['HASIL'].'</td>
+
+            $jmlsai = 0;
+            $jmlsau = 0;
+            if ($output == false) {
+                $html.='<tr>
+            <td style="width: 900px;  text-align:center;">--</td>
             </tr>';
-            $jmlsai+=(int) $rows['RPSAI'];
-            $jmlsau+=(int) $rows['RPSAI'];
+            } else {
+                foreach ($output as $rows) {
+                    $html.='<tr>
+                <td style="width: 70px;  text-align:center;">' . $rows['KDBAES1'] . '</td>
+                <td style="width: 70px; text-align:center;">' . $rows['KDSATKER'] . '</td>
+                <td style="width: 70px; text-align:center;">' . $rows['KDPERK'] . '</td>
+                <td style="width: 70px; text-align:center;">' . $rows['JNSDOK1'] . '</td>
+                <td style="width: 70px; text-align:center;">' . $rows['TGLDOK1'] . '</td>
+                <td id="panjang" style="width: 160px; text-align:center;">' . $rows['NODOK1'] . '</td>
+                <td id="rp" style="width: 160px; text-align:right;">' . $this->formatMoney($rows['RPSAU'], true) . '</td>
+                <td id="rp" style="width: 160px;  text-align:right;">' . $this->formatMoney($rows['RPSAI'], true) . '</td>
+                <td style="width: 70px; text-align:center;">' . $rows['HASIL'] . '</td>
+                </tr>';
+                    $jmlsai+=(int) $rows['RPSAI'];
+                    $jmlsau+=(int) $rows['RPSAI'];
+                }
             }
-$html.='</table>
+
+
+            $offset = $offset + $length;
+            $i++;
+            if ($i < $num_pages) {
+                $html.=$html;
+            }
+        }
+        $html.='</table>
 <table id="footer">
   <tr>
     <td style="width: 70px;  text-align:center;">&nbsp;</td>
@@ -516,60 +491,72 @@ $html.='</table>
     <td style="width: 70px;  text-align:center;">&nbsp;</td>
     <td style="width: 70px;  text-align:center;">&nbsp;</td>
     <td id="panjang" style="width: 160px;  text-align:right; color: blue; font-weight:bold;">JUMLAH</td>
-    <td id="panjang" style="width: 160px;  text-align:right; color: blue; font-weight:bold;">'.$jmlsau.'</td>
-    <td id="panjang" style="width: 160px;  text-align:right; color: blue; font-weight:bold;">'.$jmlsai.'</td>
+    <td id="panjang" style="width: 160px;  text-align:right; color: blue; font-weight:bold;">' . $this->formatMoney($jmlsau, true) . '</td>
+    <td id="panjang" style="width: 160px;  text-align:right; color: blue; font-weight:bold;">' . $this->formatMoney($jmlsai, true) . '</td>
     <td style="width: 70px;  text-align:center;">&nbsp;</td>
   </tr>
 </table>
 </body>
 </html>
 ';
-        
-        $pdf = new TCPDF('L', 'mm', 'F4', true, 'UTF-8', false);
+        $pdf->writeHTMLCell($w = 0, $h = 0, $x = '', $y = '', $html, $border = 0, $ln = 1, $fill = 0, $reseth = true, $align = 'left', $autopadding = false);
+        $pdf->Output('../pdf/' . $kddept . '' . $kdunit . '' . $kdsatker . 'lampiran.pdf', 'F');
+        echo json_encode('pdf/' . $kddept . '' . $kdunit . '' . $kdsatker . 'lampiran.pdf');
+    }
 
-        $pdf->SetCreator(PDF_CREATOR);
-        $pdf->SetAuthor('Eko Sigit / 5210105007');
-        $pdf->SetTitle('Berita Acara Rekonsiliasi');
-        $pdf->SetSubject('Laporan Hasil rekonsiliasi');
-        $pdf->SetKeywords('rekonsiliasi,report,bar, php, mysql');
+    function formatMoney($number, $fractional = false) {
+        if ($fractional) {
+            $number = sprintf('%.2f', $number);
+        }
+        while (true) {
+            $replaced = preg_replace('/(-?\d+)(\d\d\d)/', '$1,$2', $number);
+            if ($replaced != $number) {
+                $number = $replaced;
+            } else {
+                break;
+            }
+        }
+        return $number;
+    }
 
+    function Terbilang($x) {
+        $abil = array("", "satu", "dua", "tiga", "empat", "lima", "enam", "tujuh",
+            "delapan", "sembilan", "sepuluh", "sebelas");
+        if ($x < 12)
+            return " " . $abil[$x];
+        elseif ($x < 20)
+            return $this->Terbilang($x - 10) . " belas ";
+        elseif ($x < 100)
+            return $this->Terbilang($x / 10) . " puluh " . $this->Terbilang($x % 10);
+        elseif ($x < 200)
+            return " seratus" . Terbilang($x - 100);
+        elseif ($x < 1000)
+            return $this->Terbilang($x / 100) . " ratus " . $this->Terbilang($x % 100);
+        elseif ($x < 2000)
+            return " seribu" . Terbilang($x - 1000);
+        elseif ($x < 1000000)
+            return $this->Terbilang($x / 1000) . " ribu " . $this->Terbilang($x % 1000);
+        elseif ($x < 1000000000)
+            return $this->Terbilang($x / 1000000) . " juta " . $this->Terbilang($x % 1000000);
+    }
 
-        $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+    function hari($namahari) {
+        if ($namahari == "Sunday")
+            $namahari = "Minggu";
+        else if ($namahari == "Monday")
+            $namahari = "Senin";
+        else if ($namahari == "Tuesday")
+            $namahari = "Selasa";
+        else if ($namahari == "Wednesday")
+            $namahari = "Rabu";
+        else if ($namahari == "Thursday")
+            $namahari = "Kamis";
+        else if ($namahari == "Friday")
+            $namahari = "Jumat";
+        else if ($namahari == "Saturday")
+            $namahari = "Sabtu";
 
-//set margins
-        $pdf->SetMargins('4', '1', '2');
-        $pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
-        $pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
-
-//set auto page breaks
-        //$pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
-
-//set image scale factor
-        //$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
-
-//set some language-dependent strings
-        $pdf->setLanguageArray($l);
-
-// ---------------------------------------------------------
-// set default font subsetting mode
-        $pdf->setFontSubsetting(true);
-
-        $pdf->SetFont('helvetica', '', 11, '', true);
-
-// Add a page 
-// This method has several options, check the source code documentation for more information.
-        $pdf->setPrintHeader(false);
-        $pdf->setPrintFooter(true);
-        $pdf->AddPage();
-
-//*************
-        ob_end_clean();
-//************* 
-        $pdf->writeHTMLCell($w = 0, $h = 0, $x = '', $y = '', $html, $border = 0, $ln = 1, $fill = 0, $reseth = true, 
-                $align = 'left', $autopadding = false);
-
-        $pdf->Output('../rbel.pdf', 'F');
-        echo json_encode('rbel.pdf');
+        return $namahari;
     }
 
 }
