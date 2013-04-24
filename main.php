@@ -14,6 +14,8 @@ include_once('controller/cont.main.php');
         <script type="text/javascript" src="js/jquery-ui.js"></script>
         <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
         <script type="text/javascript" src="js/pdfobject.js"></script>
+        <script type="text/javascript" src="js/jquery.flot.js"></script>
+        <script type="text/javascript" src="js/jquery.flot.pie.js"></script>
         <script type="text/javascript" src="js/menu.js"></script>
     </head>
     <body>

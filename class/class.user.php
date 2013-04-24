@@ -262,6 +262,7 @@ abstract class User {
         return $data;
     }
     
+        
     /**
      * 
      * @param User $user

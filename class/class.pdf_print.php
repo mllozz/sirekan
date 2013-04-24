@@ -204,8 +204,8 @@ class Pdf_Print {
 //************* 
         $pdf->writeHTMLCell($w = 0, $h = 0, $x = '', $y = '', $html, $border = 0, $ln = 1, $fill = 0, $reseth = true, $align = 'left', $autopadding = false);
 
-        $pdf->Output('../pdf/BAR.pdf', 'F');
-        echo json_encode('pdf/BAR.pdf');
+        $pdf->Output('../pdf/' . $kddept . '' . $kdunit . '' . $kdsatker . 'BAR.pdf', 'F');
+        echo json_encode('pdf/' . $kddept . '' . $kdunit . '' . $kdsatker . 'BAR.pdf');
     }
 
     public function createLamp($jns_lamp, $kddept, $kdunit, $kdsatker, $kddekon, $periode) {

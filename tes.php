@@ -108,6 +108,23 @@ function __autoload($class_name) {
 //
 //echo $pernya['nmbulan'];
 
-$data=false;
-echo date('l');
+$user=new \UserAdmin();
+    
+    $data=$user->getUserBlok();
+    
+    print_r($data);
+    $jml_aktif=0;
+    $jml_blokir=0;
+    for($i=0;$i<count($data);$i++){
+        if($data[$i]==1){
+            $jml_blokir++;
+        }else{
+            $jml_aktif++;
+        }
+    }
+    
+    $arr=array(
+        'aktif'=>$jml_aktif,
+        'blokir'=> $jml_blokir
+    );
 ?>
