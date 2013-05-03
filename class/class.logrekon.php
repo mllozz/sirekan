@@ -80,6 +80,23 @@ class LogRekon {
         }
         return false;
     }
+    
+    public function getStatusRekon($kddept, $kdunit, $kdsatker, $kddekon, $periode) {
+        $db = Database::getInstance();
+        $conn = $db->getConnection(1);
+
+        $query = "SELECT * FROM log_rekon WHERE kddept='$kddept' AND kdunit='$kdunit' AND kdsatker='$kdsatker' 
+                  AND kddekon='$kddekon' AND periode='$periode'";
+
+        $result = $conn->prepare($query);
+        $result->execute();
+
+        if ($result->rowCount() >= 1) {
+            $stat= $result->fetch();
+            return $stat['id_status_rekon'];
+        }
+        return false;
+    }
 
     public function updateLog($kddept, $kdunit, $kdsatker, $kddekon, $periode, $id_status_rekon) {
         $db = Database::getInstance();

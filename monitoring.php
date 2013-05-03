@@ -8,7 +8,7 @@
     #pie2 {
         margin-left: 48%;
         margin-right: 1%;
-        margin-top: -35.2%;
+        margin-top: -31%;
         width: 48.5%;
         float: right;
     }
@@ -29,7 +29,7 @@
         background:#FFFFFF;
         border-left:0px;
         border-bottom:	0px;
-        height:	47%;
+        height:	40%;
         overflow:hidden;
         border: 1px solid black;
     }
@@ -39,7 +39,7 @@
         background:#FFFFFF;
         border-left:0px;
         border-bottom:	0px;
-        height: 47%;
+        height: 30%;
         overflow:hidden;
         border: 1px solid black;
     }
@@ -61,8 +61,34 @@
 </div>
 <div id="pie2">
     <div id="div0_pie2"><p id="title2"></p></div>
-    <div id="div1_pie2" style="height:47%;"></div>
+    <div id="div1_pie2" style="height:40%;"></div>
 </div>
-
+<div id="status_rekon">
+    <table id="hasil_rekon">
+        <thead>
+            <tr>
+            <th>KDDEPT</th>
+            <th>KDUNIT</th>
+            <th>KDSATKER</th>
+            <th>KDDEKON</th>
+            <th>JAN</th>
+            <th>FEB</th>
+            <th>MAR</th>
+            <th>APR</th>
+            <th>MEI</th>
+            <th>JUN</th>
+            <th>JUL</th>
+            <th>AGS</th>
+            <th>SEP</th>
+            <th>OKT</th>
+            <th>NOV</th>
+            <th>DES</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+        </tbody>
+    </table>
+</div>
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <script type="text/javascript" src="js/monitoring.js"></script>

@@ -131,6 +131,7 @@ function Cek(data) {
                 "bSort": true,
                 "bAutoWidth": false,
                 "bJQueryUI": true,
+                "iDisplayLength": 25,
                 "aoColumns": [
                     {"mData": "KDPERK"},
                     {"mData": "KDBAES1"},

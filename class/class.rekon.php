@@ -100,7 +100,7 @@ class Rekon {
         }
         $rekon = array(
             'UP' => $UP,
-            'SALDO' => $Saldo,
+            //'SALDO' => $Saldo,
             'RBelanja' => $RBelanja,
             'BPjk' => $BPjk,
             'Pjk' => $Pjk,

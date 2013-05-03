@@ -132,6 +132,7 @@ if (isset($_REQUEST['hasil'])) {
         $rekon=new Rekon();
         $log=new LogRekon();
         $arr=$rekon->cekRekonBenarSalah($kddept, $kdunit, $kdsatker, $periode, $kddekon);
+
         if(in_array(false, $arr)){
             $log->updateLog($kddept, $kdunit, $kdsatker, $kddekon, $periode, 3);
             $msg='Rekonsiliasi Ada Yang Salah, Silahkan Cek Detail Kesalahan';

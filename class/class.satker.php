@@ -59,9 +59,9 @@ class Satker {
         $db=  Database::getInstance();
         $conn=$db->getConnection(2);
 
-        $query="select DISTINCT kddekon from t_glsaud ";
+        $query="select DISTINCT kddekon from d_pagu ";
         $query .=" WHERE kdsatker='".$this->kdsatker."' AND ";
-        $query .=" kdbaes1='".$this->kddept.''.$this->kdunit."'";
+        $query .=" kddept='".$this->kddept."' AND kdunit='".$this->kdunit."' group by kddept,kdunit,kdsatker,kddekon";
         
         $result=$conn->prepare($query);
         $result->execute();
@@ -84,8 +84,8 @@ class Satker {
         $db=  Database::getInstance();
         $conn=$db->getConnection(2);
 
-        $query="select count(kdsatker) jml from t_satker ";
-        $query .=" WHERE kdkppn='$kdkppn'";
+        $query="select count(*) jml from  (select count(DISTINCT kdsatker) jml from d_pagu ";
+        $query .=" WHERE kdkppn='$kdkppn' group by kddept,kdunit,kdsatker,kddekon) a";
         
         $result=$conn->prepare($query);
         $result->execute();
@@ -96,6 +96,29 @@ class Satker {
         $data=$result->fetch();
 
         return $data;
-    }    
+    } 
+    
+    public function getAllSatker(){
+        $set=new Setup();
+        
+        $kppn=$set->getSetup();
+        $kdkppn=$kppn['kdkppn'];
+        
+        $db=  Database::getInstance();
+        $conn=$db->getConnection(2);
+
+        $query="select distinct kddept,kdunit,kdsatker,kddekon from d_pagu ";
+        $query .=" WHERE kdkppn='$kdkppn' group by kddept,kdunit,kdsatker,kddekon order by kddept,kdunit,kdsatker";
+        
+        $result=$conn->prepare($query);
+        $result->execute();
+
+        if($result->rowCount()==0) {
+            return false;
+        }
+        $data=$result->fetchAll();
+
+        return $data;
+    }
 
 }
