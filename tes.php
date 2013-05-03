@@ -108,23 +108,40 @@ function __autoload($class_name) {
 //
 //echo $pernya['nmbulan'];
 
-$user=new \UserAdmin();
+//$user=new \UserAdmin();
+//    
+//    $data=$user->getUserBlok();
+//    
+//    print_r($data);
+//    $jml_aktif=0;
+//    $jml_blokir=0;
+//    for($i=0;$i<count($data);$i++){
+//        if($data[$i]==1){
+//            $jml_blokir++;
+//        }else{
+//            $jml_aktif++;
+//        }
+//    }
+//    
+//    $arr=array(
+//        'aktif'=>$jml_aktif,
+//        'blokir'=> $jml_blokir
+//    );
+
+$rekon=new Rekon();
+
+
+print_r(date('m'));
+$data=$rekon->getRekonBenarSalah('02');
+$satker=new Satker();
     
-    $data=$user->getUserBlok();
-    
-    print_r($data);
-    $jml_aktif=0;
-    $jml_blokir=0;
-    for($i=0;$i<count($data);$i++){
-        if($data[$i]==1){
-            $jml_blokir++;
-        }else{
-            $jml_aktif++;
-        }
-    }
+    $jml_satker=$satker->getJmlSatker();
     
     $arr=array(
-        'aktif'=>$jml_aktif,
-        'blokir'=> $jml_blokir
+        'belum' => $jml_satker['jml']-((int) $data[1]['jml_rek']+ (int) $data[2]['jml_rek']),
+        'benar' => $data[1]['jml_rek'],
+        'salah' => $data[2]['jml_rek']
     );
+print_r($arr);
+
 ?>

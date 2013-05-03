@@ -26,4 +26,29 @@ if(isset($_REQUEST['user_pie'])){
     echo json_encode($arr);
 }
 
+if(isset($_REQUEST['rekon_pie'])){
+       
+    if(isset($_REQUEST['periode'])){
+        $periode=$_REQUEST['periode'];
+    }else{
+        $periode=date('m');
+    }
+    
+    $rekon= new Rekon();
+    
+    $data= $rekon->getRekonBenarSalah($periode);
+    
+    $satker=new Satker();
+    
+    $jml_satker=$satker->getJmlSatker();
+    
+    $arr=array(
+        'belum' => $jml_satker['jml']-((int) $data[1]['jml_rek']+ (int) $data[2]['jml_rek']),
+        'benar' => $data[1]['jml_rek'],
+        'salah' => $data[2]['jml_rek']
+    );
+    
+    echo json_encode($arr);
+}
+
 ?>

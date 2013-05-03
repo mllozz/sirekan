@@ -6,6 +6,24 @@ class Rekon {
         include 'class/class.' . strtolower($class_name) . '.php';
     }
 
+    public function getRekonBenarSalah($periode){
+        $db = Database::getInstance();
+        $conn = $db->getConnection(1);
+        
+        $query="select a.id_status_rekon,nm_status_rekon,count(b.id_status_rekon) jml_rek from status_rekon a  ";
+        $query.=" LEFT JOIN log_rekon b on a.id_status_rekon=b.id_status_rekon ";
+        $query.=" and b.periode='$periode' GROUP BY a.id_status_rekon";
+        
+        
+        $result = $conn->prepare($query);
+        $result->execute();
+
+        if ($result->rowCount() >= 1) {
+            return $result->fetchAll();
+        }
+        return false;
+    }
+    
     public function cekRekonBenarSalah($kddept, $kdunit, $kdsatker, $periode, $kddekon) {
         $setup = new Setup();
         $set = $setup->getSetup();

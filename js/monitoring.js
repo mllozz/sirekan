@@ -5,20 +5,27 @@ $(document).ready(function() {
             {label: "Aktif", data: data.aktif, color: 'green'},
             {label: "Terblokir", data: data.blokir, color: 'red'}
         ];
-        drawPieUser('#div1','User Aktif dan Terblokir', det);
+        drawPieUser('#div1','#title','User Aktif dan Terblokir', det);
     });
-
-
+    
+    $.getJSON('controller/cont.monitoring.php?rekon_pie&periode=02',function(data){
+        var arr = [
+            {label: "Rekon Benar", data: parseInt(data.benar), color: 'green'},
+            {label: "Rekon Salah", data: parseInt(data.salah), color: 'red'},
+            {label: "Belum Rekon", data: parseInt(data.belum), color: 'yellow'}
+        ];
+        drawPieUser('#div1_pie2','#title2','Hasil Rekon Per Periode', arr);
+    });
 
 });
 
-function drawPieUser(divnya,judul, data) {
+function drawPieUser(divnya,tmp_judul,judul, data) {
 
     var placeholder = $(divnya);
 
     placeholder.unbind();
 
-    $("#title").text(judul);
+    $(tmp_judul).text(judul);
 
     $.plot(placeholder, data, {
         series: {

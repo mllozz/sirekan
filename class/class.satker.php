@@ -73,6 +73,29 @@ class Satker {
 
         return $data;
     }
+    
+    
+    public function getJmlSatker(){
+        $set=new Setup();
         
+        $kppn=$set->getSetup();
+        $kdkppn=$kppn['kdkppn'];
+        
+        $db=  Database::getInstance();
+        $conn=$db->getConnection(2);
+
+        $query="select count(kdsatker) jml from t_satker ";
+        $query .=" WHERE kdkppn='$kdkppn'";
+        
+        $result=$conn->prepare($query);
+        $result->execute();
+
+        if($result->rowCount()!=1) {
+            return false;
+        }
+        $data=$result->fetch();
+
+        return $data;
+    }    
 
 }
