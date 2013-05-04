@@ -8,7 +8,7 @@
     #pie2 {
         margin-left: 48%;
         margin-right: 1%;
-        margin-top: -31%;
+        margin-top: -29.8%;
         width: 48.5%;
         float: right;
     }
@@ -29,7 +29,7 @@
         background:#FFFFFF;
         border-left:0px;
         border-bottom:	0px;
-        height:	40%;
+        height:	38%;
         overflow:hidden;
         border: 1px solid black;
     }
@@ -61,10 +61,12 @@
 </div>
 <div id="pie2">
     <div id="div0_pie2"><p id="title2"></p></div>
-    <div id="div1_pie2" style="height:40%;"></div>
+    <div id="div1_pie2" style="height:38%;"></div>
 </div>
 <div id="status_rekon">
-    <table id="hasil_rekon">
+    <pre>Rekonsiliasi Semua Satker</pre>
+    <div id="loader"></div>
+    <table id="hasil_rekon" style="display:none;">
         <thead>
             <tr>
             <th>KDDEPT</th>

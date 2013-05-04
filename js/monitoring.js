@@ -16,9 +16,8 @@ $(document).ready(function() {
         ];
         drawPieUser('#div1_pie2','#title2','Hasil Rekon Per Periode', arr);
     });
-    
+    $('#loader').html('<img src="img/loader.gif" alt="loader" />').show();
     $.getJSON('controller/cont.monitoring.php?status_rekon',function(data){
-        
         $.each(data, function(index, data) {
                 $('#hasil_rekon tbody').append(
                         '<tr>' +
@@ -42,6 +41,7 @@ $(document).ready(function() {
                         );
                 //i++;
             });
+            $('#loader').html('<img src="img/loader.gif" alt="loader" />').hide();
             var otable = $('#hasil_rekon').dataTable({
                 "bProcessing": true,
                 "bPaginate": true,
@@ -70,6 +70,7 @@ $(document).ready(function() {
                     {"mData": "des"}
                 ]
             });
+            $('#hasil_rekon').fadeIn(500);
     });
 
 });
