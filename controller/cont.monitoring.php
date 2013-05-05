@@ -55,15 +55,7 @@ if(isset($_REQUEST['status_rekon'])){
     $satker=new Satker();
     $log=new LogRekon();
     $data=array();
-//    $bulan=array();
-//    $periode=new Periode();
-//    $bulan_akhir=(int) date('m');
-//    $all_bulan=$periode->getPeriode();
-//    
-//    for($i=0;$i<count($all_bulan);$i++){
-//        $bulan[$i]=$all_bulan['kdperiode'];
-//    }
-        
+       
     $all_satker=$satker->getAllSatker();
     $j=0;
     foreach($all_satker as $rows){
@@ -92,4 +84,52 @@ if(isset($_REQUEST['status_rekon'])){
     
 }
 
+if(isset($_REQUEST['stat_user'])){
+    session_start();
+    $username = $_SESSION['username'];
+
+    $kddept = substr($username, 0, 3);
+    $kdunit = substr($username, 3, 2);
+    $kdsatker = substr($username, 5, 6);
+
+    $arr = array(
+        'kddept' => $kddept,
+        'kdunit' => $kdunit,
+        'kdsatker' => $kdsatker,
+    );
+
+    $satker = new Satker($arr);
+    $sat=$satker->getSatker();
+    $data_satker = $satker->getKewenangan();
+    
+    $log=new LogRekon();
+    $rekon=new Rekon();
+    
+    $bln_ini=date('m');
+    $hsl_rekon=$log->getLog($kddept, $kdunit, $kdsatker, $data_satker['kddekon'], $bln_ini);
+    $tgl_rekon='Belum Rekon';
+    $status_rekon='Belum Rekon';
+    if($hsl_rekon!=false){
+        $tgl_rekon=$hsl_rekon['tgl_rekon'];
+        if($hsl_rekon['id_status_rekon']=='2' || $hsl_rekon['id_status_rekon']=='3'){
+            //$status_rekon='Benar';
+            $status_rekon=$rekon->cekRekonBenarSalah($kddept, $kdunit, $kdsatker, $bln_ini, $data_satker['kddekon']);
+        }else {
+            $status_rekon='Salah';
+        }
+    }
+    
+    $data=array(
+        'kddept' => $kddept,
+        'kdunit' => $kdunit,
+        'kdsatker' => $kdsatker,
+        'kddekon' => $data_satker['kddekon'],
+        'nmsatker' => $sat['nmsatker'],
+        'tgl_rekon' => $tgl_rekon,
+        'id' => $hsl_rekon['id_status_rekon'],
+        'hasil' => $status_rekon,
+    );
+    
+    echo json_encode($data);
+}
 ?>

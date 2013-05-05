@@ -53,6 +53,57 @@
         background:-webkit-gradient(linear, center top, center top, from(#006600), to(#004400));
         filter:	progid:DXImageTransform.Microsoft.gradient(startColorstr='#006600', endColorstr='#004400');
     }
+    
+    #grid_stat {
+        border: 1px solid black; 
+        border-collapse: collapse; 
+        display: block;
+        width: 100%;
+    }
+    
+    thead tr {
+        border-bottom: 1px solid black;
+        background: #A7C9B8;
+        text-align: center;
+        font-weight: bold;
+    }
+    
+    thead tr td {
+        text-align: center;
+    }
+
+    thead tr:hover {
+        background: #A7C9B8;
+    }
+    
+    tr:hover {
+        background-color: #ccc;
+    }
+
+    tr:nth-child(even) {
+        background: #B7E9F7;
+    }
+
+    tr:nth-child(even):hover {
+        background: #ccc;
+    }
+
+    td {
+        padding: 0 2px;
+        text-align: left;
+    }
+
+    td:hover {
+        cursor: pointer;
+    }
+    #grid_stat td:first-child-child {
+        text-align: left;
+        width: 25%;
+    }
+    #grid_stat td:last-child {
+        text-align: left;
+        width: 85%;
+    }
 </style>
 
 <div id="pie">
@@ -64,10 +115,12 @@
     <div id="div1_pie2" style="height:38%;"></div>
 </div>
 <div id="status_rekon">
-    <pre>Rekonsiliasi Semua Satker</pre>
     <div id="loader"></div>
     <table id="hasil_rekon" style="display:none;">
         <thead>
+            <tr>
+                <th colspan="16">Rekonsiliasi Semua Satker</th>
+            </tr>
             <tr>
             <th>KDDEPT</th>
             <th>KDUNIT</th>
@@ -91,6 +144,19 @@
             
         </tbody>
     </table>
+</div>
+<div id="status_rekon_user">
+    <table id="grid_stat">
+        <thead>
+            <tr>
+                <td colspan="2">Ringkasan Hasil Rekonsiliasi Bulan Ini</td>
+            </tr>
+        </thead>
+        <tbody>
+            
+        </tbody>
+    </table>
+    <div id="hasil_rek" style="margin-left:5%;"></div>
 </div>
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <script type="text/javascript" src="js/monitoring.js"></script>
