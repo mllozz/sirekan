@@ -133,7 +133,7 @@ if (empty($_FILES['file_adk']['tmp_name']) || $_FILES['file_adk']['tmp_name'] ==
             $error = 'Bukan File Rekon';
         }
 
-        //for security reason, we force to remove all uploaded file
+        
         @unlink($_FILES['file_adk']);
     }
 }
