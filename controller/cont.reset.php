@@ -103,8 +103,9 @@ if (isset($_POST['kddept']) && isset($_POST['kdunit']) && isset($_POST['kdsatker
     $username = $_POST['username'];
     $no_surat = $_POST['no_surat'];
     $tgl_surat = $_POST['tgl_surat'];
+    $kddekon=$_POST['dekon'];
     
-    $user_cek=$kddept.$kdunit.$kdsatker;
+    $user_cek=$kddept.$kdunit.$kdsatker.$kddekon;
 
     if (empty($kddept) || empty($kdunit) || empty($kdsatker) || empty($username) || empty($no_surat)|| empty($tgl_surat)) {
         $data = array(
@@ -122,7 +123,7 @@ if (isset($_POST['kddept']) && isset($_POST['kdunit']) && isset($_POST['kdsatker
                 'kddept' => $kddept,
                 'kdunit' => $kdunit,
                 'kdsatker' => $kdsatker,
-                'username' => $kddept.''.$kdunit.''.$kdsatker,
+                'username' => $kddept.''.$kdunit.''.$kdsatker.''.$kddekon,
             );
             
             $isAdmin=User::isAdmin($username);
@@ -142,7 +143,7 @@ if (isset($_POST['kddept']) && isset($_POST['kdunit']) && isset($_POST['kdsatker
                 $reset=User::resetPass($user);
                 if($reset) {
                     $arr2=array(
-                        'username' => $kddept.''.$kdunit.''.$kdsatker,
+                        'username' => $kddept.''.$kdunit.''.$kdsatker.''.$kddekon,
                         'password' => '',
                     );
                     $users=User::cekUser($arr2);

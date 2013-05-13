@@ -128,20 +128,36 @@ function __autoload($class_name) {
 //        'blokir'=> $jml_blokir
 //    );
 
-$rekon=new Rekon();
+//$rekon=new Rekon();
+//
+//
+//print_r(date('m'));
+//$data=$rekon->getRekonBenarSalah('02');
+//$satker=new Satker();
+//    
+//    $jml_satker=$satker->getJmlSatker();
+//    
+//    $arr=array(
+//        'belum' => $jml_satker['jml']-((int) $data[1]['jml_rek']+ (int) $data[2]['jml_rek']),
+//        'benar' => $data[1]['jml_rek'],
+//        'salah' => $data[2]['jml_rek']
+//    );
+//print_r($arr);
 
+//$j='01508635162KD';
+//echo(substr($j, 11, 2));
+//session_start();
+//
+//$akses = $_SESSION['akses'];
+//$kdakses = $akses[0];
+//$nmakses = $akses[1];
 
-print_r(date('m'));
-$data=$rekon->getRekonBenarSalah('02');
-$satker=new Satker();
-    
-    $jml_satker=$satker->getJmlSatker();
-    
-    $arr=array(
-        'belum' => $jml_satker['jml']-((int) $data[1]['jml_rek']+ (int) $data[2]['jml_rek']),
-        'benar' => $data[1]['jml_rek'],
-        'salah' => $data[2]['jml_rek']
-    );
-print_r($arr);
+$user=new UserAdmin();
 
+$data_user=User::getUser('33');
+$arr=  get_object_vars($data_user);
+
+$akses=User::getAkses($arr['kdakses']);
+
+print_r($akses);
 ?>

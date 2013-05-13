@@ -5,7 +5,7 @@
         border: 1px solid black;
         font-family: Calibri, sans-serif;
         font-size: 12px;
-        width: 65%;
+        width: 85%;
         text-align: left;
     }
 
@@ -47,7 +47,6 @@
 
     #grid td:last-child {
         text-align: left;
-        width: 280px;
     }
     
     input[type=text], option {
@@ -64,33 +63,43 @@
     <form method="post" action="controller/cont.rekam.php" id="frm_rekam">
 <table id="grid">
     <thead>
-    <th colspan="3">Rekam User</th>
+    <th colspan="7">Rekam User</th>
     </thead>
     <tbody>
 
     <tr>
-        <th><label>Kode Departemen</label></th><td><input type="text" class="int" name="kddept" maxlength="3" id="kddept"/></td><td><span id="kddept"></span></td>
+        <th><label>Kode Departemen</label></th><td><input type="text" class="int" name="kddept" maxlength="3" id="kddept"/></td><td colspan="5"><span id="kddept"></span></td>
     </tr>
     <tr>
-     <th><label>Kode Eselon 1</label></th><td><input type="text" name="kdunit"  class="int" maxlength="2" id="kdunit"/></td><td><span id="kdunit"></span></td>
+     <th><label>Kode Eselon 1</label></th><td><input type="text" name="kdunit"  class="int" maxlength="2" id="kdunit"/></td><td colspan="5"><span id="kdunit"></span></td>
     </tr>
     <tr>
-     <th><label>Kode Satker</label></th><td><input type="text" name="kdsatker"  class="int" maxlength="6" id="kdsatker"/></td><td><span id="kdsatker"></span></td>
+     <th><label>Kode Satker</label></th><td><input type="text" name="kdsatker"  class="int" maxlength="6" id="kdsatker"/></td><td colspan="5"><span id="kdsatker"></span></td>
     </tr>
     <tr>
-     <th><label>Hak Akses</label></th><td colspan="2"><select id="kdakses" name="kdakses">
-        <option value="1">Admin</option>
+        <th>Jenis Satker</th>
+        <td><input type="radio" name="dekon" id="dekon" value="KP"/>Kantor Pusat</td>
+        <td><input type="radio" name="dekon" id="dekon" value="KD"/>Kantor Daerah</td>
+        <td><input type="radio" name="dekon" id="dekon" value="DK"/>Dekonsentrasi</td>
+        <td><input type="radio" name="dekon" id="dekon" value="TP"/>Tugas Pembantuan</td>
+        <td><input type="radio" name="dekon" id="dekon" value="UB"/>Urusan Bersama</td>
+    </tr>
+    <tr>
+     <th><label>Hak Akses</label></th><td><select id="kdakses" name="kdakses">
         <option value="2">Satker</option>
+        <option value="1">Admin</option>
+        <option value="3">Operator Vera</option>
     </select></td>
+    <td colspan="2"><span id="isi_user" style="display: none;">Isi Username Admin/Operator</span></td><td colspan="2"><input type="text" id="username" style="display: none;"/></td>
     </tr>
     <tr>
-     <th><label>No Surat</label></th><td><input type="text" name="no_surat" maxlength="50" id="no_surat"/></td><td><span id="no_surat"></span></td>
+     <th><label>No Surat</label></th><td ><input type="text" name="no_surat" maxlength="50" id="no_surat"/></td><td colspan="5"><span id="no_surat"></span></td>
     </tr>
     <tr>
-     <th><label>Tgl Surat</label></th><td><input type="text" name="tgl_surat" id="tgl_surat"/></td><td><span id="tgl_surat"></span></td>
+     <th><label>Tgl Surat</label></th><td><input type="text" name="tgl_surat" id="tgl_surat"/></td><td colspan="5"><span id="tgl_surat"></span></td>
     </tr>
     <tr>
-    <td colspan="3"><input type="submit" name="btn_rekam" value="Buat User" /></td>
+    <td colspan="7"><input type="submit" name="btn_rekam" value="Buat User" /></td>
     </tr>
 </form>
     </tbody>

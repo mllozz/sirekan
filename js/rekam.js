@@ -1,4 +1,10 @@
 $(document).ready(function() {
+    $.getJSON('controller/cont.menu.php?admin', function(data) {
+        if (data === '2') {
+            window.location = 'main.php';
+        }
+    });
+    
     var now = new Date();
 
     var day = ("0" + now.getDate()).slice(-2);
@@ -20,8 +26,20 @@ $(document).ready(function() {
                 (key >= 48 && key <= 57) ||
                 (key >= 96 && key <= 105));
     });
-
+    
     //JSON cek data
+    $('#kdakses').change(function(){
+        var e = document.getElementById('kdakses');
+        var kdakses = e.options[e.selectedIndex].value;
+        if(kdakses!=='2'){
+            $('#isi_user').fadeIn(250);
+            $('#username').fadeIn(250);
+        }else {
+            $('#isi_user').fadeOut(250);
+            $('#username').fadeOut(250);
+        }
+    });
+    
     $("input[type=text]").keyup(function() {
         var val = $(this).attr('value');
         var field = $(this).attr('name');
@@ -72,12 +90,15 @@ $(document).ready(function() {
     //submit form
     $('#frm_rekam').submit(function() {
         $('#loader').html('<img src="img/loader.gif" alt="loader" />').show();
-        if ($('#kddept').val() === '' || $('#kdunit').val() === '' || $('#kdsatker').val() === '' || $('#no_surat').val() === '' || $('#tgl_surat').val() === '') {
+        var kddekon = $('#dekon:checked').val();
+        var e = document.getElementById('kdakses');
+        var kdakses = e.options[e.selectedIndex].value;
+        if ($('#kddept').val() === '' || $('#kdunit').val() === '' || $('#kdsatker').val() === '' || $('#no_surat').val() === '' || $('#tgl_surat').val() === '' || kddekon==='') {
             $('#error').html('Tidak boleh kosong').fadeIn(1000).delay(3500).fadeOut(500);
             $('#loader').html('<img src="img/loader.gif" alt="loader" />').hide();
             return false;
         } else {
-            $.post($('#frm_rekam').attr('action'), $('#frm_rekam').serialize(), function(data) {
+            $.post($('#frm_rekam').attr('action'), {kddept:$('#kddept').val(), kdunit: $('#kdunit').val() ,kdsatker:$('#kdsatker').val(),no_surat:$('#no_surat').val(),tgl_surat:$('#tgl_surat').val() ,kddekon:kddekon,kdakses: kdakses,username: $('#username').val()}, function(data) {
                 $.each(data, function() {
                     if (data.msg === 'ok') {
                         $("input[type=text]").val('');

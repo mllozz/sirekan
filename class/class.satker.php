@@ -5,6 +5,7 @@ class Satker {
     public $kdsatker;
     public $kddept;
     public $kdunit;
+    public $kddekon;
     public $nmsatker;
     public $kdjnssat;
     

@@ -12,6 +12,7 @@ abstract class User {
     public $kddept;
     public $kdunit;
     public $kdsatker;
+    public $kddekon;
     static public $valid_kdakses = array(
         User::AKSES_ADMIN => 'Admin',
         User::AKSES_SATKER => 'Satker',
@@ -91,7 +92,6 @@ abstract class User {
         $conn = $db->getConnection(1);
 
         $query = "SELECT * FROM akses WHERE kdakses=" . (int) $kdakses;
-
         $result = $conn->prepare($query);
         $result->execute();
 
@@ -110,7 +110,7 @@ abstract class User {
         $db = Database::getInstance();
         $conn = $db->getConnection(1);
 
-        $query = "SELECT username,kddept,kdunit,kdsatker,kdakses FROM users WHERE id_user='" . (int) $id_user . "'";
+        $query = "SELECT username,kddept,kdunit,kdsatker,kddekon,kdakses FROM users WHERE id_user='" . (int) $id_user . "'";
 
         $result = $conn->prepare($query);
         $result->execute();
@@ -130,7 +130,7 @@ abstract class User {
         $db = Database::getInstance();
         $conn = $db->getConnection(1);
 
-        $query = "SELECT id_user,kddept,kdunit,kdsatker,username,users.kdakses kdakses,nmakses FROM users ";
+        $query = "SELECT id_user,kddept,kdunit,kdsatker,kddekon,username,users.kdakses kdakses,nmakses FROM users ";
         $query.= " LEFT JOIN akses ON users.kdakses=akses.kdakses ORDER BY kddept,kdunit,kdsatker";
         $result = $conn->prepare($query);
         $result->execute();
@@ -238,9 +238,9 @@ abstract class User {
         $db = Database::getInstance();
         $conn = $db->getConnection(1);
         $password=self::generateRandomPassword();
-        $query = "INSERT INTO users(username,password,kdakses,kddept,kdunit,kdsatker,date_created) VALUES(?,?,?,?,?,?,?)";
+        $query = "INSERT INTO users(username,password,kdakses,kddept,kdunit,kdsatker,kddekon,date_created) VALUES(?,?,?,?,?,?,?,?)";
 
-        $data = array($user->username, md5($password) , $user->kdakses, $user->kddept, $user->kdunit, $user->kdsatker, $user->date_created);
+        $data = array($user->username, md5($password) , $user->kdakses, $user->kddept, $user->kdunit, $user->kdsatker,$user->kddekon, $user->date_created);
 
         $result = $conn->prepare($query);
         $result->execute($data);
@@ -258,6 +258,7 @@ abstract class User {
             'kddept' => $user->kddept,
             'kdunit' => $user->kdunit,
             'kdsatker' => $user->kdsatker,
+            'kddekon' => $user->kddekon,
         );
         return $data;
     }
@@ -311,10 +312,11 @@ abstract class User {
         $conn=$db->getConnection(1);
         
         $query="SELECT username FROM users WHERE username='".$user->username."' ";
-        if($user->kddept!='' && $user->kdunit!='' && $user->kdsatker!='') {
+        if($user->kddept!='' && $user->kdunit!='' && $user->kdsatker!='' && $user->kddekon!='') {
             $query .=" AND kddept='".$user->kddept."' ";
             $query .=" AND kdunit='".$user->kdunit."' ";
             $query .=" AND kdsatker='".$user->kdsatker."' ";
+            $query .=" AND kddekon='".$user->kddekon."' ";
         }
         $result=$conn->prepare($query);
         $result->execute();

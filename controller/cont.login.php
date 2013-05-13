@@ -35,8 +35,8 @@ if (isset($_POST['user']) && isset($_POST['pass'])) {
             $data_user=User::getUser($id_user);
             $arr=  get_object_vars($data_user);
 
-            $akses=User::getAkses($arr[4]);
-
+            $akses=User::getAkses($arr['kdakses']);
+            
             //inisiasi object satker
             //$satker = new Satker($arr);
             //$data_satker = $satker->getSatker();
@@ -45,7 +45,7 @@ if (isset($_POST['user']) && isset($_POST['pass'])) {
             $_SESSION['isLogged']=true;  
             $_SESSION['username']=$arr[0];
             //$_SESSION['satker']=  $data_satker;
-            $_SESSION['akses']=$akses;
+            $_SESSION['akses']=$arr['kdakses'];
 
             echo 'correct';
         }

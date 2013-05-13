@@ -21,5 +21,20 @@ class UserAdmin extends User {
         $data = $result->fetchAll();
         return $data;
     }
+    final public static function getUserByUsername($username) {
+        $db = Database::getInstance();
+        $conn = $db->getConnection(1);
+
+        $query = "SELECT kddept,kdunit,kdsatker,kddekon,kdakses FROM users WHERE username='$username'";
+
+        $result = $conn->prepare($query);
+        $result->execute();
+
+        if ($result->rowCount() != 1) {
+            return false;
+        }
+        $user = $result->fetch();
+        return $user;
+    }
 }
 

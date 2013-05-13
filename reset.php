@@ -4,7 +4,7 @@
         border: 1px solid black;
         font-family: Calibri, sans-serif;
         font-size: 12px;
-        width: 65%;
+        width: 85%;
         text-align: left;
     }
 
@@ -46,7 +46,6 @@
 
     #grid td:last-child {
         text-align: left;
-        width: 280px;
     }
     
     input[type=text] {
@@ -63,29 +62,37 @@
 <form method="post" action="controller/cont.reset.php" id="frm_reset">
 <table id="grid" >
     <thead>
-    <th colspan="3">Reset Password</th>
+    <th colspan="7">Reset Password</th>
     </thead>
     <tbody>
     <tr>
-    <th><label>Kode Departemen</label></th><td><input type="text" id="kddept" name="kddept" class="int" maxlength="3" /></td><td><span id="kddept"></span></td>
+    <th><label>Kode Departemen</label></th><td><input type="text" id="kddept" name="kddept" class="int" maxlength="3" /></td><td colspan="5"><span id="kddept"></span></td>
     </tr>
     <tr>
-    <th><label>Kode Unit</label></th><td><input type="text" id="kdunit" name="kdunit" class="int" maxlength="2" /></td><td><span id="kdunit"></span></td>
+    <th><label>Kode Unit</label></th><td><input type="text" id="kdunit" name="kdunit" class="int" maxlength="2" /></td><td colspan="5"><span id="kdunit"></span></td>
     </tr>
     <tr>
-    <th><label>Kode Satker</label></th><td><input type="text" id="kdsatker" name="kdsatker" class="int" maxlength="6" /></td><td><span id="kdsatker"></span></td>
+    <th><label>Kode Satker</label></th><td><input type="text" id="kdsatker" name="kdsatker" class="int" maxlength="6" /></td ><td colspan="5"><span id="kdsatker"></span></td>
     </tr>
     <tr>
-    <th><label>Username</label></th><td><input type="text" id="username" class="int" name="username" /></td><td><span id="username"></span></td>
+        <th>Jenis Satker</th>
+        <td><input type="radio" name="dekon" id="dekon" value="KP"/>Kantor Pusat</td>
+        <td><input type="radio" name="dekon" id="dekon" value="KD"/>Kantor Daerah</td>
+        <td><input type="radio" name="dekon" id="dekon" value="DK"/>Dekonsentrasi</td>
+        <td><input type="radio" name="dekon" id="dekon" value="TP"/>Tugas Pembantuan</td>
+        <td><input type="radio" name="dekon" id="dekon" value="UB"/>Urusan Bersama</td>
+    </tr>
+    <tr>
+        <th><label>Username</label></th><td><input type="text" id="username" name="username" maxlength="13"/></td><td colspan="5"><span id="username"></span></td>
    </tr>
    <tr>
-     <th><label>No Surat</label></th><td><input type="text" name="no_surat" maxlength="50" id="no_surat"/></td><td><span id="no_surat"></span></td>
+     <th><label>No Surat</label></th><td><input type="text" name="no_surat" maxlength="50" id="no_surat"/></td><td colspan="5"><span id="no_surat"></span></td>
     </tr>
     <tr>
-     <th><label>Tgl Surat</label></th><td><input type="text" name="tgl_surat" id="tgl_surat"/></td><td><span id="tgl_surat"></span></td>
+     <th><label>Tgl Surat</label></th><td><input type="text" name="tgl_surat" id="tgl_surat"/></td><td colspan="5"><span id="tgl_surat"></span></td>
     </tr>
     <tr>
-    <td colspan="3"><input type="submit" id="btn_reset" value="Reset Password" /></td>
+    <td colspan="7"><input type="submit" id="btn_reset" value="Reset Password" /></td>
     </tr>
 </form>
 </table>

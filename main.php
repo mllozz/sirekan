@@ -1,6 +1,3 @@
-<?php
-include_once('controller/cont.main.php');
-?>
 <html>
     <head>
         <title>Sistem Informasi Rekonsiliasi Keuangan Negara</title>
@@ -23,9 +20,8 @@ include_once('controller/cont.main.php');
             <div id="head">
                 <div id="stat">
                     <div id="tgl"></div>
-                    <div id="isi_stat"><a href="#" ><img src="img/profil.png"/> 
-                            <?php echo $data_satker['nmsatker'] . " ( " . $data_satker['kddept'] . "." . $data_satker['kdunit'] . "." . $data_satker['kdsatker'] . ")"; ?>
-                        </a> | <?php echo $akses['nmakses']; ?> |<a id='logout' href="logout" ><img src="img/logout.png"/> Logout</a></div>
+                    <div id="isi_stat"><a href="#" ><img src="img/profil.png"/> <span id="profil"></span> </a> | <span id="akses"></span> |
+                        <a id='logout' href="logout" ><img src="img/logout.png"/> Logout</a></div>
                 </div>
                 <div id="header">
                     <div id="logo"><a href="#" ><img src="img/logo-small.png"/></a></div>
@@ -34,14 +30,14 @@ include_once('controller/cont.main.php');
                             <li class="pressed topfirst topmenu"><a href="monitoring" ><img src="img/home.png"/> Home</a></li>
                             <li class="topmenu"><a  id="link_menu" href="" ><span><img src="img/rekon.png"/> Rekon SAI</span></a>
                                 <ul>
-                                    <li class="topfirst topmenu"><a href="sakpa" ><img src="img/doc.png"/> Rekon SAKPA</a></li>
-                                    <li class="toplast topmenu"><a href="saldo" ><img src="img/doc.png"/> Rekon Saldo Awal</a></li>
-                                    <li class="topfirst topmenu"><a>    -------------------------------</a></li>
-                                    <li class="topfirst topmenu"><a href="ceksakpa" ><img src="img/doc.png"/> Cek Hasil Rekon</a></li>
+                                    <li class="topfirst topmenu" id="satker"><a href="sakpa" ><img src="img/doc.png"/> Rekon SAKPA</a></li>
+                                    <li class="toplast topmenu" id="satker"><a href="saldo" ><img src="img/doc.png"/> Rekon Saldo Awal</a></li>
+                                    <li class="topfirst topmenu" id="satker"><a href="cekrekon" ><img src="img/doc.png"/> Cek Hasil Rekon</a></li>
+                                    <li class="topfirst topmenu" id="admin"><a href="cekrekonadmin" ><img src="img/doc.png"/> Cek Hasil Rekon</a></li>
 <!--                                    <li class="topfirst topmenu"><a href="ceksaldo" ><img src="img/doc.png"/> Cek Rekon Saldo</a></li>-->
                                 </ul>
                             </li>
-                            <li class="topmenu"><a href="" ><span><img src="img/laporan.png"/> Laporan</span></a>
+                            <li class="topmenu" id="satker"><a href="" ><span><img src="img/laporan.png"/> Laporan</span></a>
                                 <ul>
                                     <li class="topfirst topmenu"><a href="bar" ><img src="img/doc.png"/> BAR</a></li>
                                     <li class="toplast topmenu"><a href="lampiran" ><img src="img/doc.png"/> Lampiran BAR</a></li>
@@ -49,10 +45,10 @@ include_once('controller/cont.main.php');
                             </li>
                             <li class="topmenu"><a href="" ><span><img src="img/tools.png"/> Pengaturan</span></a>
                                 <ul>
-                                    <li class="topfirst toplast topmenu"><a href="rekam" ><img src="img/doc.png"/> Rekam User</a></li>
-                                    <li class="topfirst toplast topmenu"><a href="reset" ><img src="img/doc.png"/> Reset Password</a></li>
+                                    <li class="topfirst toplast topmenu" id="admin"><a href="rekam" ><img src="img/doc.png"/> Rekam User</a></li>
+                                    <li class="topfirst toplast topmenu" id="admin"><a href="reset" ><img src="img/doc.png"/> Reset Password</a></li>
                                     <li class="topfirst toplast topmenu"><a href="ubah" ><img src="img/doc.png"/> Ubah Password</a></li>
-                                    <li class="toplast toplast topmenu"><a href="blokir" ><img src="img/doc.png"/> Blokir User</a></li>
+                                    <li class="toplast toplast topmenu" id="admin"><a href="blokir" ><img src="img/doc.png"/> Blokir User</a></li>
                                 </ul>
                             </li>
                         </ul>

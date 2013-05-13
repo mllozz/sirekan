@@ -1,4 +1,10 @@
 $(document).ready(function() {
+    $.getJSON('controller/cont.menu.php?admin', function(data) {
+        if (data === '2') {
+            window.location = 'main.php';
+        }
+    });
+    
     var now = new Date();
 
     var day = ("0" + now.getDate()).slice(-2);
@@ -66,11 +72,12 @@ $(document).ready(function() {
             });
         }
         
-        if (field === 'username' && val.length === 11) {
+        if (field === 'username' && val.length === 13) {
             var kddept = $('#kddept').val();
             var kdunit = $('#kdunit').val();
             var kdsatker = $('#kdsatker').val();
-            var user=new String(kddept+kdunit+kdsatker).valueOf();
+            var kddekon = $('#dekon:checked').val();
+            var user=new String(kddept+kdunit+kdsatker+kddekon).valueOf();
             $('#error').html('<img src="img/loader.gif" alt="loader" />').show();
             if(val!==user) {
                 $('span#username').fadeIn(500).html('<img src="img/wrong.png" alt="loader" />');
@@ -85,8 +92,9 @@ $(document).ready(function() {
     
     //submit
     $('#btn_reset').click(function(){
+        var kddekon = $('#dekon:checked').val();
         if($('#kddept').val()==='' || $('#kdunit').val()==='' || $('#kdsatker').val()==='' || $('#username').val()==='' || 
-            $('#no_surat').val()==='' || $('#tgl_surat').val()==='') {
+            $('#no_surat').val()==='' || $('#tgl_surat').val()==='' || kddekon==='') {
             $('td span').fadeIn(500).html('<img src="img/wrong.png" alt="loader" /> ').delay(2500).fadeOut(500);
             $('#error').html('Semua harus diisi').show();
         } else {

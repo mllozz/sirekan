@@ -103,6 +103,7 @@ if (isset($_POST['kddept']) && isset($_POST['kdunit']) && isset($_POST['kdsatker
     $kdakses = $_POST['kdakses'];
     $tgl_surat = $_POST['tgl_surat'];
     $no_surat = $_POST['no_surat'];
+    $kddekon=$_POST['kddekon'];
     $data = '';
     $kppn = new Kppn();
 
@@ -112,19 +113,25 @@ if (isset($_POST['kddept']) && isset($_POST['kdunit']) && isset($_POST['kdsatker
         'kddept' => $kddept,
         'kdunit' => $kdunit,
         'kdsatker' => $kdsatker,
+        'kddekon' => $kddekon,
     );
 
     $satker = new Satker($arrSatker);
 
     $kdkppnSatker = $satker->getSatker();
-
+    if($kdakses=='1'){
+        $username=$_POST['username'];
+    }else {
+        $username=$kddept . '' . $kdunit . '' . $kdsatker. '' .$kddekon;
+    }
     if ($kdkppnSatker['kdkppn'] == $kdkppn->kdkppn) {
         $arr = array(
             'kddept' => $kddept,
             'kdunit' => $kdunit,
             'kdsatker' => $kdsatker,
+            'kddekon' => $kddekon,
             'kdakses' => $kdakses,
-            'username' => $kddept . '' . $kdunit . '' . $kdsatker,
+            'username' => $username,
         );
         $user = '';
         if ($kdakses == '1') {

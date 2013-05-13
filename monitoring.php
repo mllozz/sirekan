@@ -114,6 +114,7 @@
     <div id="div0_pie2"><p id="title2"></p></div>
     <div id="div1_pie2" style="height:38%;"></div>
 </div>
+<br/>
 <div id="status_rekon">
     <div id="loader"></div>
     <table id="hasil_rekon" style="display:none;">

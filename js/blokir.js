@@ -1,4 +1,10 @@
 $(document).ready(function() {
+    $.getJSON('controller/cont.menu.php?admin', function(data) {
+        if (data === '2') {
+            window.location = 'main.php';
+        }
+    });
+    
     var now = new Date();
 
     var day = ("0" + now.getDate()).slice(-2);
@@ -28,6 +34,8 @@ $(document).ready(function() {
 //    }
     var page = 1;
     var max_page = 0;
+    
+    
     $.getJSON('controller/cont.blokir.php', function(data) {
         $.each(data.user, function(index, user) {
             appendData(user);
