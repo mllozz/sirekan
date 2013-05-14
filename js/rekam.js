@@ -93,27 +93,58 @@ $(document).ready(function() {
         var kddekon = $('#dekon:checked').val();
         var e = document.getElementById('kdakses');
         var kdakses = e.options[e.selectedIndex].value;
+        var kddept=$('#kddept').val();
+        var kdunit= $('#kdunit').val();
+        var kdsatker=$('#kdsatker').val();
         if ($('#kddept').val() === '' || $('#kdunit').val() === '' || $('#kdsatker').val() === '' || $('#no_surat').val() === '' || $('#tgl_surat').val() === '' || kddekon==='') {
             $('#error').html('Tidak boleh kosong').fadeIn(1000).delay(3500).fadeOut(500);
             $('#loader').html('<img src="img/loader.gif" alt="loader" />').hide();
             return false;
         } else {
             $.post($('#frm_rekam').attr('action'), {kddept:$('#kddept').val(), kdunit: $('#kdunit').val() ,kdsatker:$('#kdsatker').val(),no_surat:$('#no_surat').val(),tgl_surat:$('#tgl_surat').val() ,kddekon:kddekon,kdakses: kdakses,username: $('#username').val()}, function(data) {
-                $.each(data, function() {
+                var username='';
+                var password='';
+                //$.each(data, function() {
                     if (data.msg === 'ok') {
                         $("input[type=text]").val('');
                         $("input").next('span').fadeOut(500).text('');
-                        $('#user_baru').html(data.password + ' ====> ' + data.username).show();
+                        $('#div_rekam').fadeOut(500);
+                        
+                        username=data.username;
+                        password=data.password;
+                        var arr={kddept:kddept, kdunit: kdunit ,
+                            kdsatker:kdsatker,kddekon:kddekon,username:username,password:password};
+                         cetakPass(data)
+                        //$('#user_baru').html(data.password + ' ====> ' + data.username).show();
                     } else {
                         $("input[type=text]").val('');
                         $("input").next('span').fadeOut(500).text('');
                         $('#user_baru').html(data.info).fadeIn(500).delay(3500).fadeOut(500);
                     }
-                });
+                //});           
             }, 'json');
         }
         $('#loader').html('<img src="img/loader.gif" alt="loader" />').hide();
         return false;
     });
 });
+
+function cetakPass(data){
+    $.post('controller/cont.rekam.php?pdf', {kddept: data.kddept, kdunit:data.kdunit, kdsatker:data.kdsatker, 
+        kddekon: data.kddekon,username:data.username,password:data.password}, function(data) {
+            if (data === true) {
+                $('#output').html('Gagal Cetak PDF');
+            } else {
+                //window.open('BAR.pdf', '_blank', 'fullscreen=yes');
+                $('#grid').fadeOut(250);
+                var pdf = new PDFObject({
+                    url: data,
+                    id: "pdf",
+                    pdfOpenParams: {
+                        view: "FitH"
+                    }
+                }).embed("pdf");
+            }
+        }, 'json');
+}
 

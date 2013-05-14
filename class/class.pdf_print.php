@@ -207,6 +207,156 @@ class Pdf_Print {
         $pdf->Output('../pdf/' . $kddept . '' . $kdunit . '' . $kdsatker . 'BAR.pdf', 'F');
         echo json_encode('pdf/' . $kddept . '' . $kdunit . '' . $kdsatker . 'BAR.pdf');
     }
+    
+    public function createPdfUser($kddept, $kdunit, $kdsatker, $kddekon, $username,$password) {
+
+        require_once('../tcpdf/config/lang/eng.php');
+        require_once('../tcpdf/tcpdf.php');
+
+        $arr = array(
+            'kddept' => $kddept,
+            'kdunit' => $kdunit,
+            'kdsatker' => $kdsatker,
+            'kddekon' => $kddekon,
+        );
+
+        $satker = new Satker($arr);
+
+        $data_satker = $satker->getSatker();
+
+        $html = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Lampiran</title>
+<style>
+	table {
+		width: 900;
+	}
+	
+	#header {
+		border-collapse:collapse;
+	}
+	#header td {
+		width:900px;
+		text-align:center;
+		text-wrap:normal;
+		font-size:14px;
+	}
+
+	td#headc{
+		text-align:left;
+	}
+	#param {
+		font-size:10px;
+	}
+	
+	#param td {
+		width:80px;	
+	}
+	
+	#isi td {
+		border: 1px solid black;
+		width:70px;
+		text-align:center;	
+	}
+	
+	#data td {
+		width:70px;
+		text-align:center;	
+	}
+	#footer td {
+		width:70px;
+		text-align:right;
+		color: blue;
+		font-weight: bold;	
+	}
+	td#panjang,td#rp {
+		width: 160px;
+	}
+	td#rp {
+		text-align:right;
+	}
+	
+</style>
+</head>
+<body>
+<table id="header">
+  <tr>
+    <td id="headc" style="font-size:24px;">KEMENTERIAN KEUANGAN RI</td>
+  </tr>
+  <tr>
+    <td id="headc" style="font-size:24px;">DIREKTORAT JENDERAL PERBENDAHARAAN</td>
+  </tr>
+  <tr>
+   <td style="text-align: center;">Username dan Password Akses Sistem Rekonsiliasi Keuangan Negara</td>
+  </tr>
+  <tr>
+  <td>Satker : '.$data_satker['nmsatker'].'('.$kddept.'.'.$kdunit.'.'.$kdsatker.'.'.$kddekon.')</td>
+  </tr>
+  <tr>
+  <td>Username : '.$username.'</td>
+  </tr>
+  <tr>
+  <td>Password Sementara : '.$password.'</td>
+  </tr>
+  <tr>
+   <td style="text-align: center;">Username dan Password Ini Hanya Untuk Satuan Kerja Yang Bersangkutan</td>
+   </tr>
+  <tr>
+   <td style="text-align: center;">Segera Ubah Password</td>
+  </tr>
+  <tr>
+  <td>Tgl Cetak : '.date('Y-m-d').'</td>
+  </tr>
+</table>
+</body>
+</html>
+';
+
+        $pdf = new TCPDF('L', 'mm', 'F4', true, 'UTF-8', false);
+
+        $pdf->SetCreator(PDF_CREATOR);
+        $pdf->SetAuthor('Eko Sigit / 5210105007');
+        $pdf->SetTitle('Berita Acara Rekonsiliasi');
+        $pdf->SetSubject('Laporan Hasil rekonsiliasi');
+        $pdf->SetKeywords('rekonsiliasi,report,bar, php, mysql');
+
+
+        $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+
+//set margins
+        $pdf->SetMargins('4', '1', '2');
+        $pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
+        $pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
+
+//set auto page breaks
+        //$pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+//set image scale factor
+        //$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+//set some language-dependent strings
+        $pdf->setLanguageArray($l);
+
+// ---------------------------------------------------------
+// set default font subsetting mode
+        $pdf->setFontSubsetting(true);
+
+        $pdf->SetFont('helvetica', '', 11, '', true);
+
+// Add a page 
+// This method has several options, check the source code documentation for more information.
+        $pdf->setPrintHeader(false);
+        $pdf->setPrintFooter(false);
+        $pdf->AddPage();
+
+//*************
+        ob_end_clean();
+//************* 
+        $pdf->writeHTMLCell($w = 0, $h = 0, $x = '', $y = '', $html, $border = 0, $ln = 1, $fill = 0, $reseth = true, $align = 'left', $autopadding = false);
+
+        $pdf->Output('../pdf/' . $kddept . '' . $kdunit . '' . $kdsatker . 'username.pdf', 'F');
+        echo json_encode('pdf/' . $kddept . '' . $kdunit . '' . $kdsatker . 'username.pdf');
+    }
 
     public function createLamp($jns_lamp, $kddept, $kdunit, $kdsatker, $kddekon, $periode) {
 

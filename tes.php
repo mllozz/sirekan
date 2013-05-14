@@ -152,12 +152,15 @@ function __autoload($class_name) {
 //$kdakses = $akses[0];
 //$nmakses = $akses[1];
 
-$user=new UserAdmin();
+//$user=new UserAdmin();
+//
+//$data_user=User::getUser('33');
+//$arr=  get_object_vars($data_user);
+//
+//$akses=User::getAkses($arr['kdakses']);
+//
+//print_r($akses);
 
-$data_user=User::getUser('33');
-$arr=  get_object_vars($data_user);
-
-$akses=User::getAkses($arr['kdakses']);
-
-print_r($akses);
+$pdf=new Pdf_Print();
+$pdf->createPdfUser('015', '08', '635162', 'KD', 'oi980', 'kjhkajsd');
 ?>

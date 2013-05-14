@@ -177,4 +177,16 @@ if (isset($_POST['kddept']) && isset($_POST['kdunit']) && isset($_POST['kdsatker
 
     echo json_encode($data);
 }
+
+if(isset($_REQUEST['pdf'])){
+    $kddept=$_POST['kddept'];
+    $kdunit=$_POST['kdunit'];
+    $kdsatker=$_POST['kdsatker'];
+    $kddekon=$_POST['kddekon'];
+    $username=$_POST['username'];
+    $password=$_POST['password'];
+    
+    $bar=new Pdf_Print();
+    $bar->createPdfUser($kddept, $kdunit, $kdsatker, $kddekon, $username, $password);
+}
 ?>

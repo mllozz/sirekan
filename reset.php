@@ -99,4 +99,8 @@
 <span id="error"></span>
 <span id="error"></span>
 <div id="data_reset"></div>
+
+<div id="pdf">
+    
+</div>
 <script type="text/javascript" src="js/reset.js"></script>

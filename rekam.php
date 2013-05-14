@@ -110,6 +110,9 @@
 <div id="loader"></div>
 <div style="display:none; border:1px solid red;" id="user_baru"> 
 </div>
+<div id="pdf">
+    
+</div>
 <script type="text/javascript">
     $('#tgl_surat').datepicker({dateFormat: 'yy-mm-dd'});
 </script>

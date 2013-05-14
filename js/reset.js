@@ -4,13 +4,13 @@ $(document).ready(function() {
             window.location = 'main.php';
         }
     });
-    
+
     var now = new Date();
 
     var day = ("0" + now.getDate()).slice(-2);
     var month = ("0" + (now.getMonth() + 1)).slice(-2);
 
-    var today = now.getFullYear()+"-"+(month)+"-"+(day) ;
+    var today = now.getFullYear() + "-" + (month) + "-" + (day);
     $('#tgl_surat').datepicker({dateFormat: 'yy-mm-dd'});
     $('#tgl_surat').val(today);
     //input hanya angka
@@ -71,15 +71,15 @@ $(document).ready(function() {
                 });
             });
         }
-        
+
         if (field === 'username' && val.length === 13) {
             var kddept = $('#kddept').val();
             var kdunit = $('#kdunit').val();
             var kdsatker = $('#kdsatker').val();
             var kddekon = $('#dekon:checked').val();
-            var user=new String(kddept+kdunit+kdsatker+kddekon).valueOf();
+            var user = new String(kddept + kdunit + kdsatker + kddekon).valueOf();
             $('#error').html('<img src="img/loader.gif" alt="loader" />').show();
-            if(val!==user) {
+            if (val !== user) {
                 $('span#username').fadeIn(500).html('<img src="img/wrong.png" alt="loader" />');
                 $('#error').html('<img src="img/loader.gif" alt="loader" /> ').hide();
                 $('#error').html('Username bukan milik satker').show();
@@ -89,25 +89,55 @@ $(document).ready(function() {
             }
         }
     });
-    
+
     //submit
-    $('#btn_reset').click(function(){
+    $('#btn_reset').click(function() {
         var kddekon = $('#dekon:checked').val();
-        if($('#kddept').val()==='' || $('#kdunit').val()==='' || $('#kdsatker').val()==='' || $('#username').val()==='' || 
-            $('#no_surat').val()==='' || $('#tgl_surat').val()==='' || kddekon==='') {
+        //var kdakses = e.options[e.selectedIndex].value;
+        var kddept=$('#kddept').val();
+        var kdunit= $('#kdunit').val();
+        var kdsatker=$('#kdsatker').val();
+        var username = $('#username').val();
+        if ($('#kddept').val() === '' || $('#kdunit').val() === '' || $('#kdsatker').val() === '' || $('#username').val() === '' ||
+                $('#no_surat').val() === '' || $('#tgl_surat').val() === '' || kddekon === '') {
             $('td span').fadeIn(500).html('<img src="img/wrong.png" alt="loader" /> ').delay(2500).fadeOut(500);
             $('#error').html('Semua harus diisi').show();
         } else {
-            $.post($('#frm_reset').attr('action'),$('#frm_reset').serialize(),function(data){
-                if(data.msg==='ok') {
-                    $('#data_reset').html(data.password).show();
+            $.post($('#frm_reset').attr('action'), $('#frm_reset').serialize(), function(data) {
+                
+                var password = '';
+                if (data.msg === 'ok') {
+                    //$('#data_reset').html(data.password).show();
+                    $('#grid').fadeOut(500);
+                    password = data.password;
+                    var arr = {kddept: kddept, kdunit: kdunit,
+                        kdsatker: kdsatker, kddekon: kddekon, username: username, password: password};
+                    cetakPass(arr);
                 } else {
                     $('#error').html(data.info).show();
                 }
-            },'json');
+            }, 'json');
         }
         return false;
     });
 
 });
 
+function cetakPass(data) {
+    $.post('controller/cont.reset.php?pdf', {kddept: data.kddept, kdunit: data.kdunit, kdsatker: data.kdsatker,
+        kddekon: data.kddekon, username: data.username, password: data.password}, function(data) {
+        if (data === true) {
+            $('#output').html('Gagal Cetak PDF');
+        } else {
+            //window.open('BAR.pdf', '_blank', 'fullscreen=yes');
+            $('#grid').fadeOut(250);
+            var pdf = new PDFObject({
+                url: data,
+                id: "pdf",
+                pdfOpenParams: {
+                    view: "FitH"
+                }
+            }).embed("pdf");
+        }
+    }, 'json');
+}
