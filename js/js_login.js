@@ -20,7 +20,7 @@ $(document).ready(function() {
                 } else {
                     $('span#x').html('<img src="img/wrong.png" alt="loader" />').fadeIn(500).delay(2500).fadeOut(500);
                     $('span#x').html('<img src="img/wrong.png" alt="loader" />').fadeIn(500).delay(2500).fadeOut(500);
-                    $('#error').html(data).fadeIn(500).delay(5000).fadeOut(500);
+                    $('#error').html(data).fadeIn(500).delay(2500).fadeOut(500);
                 }
             });
         }

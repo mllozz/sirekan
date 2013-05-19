@@ -171,6 +171,7 @@ $(document).ready(function() {
                     $('#tgl_akhir').removeAttr("disabled");
                     $('#ket_blokir').removeAttr("disabled");
                     $('#buka_blokir').attr("disabled", true);
+                    $('#buka_blokir').hide();
                     document.getElementById('tgl_mulai').value = today;
                     document.getElementById('tgl_akhir').value = today;
                     document.getElementById('ket_blokir').value = '';
@@ -205,6 +206,9 @@ $(document).ready(function() {
             return false;
         } else if ($('#tgl_mulai').val() >= $('#tgl_akhir').val()) {
             $('#error').html('Tgl mulai harus lebih dahulu').fadeIn(500).delay(2500).fadeOut(500);
+            return false;
+        }else if ($('#tgl_akhir').val() <= today) {
+            $('#error').html('Tgl akhir tidak boleh sama dengan tanggal hari ini').fadeIn(500).delay(2500).fadeOut(500);
             return false;
         } else {
             $.post('controller/cont.blokir.php', {id_user: $('#id_user').val(),
