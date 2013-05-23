@@ -119,7 +119,7 @@ if (isset($_POST['kddept']) && isset($_POST['kdunit']) && isset($_POST['kdsatker
     $satker = new Satker($arrSatker);
 
     $kdkppnSatker = $satker->getSatker();
-    if($kdakses=='1'){
+    if($kdakses=='1' || $kdakses=='3'){
         $username=$_POST['username'];
     }else {
         $username=$kddept . '' . $kdunit . '' . $kdsatker. '' .$kddekon;
@@ -139,6 +139,9 @@ if (isset($_POST['kddept']) && isset($_POST['kdunit']) && isset($_POST['kdsatker
         }
         if ($kdakses == '2') {
             $user = new UserSatker($arr);
+        }
+        if ($kdakses == '3') {
+            $user = new UserSpv($arr);
         }
 
         $cekUser = User::checkAvailability($user);

@@ -27,11 +27,17 @@ $(document).ready(function() {
     });
 
     $.getJSON('controller/cont.menu.php?admin', function(data) {
-        if (data !== '2') {
+        if (data === '1') {
             $('li#admin').show();
+            $('li#admin_rekon').show();
             $('li#satker').hide();
-        }else {
+        }else if(data === '3'){
+            $('li#admin').show();
+            $('li#admin_rekon').hide();
+            $('li#satker').hide();
+        }else{
             $('li#admin').hide();
+            $('li#admin_rekon').hide();
         }
     });
 });

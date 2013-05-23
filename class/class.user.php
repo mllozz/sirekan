@@ -4,6 +4,7 @@ abstract class User {
 
     const AKSES_ADMIN = 1;
     const AKSES_SATKER = 2;
+    const AKSES_SPV = 3;
     const USER_ERROR_UNKNOWN_SUBCLASS = 1001;
 
     protected $id_user;
@@ -16,6 +17,7 @@ abstract class User {
     static public $valid_kdakses = array(
         User::AKSES_ADMIN => 'Admin',
         User::AKSES_SATKER => 'Satker',
+        User::AKSES_SPV => 'Spv',
     );
     public $kdakses;
     protected $date_created;

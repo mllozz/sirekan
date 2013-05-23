@@ -33,7 +33,7 @@
                                     <li class="topfirst topmenu" id="satker"><a href="sakpa" ><img src="img/doc.png"/> Rekon SAKPA</a></li>
                                     <li class="toplast topmenu" id="satker"><a href="saldo" ><img src="img/doc.png"/> Rekon Saldo Awal</a></li>
                                     <li class="topfirst topmenu" id="satker"><a href="cekrekon" ><img src="img/doc.png"/> Cek Hasil Rekon</a></li>
-                                    <li class="topfirst topmenu" id="admin"><a href="cekrekonadmin" ><img src="img/doc.png"/> Cek Hasil Rekon</a></li>
+                                    <li class="topfirst topmenu" id="admin_rekon"><a href="cekrekonadmin" ><img src="img/doc.png"/> Cek Hasil Rekon</a></li>
 <!--                                    <li class="topfirst topmenu"><a href="ceksaldo" ><img src="img/doc.png"/> Cek Rekon Saldo</a></li>-->
                                 </ul>
                             </li>

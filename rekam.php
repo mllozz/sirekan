@@ -86,9 +86,9 @@
     </tr>
     <tr>
      <th><label>Hak Akses</label></th><td><select id="kdakses" name="kdakses">
-        <option value="2">Satker</option>
-        <option value="1">Admin</option>
-        <option value="3">Operator Vera</option>
+        <option class="satker" value="2">Satker</option>
+        <option class="opr" value="1">Operator Vera</option>
+        <option class="spv" value="3">Supervisor</option>
     </select></td>
     <td colspan="2"><span id="isi_user" style="display: none;">Isi Username Admin/Operator</span></td><td colspan="2"><input type="text" id="username" style="display: none;"/></td>
     </tr>
