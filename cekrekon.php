@@ -156,7 +156,7 @@
         </tr>
     </table>
 </form>
-
+<div id="error"></div>
 <script type="text/javascript" src="js/cek_rekon.js"></script>
 <div id="loader" style="display:none;">
     <br />

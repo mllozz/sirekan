@@ -98,12 +98,20 @@ function Cek(data) {
         //alert(data);
         $('#hasil_rekon tbody').empty();
         //var i = 1;
-        if (data === false) {
+        if(data==='error'){
+            $('#error').html('Kode Kewenangan salah').fadeIn(500).delay(2500).fadeOut(500);
+        }else if(data==='error_tgl') {
+            $('#error').html('Tanggal yang diisi salah').fadeIn(500).delay(2500).fadeOut(500);
+        }else if(data==='error_rekon'){
+            $('#error').html('Rekonsiliasi Belum dilakukan atau masih salah').fadeIn(500).delay(2500).fadeOut(500);
+        }else if (data === false) {
             $('#hasil_rekon tbody').append(
                     '<tr>' +
                     '<td align="center" colspan="9">Transaksi Kosong</td>'
                     + '</tr>'
                     );
+            $('#rekon_sakpa').fadeIn(500);
+            $('#ceksakpa').fadeOut(300);
         } else {
             $.each(data, function(index, data) {
                 $('#hasil_rekon tbody').append(
@@ -131,7 +139,7 @@ function Cek(data) {
                 "bSort": true,
                 "bAutoWidth": false,
                 "bJQueryUI": true,
-                "iDisplayLength": 25,
+                "iDisplayLength": 16,
                 "aoColumns": [
                     {"mData": "KDPERK"},
                     {"mData": "KDBAES1"},
@@ -144,9 +152,10 @@ function Cek(data) {
                     {"mData": "HASIL"}
                 ]
             });
+            $('#rekon_sakpa').fadeIn(500);
+            $('#ceksakpa').fadeOut(300);
         }
-        $('#rekon_sakpa').fadeIn(500);
-        $('#ceksakpa').fadeOut(300);
+        
     }, 'json');
 }
 

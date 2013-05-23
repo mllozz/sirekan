@@ -161,6 +161,8 @@ function __autoload($class_name) {
 //
 //print_r($akses);
 
-$pdf=new Pdf_Print();
-$pdf->createPdfUser('015', '08', '635162', 'KD', 'oi980', 'kjhkajsd');
+//$pdf=new Pdf_Print();
+//$pdf->createPdfUser('015', '08', '635162', 'KD', 'oi980', 'kjhkajsd');
+
+echo substr('2012-02-13',5,2);
 ?>
