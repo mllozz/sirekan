@@ -7,7 +7,7 @@
         font-family: Calibri, sans-serif;
         font-size: 12px;
     }
-    
+
     #div_grid{
         width: 90%;
     }
@@ -18,7 +18,7 @@
     }
 
     thead tr:hover {
-        background: #A7C9B8;
+/*        background: #A7C9B8;*/
     }
 
     tr {
@@ -26,7 +26,7 @@
     }
 
     tr:hover {
-        background-color: #ccc;
+/*        background-color: #ccc;*/
     }
 
     tr:nth-child(even) {
@@ -34,11 +34,12 @@
     }
 
     tr:nth-child(even):hover {
-        background: #ccc;
+/*        background: #ccc;*/
     }
 
     td {
         padding: 0 10px;
+        text-wrap: none;
         width: auto;
     }
 
@@ -69,9 +70,25 @@
     div.ui-datepicker, .ui-datepicker input{
         font-size:62.5%;
     }
-    
+
     #simpan_blokir, #edit_blokir, #buka_blokir {
         display: hidden;
+    }
+
+    a#tombol_Buka,a#tombol_Blokir,a#tombol_ubah{
+        display:inline-block;
+        width:50px; 
+        height:20px;
+        padding:2px;
+        border:1px #D7D7D7 solid;
+        text-align:center;
+        text-decoration:none;
+        color:#666666;
+        background:url(img/button_bg.png) repeat-x;
+    }
+    a#tombol_Buka:hover,a#tombol_Blokir:hover,a#tombol_ubah:hover{
+        background:url(img/button_bg_hover.png) repeat-x;
+        text-decoration:none;
     }
 </style>
 <div id="div_grid">
@@ -87,6 +104,7 @@
                 <th>HAK AKSES</th>
                 <th>USERNAME</th>
                 <th>STATUS</th>
+                <th>AKSI</th>
             </tr>
         </thead>
         <tbody>

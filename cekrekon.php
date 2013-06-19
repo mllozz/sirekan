@@ -4,13 +4,16 @@
         border: 1px solid black;
         font-family: Calibri, sans-serif;
         font-size: 12px;
-        width: 95%;
+        width: 85%;
         text-align: left;
     }
     
     #rekon_sakpa {
-        width: 90%;
+        width: 80%;
         margin-left: 5%;
+    }
+    #rekon_sakpa td {
+        width: max-content;
     }
 
     thead tr {
@@ -30,6 +33,10 @@
 
     tr:hover {
         background-color: #ccc;
+    }
+    
+    tr#red {
+        background-color: red;
     }
 
     tr:nth-child(even) {
@@ -177,7 +184,6 @@
             <th>NODOK1</th>
             <th>RPSAU</th>
             <th>RPSAI</th>
-            <th>HASIL</th>
             </tr>
         </thead>
         <tbody>

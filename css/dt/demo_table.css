@@ -181,7 +181,7 @@ table.display td.center {
  * DataTables sorting
  */
 
-.sorting_asc {
+/*.sorting_asc {
 	background: url('../images/sort_asc.png') no-repeat center right;
 }
 
@@ -191,7 +191,7 @@ table.display td.center {
 
 .sorting {
 	background: url('../images/sort_both.png') no-repeat center right;
-}
+}*/
 
 .sorting_asc_disabled {
 	background: url('../images/sort_asc_disabled.png') no-repeat center right;
@@ -366,27 +366,27 @@ table.display tr.odd.row_selected td {
  */
 /* For the standard odd/even */
 tr.odd td.sorting_1 {
-	background-color: #D3D6FF;
+	background-color: transparent;
 }
 
 tr.odd td.sorting_2 {
-	background-color: #DADCFF;
+	background-color: transparent;
 }
 
 tr.odd td.sorting_3 {
-	background-color: #E0E2FF;
+	background-color: transparent;
 }
 
 tr.even td.sorting_1 {
-	background-color: #EAEBFF;
+	background-color: transparent;
 }
 
 tr.even td.sorting_2 {
-	background-color: #F2F3FF;
+	background-color: transparent;
 }
 
 tr.even td.sorting_3 {
-	background-color: #F9F9FF;
+	background-color: transparent;
 }
 
 
@@ -401,27 +401,27 @@ tr.even td.sorting_3 {
 	  ee > e2
  */
 tr.odd.gradeA td.sorting_1 {
-	background-color: #c4ffc4;
+	background-color: transparent;
 }
 
 tr.odd.gradeA td.sorting_2 {
-	background-color: #d1ffd1;
+	background-color: transparent;
 }
 
 tr.odd.gradeA td.sorting_3 {
-	background-color: #d1ffd1;
+	background-color: transparent;
 }
 
 tr.even.gradeA td.sorting_1 {
-	background-color: #d5ffd5;
+	background-color: transparent;
 }
 
 tr.even.gradeA td.sorting_2 {
-	background-color: #e2ffe2;
+	background-color: transparent;
 }
 
 tr.even.gradeA td.sorting_3 {
-	background-color: #e2ffe2;
+	background-color: transparent;
 }
 
 tr.odd.gradeC td.sorting_1 {

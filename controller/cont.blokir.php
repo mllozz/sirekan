@@ -179,7 +179,9 @@ if (isset($_REQUEST['aksi'])) {
             echo json_encode($data);
             exit;
         case 'simpan_ubah' :
-
+            $blokir = new Blokir();
+            $isBlokir = $blokir->isBlokir($id_user);
+            
             $id_blokir = $_POST['id_blokir'];
             $id_user = $_POST['id_user'];
             $date_started = $_POST['tgl_mulai'];
@@ -212,8 +214,17 @@ if (isset($_REQUEST['aksi'])) {
             echo json_encode($data);
             exit;
         case 'buka' :
-            $id_blokir = $_POST['id_blokir'];
+            $id_user = $_POST['id_user'];
+            
+            
             $blokir = new Blokir();
+            $isBlokir = $blokir->isBlokir($id_user);
+            $id_blokir="";
+            if ($isBlokir) {
+                $data_blokir = $blokir->getBlokir($id_user);
+                $id_blokir = $data_blokir['id_blokir'];
+            }
+
             $blokir_user = $blokir->bukaBlokir($id_blokir);
 
             if ($blokir_user) {

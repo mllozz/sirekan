@@ -107,7 +107,9 @@
         height: 60%;
     }
     
-
+    tr#red {
+        background-color: red;
+    }
 </style>
 <form id="ceksakpa" method="post" action="">
     <table id="grid">
@@ -178,7 +180,6 @@
             <th>NODOK1</th>
             <th>RPSAU</th>
             <th>RPSAI</th>
-            <th>HASIL</th>
             </tr>
         </thead>
         <tbody>

@@ -57,7 +57,7 @@ if (isset($_GET['cek'])) {
         $content='error';
     }elseif($tgl_awal>$tgl_akhir || $tgl_akhir>date('Y-m-d')){
         $content='error_tgl';
-    }elseif(!$cek){
+    }elseif(!$cek && $jns_rekon!='8'){
         $content='error_rekon';
     } else {
         switch ($jns_rekon) {

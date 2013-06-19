@@ -42,7 +42,7 @@ function ajaxFileUpload() {
             {
                 if (data.error != '')
                 {
-                    $('#output').html(data.error).fadeIn(500);
+                    $('#output').html(data.error).fadeIn(500).delay(2500).fadeOut(500);
                 } else
                 {
                     //$('#output').html(data.msg).fadeIn(500).delay(1000).fadeOut(500);

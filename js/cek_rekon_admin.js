@@ -169,21 +169,23 @@ function Cek(data) {
                     );
         } else {
             $.each(data, function(index, data) {
-                $('#hasil_rekon tbody').append(
-                        '<tr>' +
+                var row='';
+                if(data.HASIL==='BEDA'){
+                    row+='<tr id="red">';
+                }else{
+                    row+='<tr>';
+                }
                         //'<td>' + i + '</td>' +
-                        '<td>' + data.KDPERK + '</td>' +
+                row+=        '<td>' + data.KDPERK + '</td>' +
                         '<td>' + data.KDBAES1 + '</td>' +
                         '<td>' + data.KDSATKER + '</td>' +
                         '<td>' + data.JNSDOK1 + '</td>' +
                         '<td>' + data.TGLDOK1 + '</td>' +
                         '<td>' + data.NODOK1 + '</td>' +
-                        '<td>' + formatRp(data.RPSAU) + '</td>' +
-                        '<td>' + formatRp(data.RPSAI) + '</td>' +
-                        '<td>' + data.HASIL + '</td>'
+                        '<td style="text-align:right;">' + formatRp(data.RPSAU) + '</td>' +
+                        '<td style="text-align:right;">' + formatRp(data.RPSAI) + '</td>'
                         + '</tr>'
-                        );
-                //i++;
+                $('#hasil_rekon tbody').append(row);
             });
 
             var otable = $('#hasil_rekon').dataTable({
@@ -203,8 +205,7 @@ function Cek(data) {
                     {"mData": "TGLDOK1"},
                     {"mData": "NODOK1"},
                     {"mData": "RPSAU"},
-                    {"mData": "RPSAI"},
-                    {"mData": "HASIL"}
+                    {"mData": "RPSAI"}
                 ]
             });
         }
