@@ -1,10 +1,10 @@
 <style type="text/css">
     #grid {
-        margin: 1px 1px;
+        margin: 3% 8%;
         border: 1px solid black;
         font-family: Calibri, sans-serif;
-        font-size: 12px;
-        width: 80%;
+        font-size: 16px;
+        width: 83%;
         text-align: left;
     }
 

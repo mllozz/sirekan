@@ -5,11 +5,11 @@
         padding: 0;
         border-collapse: collapse;
         font-family: Calibri, sans-serif;
-        font-size: 12px;
+        font-size: 14px;
     }
 
     #div_grid{
-        width: 90%;
+        width: 100%;
     }
 
     thead tr {
@@ -61,6 +61,7 @@
     }
     #div_blokir {
         display: none;
+        margin: 1% 25%;
     }
 
     #tbl_user td{
@@ -93,9 +94,11 @@
 </style>
 <div id="div_grid">
 <!--    <input type="text" id="cari" placeHolder="Cari Satker"/>-->
-    <pre>Daftar User</pre>
     <table id="grid">
         <thead>
+            <tr>
+                <th colspan="16">Daftar Status Pengguna</th>
+            </tr>
             <tr>
                 <th>KDDEPT</th>
                 <th>KDUNIT</th>

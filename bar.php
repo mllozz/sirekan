@@ -1,9 +1,9 @@
 <style type="text/css">
     #grid {
-        margin: 1px 1px;
+        margin: 3% 9%;
         border: 1px solid black;
         font-family: Calibri, sans-serif;
-        font-size: 12px;
+        font-size: 16px;
         width: 80%;
         text-align: left;
     }
