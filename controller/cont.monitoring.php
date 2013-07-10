@@ -132,4 +132,45 @@ if(isset($_REQUEST['stat_user'])){
     
     echo json_encode($data);
 }
+
+if(isset($_REQUEST['history'])){
+    session_start();
+    $username = $_SESSION['username'];
+
+    $kddept = substr($username, 0, 3);
+    $kdunit = substr($username, 3, 2);
+    $kdsatker = substr($username, 5, 6);
+
+    $arr = array(
+        'kddept' => $kddept,
+        'kdunit' => $kdunit,
+        'kdsatker' => $kdsatker,
+    );
+
+    $satker = new Satker($arr);
+    $sat=$satker->getSatker();
+    $data_satker = $satker->getKewenangan();
+    
+    $periode=new Periode();
+    
+    $log=new LogRekon();
+    $histori=$log->getHistory($kddept, $kdunit, $kdsatker, $data_satker['kddekon']);
+    $data=array();
+    for($i=0;$i<count($histori);$i++){
+        if($histori[$i]['periode']=='00'){
+            $data[$i]=array(
+                'periode'=>'Saldo Awal',
+                'nm_status_rekon'=>$histori[$i]['nm_status_rekon'],
+            );
+        }else {
+            $per=$periode->getPeriodeByPer($histori[$i]['periode']);
+            $data[$i]=array(
+                'periode'=>$per['nmbulan'],
+                'nm_status_rekon'=>$histori[$i]['nm_status_rekon'],
+            );
+        }
+    }
+    
+    echo json_encode($data);
+}
 ?>

@@ -58,9 +58,17 @@
         border: 1px solid black; 
         border-collapse: collapse; 
         display: block;
-        width: 100%;
+        margin: 0.1% 21.3%;
+        width: 58.5%;
     }
     
+    #grid_history {
+        border: 1px solid black; 
+        border-collapse: collapse; 
+        display: block;
+        margin: 1% 37%;
+        width: 27%;
+    }
     thead tr {
         border-bottom: 1px solid black;
         background: #A7C9B8;
@@ -103,6 +111,10 @@
     #grid_stat td:last-child {
         text-align: left;
         width: 85%;
+    }
+    
+    #hasil_rek {
+        width: 65%;
     }
 </style>
 
@@ -158,6 +170,22 @@
         </tbody>
     </table>
     <div id="hasil_rek" style="margin-left:5%;"></div>
+</div>
+<div id="history_rekon">
+    <table id="grid_history">
+        <thead>
+            <tr>
+                <td colspan="2">Ringkasan Status Rekonsiliasi Per Bulan</td>
+            </tr>
+            <tr>
+                <th>Periode</th>
+                <th>Status Rekonsiliasi</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+        </tbody>
+    </table>
 </div>
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <script type="text/javascript" src="js/monitoring.js"></script>

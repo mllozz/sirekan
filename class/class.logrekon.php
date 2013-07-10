@@ -81,6 +81,24 @@ class LogRekon {
         return false;
     }
     
+    public function getHistory($kddept, $kdunit, $kdsatker, $kddekon){
+           
+        $db = Database::getInstance();
+        $conn = $db->getConnection(1);
+
+        $query = "select a.periode,b.nm_status_rekon from log_rekon a left join status_rekon b on 
+            a.id_status_rekon=b.id_status_rekon where  a.kddept='$kddept' AND a.kdunit='$kdunit' 
+                AND a.kdsatker='$kdsatker' AND a.kddekon='$kddekon' order by a.periode ASC";
+
+        $result = $conn->prepare($query);
+        $result->execute();
+
+        if ($result->rowCount() >= 1) {
+            return $result->fetchAll();
+        }
+        return false;            
+    }
+    
     public function getStatusRekon($kddept, $kdunit, $kdsatker, $kddekon, $periode) {
         $db = Database::getInstance();
         $conn = $db->getConnection(1);

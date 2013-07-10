@@ -35,7 +35,7 @@ $(document).ready(function() {
                             '<tr><th  colspan="2" align="center">Status Rekon Bulan Ini</th>' +
                             '</tr>'
                             );
-                    tabel += '<table style="border: 1px solid black; width: 90%;">';
+                    tabel += '<table style="border: 1px solid black; width: 90%; margin-left:25%;">';
                     tabel += '<tr><th style=" text-align:left; width:50%;">Rekon UP</th><td>' +
                             displayBenar(data.hasil.UP) + '</td></tr>';
                     tabel += '<tr><th  style=" text-align:left; width:50%;">Rekon Realisasi Belanja</th><td>' +
@@ -54,9 +54,18 @@ $(document).ready(function() {
                     $('#hasil_rek').html(tabel).show();
                 }
             });
+            
+            $.getJSON('controller/cont.monitoring.php?history', function(data) {
+                var row='';
+                $.each(data,function(index,data){
+                    row+='<tr><td>'+data.periode+'</td><td>'+data.nm_status_rekon+'</td><tr/>';
+                });
+                $('#grid_history tbody').append(row);
+            });
         } else {
             
             $('#status_rekon_user').hide();
+            $('#history_rekon').hide();
             $.getJSON('controller/cont.monitoring.php?user_pie', function(data) {
                 var det = [
                     {label: "Aktif", data: data.aktif, color: 'green'},
