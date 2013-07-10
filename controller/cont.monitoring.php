@@ -156,17 +156,26 @@ if(isset($_REQUEST['history'])){
     $log=new LogRekon();
     $histori=$log->getHistory($kddept, $kdunit, $kdsatker, $data_satker['kddekon']);
     $data=array();
-    for($i=0;$i<count($histori);$i++){
-        if($histori[$i]['periode']=='00'){
-            $data[$i]=array(
-                'periode'=>'Saldo Awal',
-                'nm_status_rekon'=>$histori[$i]['nm_status_rekon'],
-            );
+    $bln_ini=date('m');
+    for($i=0;$i<(int) $bln_ini+1;$i++){
+        if(array_key_exists($i, $histori)) {
+            if($histori[$i]['periode']=='00'){
+                $data[$i]=array(
+                    'periode'=>'Saldo Awal',
+                    'nm_status_rekon'=>$histori[$i]['nm_status_rekon'],
+                );
+            }else {
+                $per=$periode->getPeriodeByPer($histori[$i]['periode']);
+                $data[$i]=array(
+                    'periode'=>$per['nmbulan'],
+                    'nm_status_rekon'=>$histori[$i]['nm_status_rekon'],
+                );
+            }
         }else {
-            $per=$periode->getPeriodeByPer($histori[$i]['periode']);
+            $per=$periode->getPeriodeByPer('0'.$i);
             $data[$i]=array(
                 'periode'=>$per['nmbulan'],
-                'nm_status_rekon'=>$histori[$i]['nm_status_rekon'],
+                'nm_status_rekon'=>'Rekonsiliasi Salah',
             );
         }
     }
