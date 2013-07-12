@@ -161,6 +161,11 @@
         <td><input type="radio" name="dekon" id="dekon" value="UB"/>Urusan Bersama</td>
     </tr>
     <tr>
+        <th>Masukkan Kode</th>
+        <td><input type="text" id="cap" name="cap" /></td>
+        <td colspan="5"><img src='' id="img_cap"></td>
+    </tr>
+    <tr>
         <td colspan="7"><input type="submit" id="rekon_btn" value="Rekon" name="btn_rekon" onclick="return ajaxFileUpload();"/></td>
     </tr>
     </tbody>

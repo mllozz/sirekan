@@ -51,6 +51,11 @@
                                             <td><input type="password" id="pass" name="pass" title="Masukan password" /></td>
                                             <td><span id="x"></span></td>
                                         </tr>
+                                        <tr>
+                                            <td><label for="captcha">Masukkan Kode</label></td>
+                                            <td><input type="text" id="cap" name="cap" /></td>
+                                            <td><img src="controller/cont.captcha.php"><span id="x"></span></td>
+                                        </tr>
                                     </table>
         							<center style="color:#ff0000"><div id="error"></div></center>
                                     <br/>

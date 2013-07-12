@@ -10,9 +10,12 @@ $direktori = 'adk';
 $ekstensi = array('012', '112', '212', '120', '312', '1212');
 $size = 2000000; //2mb
 $rekon = array();
+session_start();
 if (empty($_FILES['file_adk']['tmp_name']) || $_FILES['file_adk']['tmp_name'] == 'none') {
     $error = 'File Tidak Ada';
-} elseif (empty($_POST['dekon'])) {
+} elseif(empty($_POST['cap']) || $_POST['cap'] != $_SESSION['cap'] || $_SESSION['cap']==''){
+    $error='Kode Verifikasi Salah';
+}elseif (empty($_POST['dekon'])) {
     $error = 'Jenis Kewenangan Harus Diisi';
 } else {
     $kddekon = $_POST['dekon'];
@@ -22,7 +25,7 @@ if (empty($_FILES['file_adk']['tmp_name']) || $_FILES['file_adk']['tmp_name'] ==
     }else {
         $periode='00';
     }
-    session_start();
+    //session_start();
     $username = $_SESSION['username'];
 
     $kddept = substr($username, 0, 3);

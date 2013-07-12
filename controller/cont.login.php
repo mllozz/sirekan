@@ -10,12 +10,12 @@ if (isset($_POST['user']) && isset($_POST['pass'])) {
     $message = array();
     $username = $_POST['user'];
     $password = $_POST['pass'];
+    $cap=$_POST['cap'];
 
-    if (empty($username) || empty($password)) {
+    if (empty($username) || empty($password) || empty($cap)) {
         $message[] = "Tidak boleh kosong";
     }
-
-
+    
     $data = array(
         'username' => $username,
         'password' => $password,
@@ -29,7 +29,10 @@ if (isset($_POST['user']) && isset($_POST['pass'])) {
         $id_user=$cek['id_user'];
         $blokir=new Blokir();
         $isBlokir=$blokir->isBlokir($id_user);
-        if($isBlokir) {
+        session_start();
+        if($cap != $_SESSION['cap'] OR $_SESSION['cap']=='')  {
+            $message[]='Kode Verifikasi Salah';
+        }elseif($isBlokir) {
             $message[] = "User diblokir, silahkan hubungi KPPN";
         } else {
             $data_user=User::getUser($id_user);
@@ -40,7 +43,7 @@ if (isset($_POST['user']) && isset($_POST['pass'])) {
             //inisiasi object satker
             //$satker = new Satker($arr);
             //$data_satker = $satker->getSatker();
-            session_start();
+            //session_start();
             //buat session
             $_SESSION['isLogged']=true;  
             $_SESSION['username']=$arr[0];

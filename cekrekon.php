@@ -37,6 +37,7 @@
     
     tr#red {
         background-color: red;
+        color: white;
     }
 
     tr:nth-child(even) {

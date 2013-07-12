@@ -4,6 +4,10 @@ $(document).ready(function() {
             $('input:radio[name=dekon]').filter('[value=' + data.kddekon + ']').attr('checked', true);
         }
     });
+    
+    var pic1 = document.getElementById("img_cap"); 
+    if (pic1 == typeof('undefined')) return;
+    pic1.src = 'controller/cont.captcha.php';
 
 });
 
@@ -17,12 +21,13 @@ function ajaxFileUpload() {
 
     var kddekon = $('#dekon:checked').val();
     var id = $('#id_rekon').val();
+    var cap=$('#cap').val();
     $.ajaxFileUpload({
         url: 'controller/cont.upload.php',
         secureuri: false,
         fileElementId: 'file_adk',
         dataType: 'json',
-        data: {dekon: kddekon, id_rekon: id},
+        data: {dekon: kddekon, id_rekon: id, cap:cap},
         success: function(data, status)
         {
             if (typeof(data.error) != 'undefined')
